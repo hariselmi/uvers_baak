@@ -69,7 +69,7 @@
                                 @if (auth()->user()->checkSpPermission('statuspemrosesan.index'))
                                     <li class="{{ Request::is('statuspemrosesan') ? 'active' : '' }} ">
                                         <a href="{{ url('/statuspemrosesan') }}"><i class="fa fa-circle-o"></i>
-                                            <span>{{ __('Status Pemrosesan') }}</span></a>
+                                            <span>{{ __('Status Pemrosesannn') }}</span></a>
                                     </li>
                                 @endif
                                 {{-- @if (auth()->user()->checkSpPermission('ekspor.index'))
