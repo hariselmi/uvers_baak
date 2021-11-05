@@ -16,3 +16,4 @@ yarn-error.log
 .env
 /storage/iniSys
 /storage/installed
+/storage/framework

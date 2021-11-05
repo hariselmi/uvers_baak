@@ -50,7 +50,7 @@
                                 <b>Foto Upacara Penyerahan Penghargaan</b> <a target="_blank" class="pull-right" href="{{ $nonlomba->foto_penghargaan ? asset('/document/award').'/'.$nonlomba->foto_penghargaan : 'javascript:void(0)' }}">{{ $nonlomba->foto_penghargaan ? $nonlomba->foto_penghargaan : '-' }}</a>
                             </li>
                             <li class="list-group-item hidden-print">
-                                <b>Surat Kegiatan Lomba</b> <a class="pull-right"<a target="_blank" class="pull-right" href="{{ $nonlomba->surat_lomba ? asset('/document/letter').'/'.$nonlomba->surat_lomba : 'javascript:void(0)' }}">{{ $nonlomba->surat_lomba ? $nonlomba->surat_lomba : '-' }}</a>
+                                <b>Surat Tugas atau Surat Izin</b> <a class="pull-right"<a target="_blank" class="pull-right" href="{{ $nonlomba->surat_lomba ? asset('/document/letter').'/'.$nonlomba->surat_lomba : 'javascript:void(0)' }}">{{ $nonlomba->surat_lomba ? $nonlomba->surat_lomba : '-' }}</a>
                             </li>
                             <li class="list-group-item hidden-print">
                                 <b>Keterangan</b> <a class="pull-right">{{ $nonlomba->keterangan ? $nonlomba->keterangan : '-' }}</a>

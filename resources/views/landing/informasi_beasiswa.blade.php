@@ -4,7 +4,7 @@
 	<!-- Content -->
 	<div class="section section-contents section-pad bg-light">
 		<div class="container">
-			{!!Get_field::get_data('3', 'pages', 'content')!!}
+			{{-- {!!Get_field::get_data('3', 'pages', 'content')!!} --}}
 
 			
 			@foreach($articles_beasiswa as $index=>$value) 

@@ -64,6 +64,24 @@ class LombaController extends Controller
     public function store(Request $request)
     {
         //
+        $validateData = $request->validate([
+            'nama_kegiatan'=>'required',
+            'peran'=>'required',
+            'penyelenggara'=>'required',
+            'tgl_mulai'=>'required',
+            'tgl_selesai'=>'required',
+            'sertifikat' => 'file|mimes:png,jpg,jpeg,pdf|between:0,2048',
+            'foto_penghargaan' => 'file|mimes:png,jpg,jpeg,pdf|between:0,2048',
+            'surat_lomba' => 'file|mimes:png,jpg,jpeg,pdf|between:0,2048',
+        ],[
+            'sertifikat.mimes' => 'Extensi file sertifikat tidak didukung',
+            'sertifikat.between' => 'Ukuran file sertifikat max 2MB',
+            'foto_penghargaan.mimes' => 'Extensi file foto upacara penyerahan penghargaan tidak didukung',
+            'foto_penghargaan.between' => 'Ukuran file foto upacara penyerahan penghargaan max 2MB',
+            'surat_lomba.mimes' => 'Extensi file surat tugas atau surat izin tidak didukung',
+            'surat_lomba.between' => 'Ukuran file surat tugas atau surat izin max 2MB',
+        ]);
+
         $certificate = $request->file('sertifikat');
         $award = $request->file('foto_penghargaan');
         $letter = $request->file('surat_lomba');
@@ -103,7 +121,7 @@ class LombaController extends Controller
 
         // insert data into lomba table
         $input = $request->all();
-        $this->validator($input)->validate();
+        // $this->validator($input)->validate();
         $lomba = new Lomba;
         $lomba->nama_kegiatan = $request->nama_kegiatan;
         $lomba->peran = $request->peran;
@@ -164,6 +182,23 @@ class LombaController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validateData = $request->validate([
+            'nama_kegiatan'=>'required',
+            'peran'=>'required',
+            'penyelenggara'=>'required',
+            'tgl_mulai'=>'required',
+            'tgl_selesai'=>'required',
+            'sertifikat' => 'file|mimes:png,jpg,jpeg,pdf|between:0,2048',
+            'foto_penghargaan' => 'file|mimes:png,jpg,jpeg,pdf|between:0,2048',
+            'surat_lomba' => 'file|mimes:png,jpg,jpeg,pdf|between:0,2048',
+        ],[
+            'sertifikat.mimes' => 'Extensi file sertifikat tidak didukung',
+            'sertifikat.between' => 'Ukuran file sertifikat max 2MB',
+            'foto_penghargaan.mimes' => 'Extensi file foto upacara penyerahan penghargaan tidak didukung',
+            'foto_penghargaan.between' => 'Ukuran file foto upacara penyerahan penghargaan max 2MB',
+            'surat_lomba.mimes' => 'Extensi file surat tugas atau surat izin tidak didukung',
+            'surat_lomba.between' => 'Ukuran file surat tugas atau surat izin max 2MB',
+        ]);
 
         $certificate = $request->file('sertifikat');
         $award = $request->file('foto_penghargaan');
@@ -201,7 +236,7 @@ class LombaController extends Controller
         }
 
         $input = $request->all();
-        $this->validator($input)->validate();
+        // $this->validator($input)->validate();
         $lomba = (new Lomba())->getById($id);
         $lomba->nama_kegiatan = $request->nama_kegiatan;
         $lomba->peran = $request->peran;

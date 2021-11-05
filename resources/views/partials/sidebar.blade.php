@@ -203,6 +203,48 @@
                         </li>
                     @endif
 
+                    @if (auth()->user()->checkSpPermission('pengaturan.index'))
+                        <li
+                            class="{{ Request::is('kategorikegiatan') || Request::is('jeniskepesertaan') || Request::is('capaianprestasi') || Request::is('agama') || Request::is('prodi') ? 'active' : '' }} treeview">
+                            <a href="#"><i class="fa fa-cog"></i> <span>{{ __('Pengaturan') }}</span><span
+                                    class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                            <ul class="treeview-menu">
+                                @if (auth()->user()->checkSpPermission('kategorikegiatan.index'))
+                                    <li class="{{ Request::is('kategorikegiatan') ? 'active' : '' }} ">
+                                        <a href="{{ url('/kategorikegiatan') }}"><i class="fa fa-circle-o"></i>
+                                            <span>{{ __('Data Kategori Kegiatan') }}</span></a>
+                                    </li>
+                                @endif
+                                @if (auth()->user()->checkSpPermission('jeniskepesertaan.index'))
+                                    <li class="{{ Request::is('jeniskepesertaan') ? 'active' : '' }} ">
+                                        <a href="{{ url('/jeniskepesertaan') }}"><i class="fa fa-circle-o"></i>
+                                            <span>{{ __('Data Jenis Kepesertaan') }}</span></a>
+                                    </li>
+                                @endif
+
+                                @if (auth()->user()->checkSpPermission('capaianprestasi.index'))
+                                    <li class="{{ Request::is('capaianprestasi') ? 'active' : '' }} "><a
+                                            href="{{ url('/capaianprestasi') }}"><i class="fa fa-circle-o"></i>
+                                            <span>{{ __('Data Capaian Prestasi') }}</span></a>
+                                @endif
+
+                                @if (auth()->user()->checkSpPermission('agama.index'))
+                                    <li class="{{ Request::is('agama') ? 'active' : '' }} "><a
+                                            href="{{ url('/agama') }}"><i class="fa fa-circle-o"></i>
+                                            <span>{{ __('Data Agama') }}</span></a>
+                                @endif
+
+                                @if (auth()->user()->checkSpPermission('prodi.index'))
+                                    <li class="{{ Request::is('prodi') ? 'active' : '' }} "><a
+                                            href="{{ url('/prodi') }}"><i class="fa fa-circle-o"></i>
+                                            <span>{{ __('Data Prodi') }}</span></a>
+                                @endif
+
+
+                            </ul>
+                        </li>
+                    @endif
+
                     @if (auth()->user()->checkSpPermission('employees.index'))
                         <li class="{{ Request::is('employees') ? 'active' : '' }}"><a
                                 href="{{ url('/employees') }}"><i class="fa fa-user"></i>

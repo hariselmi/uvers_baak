@@ -15,7 +15,7 @@
                         <h3 class="profile-username text-center">{{ $mahasiswa->nama }}</h3>
                         <ul class="list-group list-group-unbordered">
                             <li class="list-group-item hidden-print">
-                                <b>NPM</b> <a class="pull-right">{{ $mahasiswa->nim }}</a>
+                                <b>NIM</b> <a class="pull-right">{{ $mahasiswa->nim }}</a>
                             </li>
                             <li class="list-group-item hidden-print">
                                 <b>Tempat Lahir</b> <a class="pull-right">{{ $mahasiswa->tempat_lahir }}</a>

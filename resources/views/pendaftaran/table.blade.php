@@ -31,7 +31,6 @@
                         } else {
                             # code...
                             $actions = [
-                                ['data-replace' => '#daftarPendaftaranBeasiswa', 'url' => '#daftarPendaftaranBeasiswaModal', 'ajax-url' => url('pendaftaran/' . $value->id . '/daftar'), 'name' => ' Daftar', 'icon' => 'clipboard'], 
                                 ['data-replace' => '#editPendaftaranBeasiswa', 'url' => '#editPendaftaranBeasiswaModal', 'ajax-url' => url('pendaftaran/' . $value->id . '/edit'), 'name' => ' Ubah', 'icon' => 'pencil'],
                                 ['url' => 'pendaftaran/' . $value->id, 'name' => 'delete']
                             ];

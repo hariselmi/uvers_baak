@@ -2,7 +2,7 @@
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
-                <th>{{ __('NPM') }}</th>
+                <th>{{ __('NIM') }}</th>
                 <th>{{ __('Nama') }}</th>
                 <th>{{ __('Prodi') }}</th>
                 <th>{{ __('Tempat, Tanggal Lahir') }}</th>

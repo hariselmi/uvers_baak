@@ -18,16 +18,6 @@
                 </div>
             </div>
             <div class="form-group row">
-                {{ Form::label('mahasiswa_id', 'Nama *', ['class' => 'col-sm-3 text-right']) }}
-                <div class="col-sm-9">
-                    @if (Auth::user()->role != 'admin')
-                        {!! Form::select('mahasiswa_id', $mahasiswa, Auth::user()->mahasiswa_id, ['placeholder' => 'Pilih Nama Mahasiswa', 'class' => 'form-control', 'readonly' => 'readonly']) !!}
-                    @else
-                        {!! Form::select('mahasiswa_id', $mahasiswa, null, ['placeholder' => 'Pilih Nama Mahasiswa', 'class' => 'form-control']) !!}
-                    @endif
-                </div>
-            </div>
-            <div class="form-group row">
                 {{ Form::label('no_identitas', 'No. Identitas/KTP *', ['class' => 'col-sm-3 text-right']) }}
                 <div class="col-sm-9">
                     {{ Form::text('no_identitas', null, ['class' => 'form-control']) }}

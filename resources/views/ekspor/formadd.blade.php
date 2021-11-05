@@ -82,7 +82,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                {{ Form::label('sertifikat', 'Surat Kegiatan Lomba' . ' *', ['class' => 'col-sm-3 text-right']) }}
+                {{ Form::label('sertifikat', 'Surat Tugas atau Surat Izin' . ' *', ['class' => 'col-sm-3 text-right']) }}
                 <div class="col-sm-9">
                     {{ Form::file('sertifikat', null, ['class' => 'form-control']) }}
                 </div>

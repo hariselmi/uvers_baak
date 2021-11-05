@@ -5,7 +5,7 @@
 <!-- Latest News -->
 <div class="section section-news section-pad">
     <div class="container">
-        {!! Get_field::get_data('4', 'pages', 'content') !!}
+        {{-- {!! Get_field::get_data('4', 'pages', 'content') !!} --}}
 
 			
         @foreach($articles_utama as $index=>$value) 

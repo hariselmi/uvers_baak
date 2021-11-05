@@ -64,6 +64,17 @@ class MagangController extends Controller
     public function store(Request $request)
     {
         //
+        $validateData = $request->validate([
+            'nama_kegiatan'=>'required',
+            'peran'=>'required',
+            'penyelenggara'=>'required',
+            'tgl_mulai'=>'required',
+            'tgl_selesai'=>'required',
+            'sertifikat' => 'file|mimes:png,jpg,jpeg,pdf|between:0,2048',
+        ],[
+            'sertifikat.mimes' => 'Extensi file sertifikat tidak didukung',
+            'sertifikat.between' => 'Ukuran file sertifikat max 2MB',
+        ]);
         $certificate = $request->file('sertifikat');
 
         //insert certificate
@@ -79,7 +90,7 @@ class MagangController extends Controller
 
         // insert data into sertifikat table
         $input = $request->all();
-        $this->validator($input)->validate();
+        // $this->validator($input)->validate();
         $magang = new Magang;
         $magang->nama_kegiatan = $request->nama_kegiatan;
         $magang->peran = $request->peran;
@@ -132,6 +143,17 @@ class MagangController extends Controller
     public function update(Request $request, $id)
     {
         // 
+        $validateData = $request->validate([
+            'nama_kegiatan'=>'required',
+            'peran'=>'required',
+            'penyelenggara'=>'required',
+            'tgl_mulai'=>'required',
+            'tgl_selesai'=>'required',
+            'sertifikat' => 'file|mimes:png,jpg,jpeg,pdf|between:0,2048',
+        ],[
+            'sertifikat.mimes' => 'Extensi file sertifikat tidak didukung',
+            'sertifikat.between' => 'Ukuran file sertifikat max 2MB',
+        ]);
 
         $certificate = $request->file('sertifikat');
 
@@ -146,7 +168,7 @@ class MagangController extends Controller
         }
 
         $input = $request->all();
-        $this->validator($input)->validate();
+        // $this->validator($input)->validate();
         $magang = (new Magang())->getById($id);
         $magang->nama_kegiatan = $request->nama_kegiatan;
         $magang->peran = $request->peran;

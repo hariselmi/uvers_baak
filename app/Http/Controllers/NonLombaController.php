@@ -64,6 +64,24 @@ class NonLombaController extends Controller
     public function store(Request $request)
     {
         //
+        $validateData = $request->validate([
+            'nama_kegiatan'=>'required',
+            'peran'=>'required',
+            'penyelenggara'=>'required',
+            'tgl_mulai'=>'required',
+            'tgl_selesai'=>'required',
+            'sertifikat' => 'file|mimes:png,jpg,jpeg,pdf|between:0,2048',
+            'foto_penghargaan' => 'file|mimes:png,jpg,jpeg,pdf|between:0,2048',
+            'surat_nonlomba' => 'file|mimes:png,jpg,jpeg,pdf|between:0,2048',
+        ],[
+            'sertifikat.mimes' => 'Extensi file sertifikat tidak didukung',
+            'sertifikat.between' => 'Ukuran file sertifikat max 2MB',
+            'foto_penghargaan.mimes' => 'Extensi file foto upacara penyerahan penghargaan tidak didukung',
+            'foto_penghargaan.between' => 'Ukuran file foto upacara penyerahan penghargaan max 2MB',
+            'surat_nonlomba.mimes' => 'Extensi file surat tugas atau surat izin tidak didukung',
+            'surat_nonlomba.between' => 'Ukuran file surat tugas atau surat izin max 2MB',
+        ]);
+
         $certificate = $request->file('sertifikat');
         $award = $request->file('foto_penghargaan');
         $letter = $request->file('surat_nonlomba');
@@ -103,7 +121,7 @@ class NonLombaController extends Controller
 
         // insert data into nonLomba table
         $input = $request->all();
-        $this->validator($input)->validate();
+        // $this->validator($input)->validate();
         $nonLomba = new NonLomba;
         $nonLomba->nama_kegiatan = $request->nama_kegiatan;
         $nonLomba->peran = $request->peran;
@@ -164,6 +182,23 @@ class NonLombaController extends Controller
     public function update(Request $request, $id)
     {
         // 
+        $validateData = $request->validate([
+            'nama_kegiatan'=>'required',
+            'peran'=>'required',
+            'penyelenggara'=>'required',
+            'tgl_mulai'=>'required',
+            'tgl_selesai'=>'required',
+            'sertifikat' => 'file|mimes:png,jpg,jpeg,pdf|between:0,2048',
+            'foto_penghargaan' => 'file|mimes:png,jpg,jpeg,pdf|between:0,2048',
+            'surat_nonlomba' => 'file|mimes:png,jpg,jpeg,pdf|between:0,2048',
+        ],[
+            'sertifikat.mimes' => 'Extensi file sertifikat tidak didukung',
+            'sertifikat.between' => 'Ukuran file sertifikat max 2MB',
+            'foto_penghargaan.mimes' => 'Extensi file foto upacara penyerahan penghargaan tidak didukung',
+            'foto_penghargaan.between' => 'Ukuran file foto upacara penyerahan penghargaan max 2MB',
+            'surat_nonlomba.mimes' => 'Extensi file surat tugas atau surat izin tidak didukung',
+            'surat_nonlomba.between' => 'Ukuran file surat tugas atau surat izin max 2MB',
+        ]);
 
         $certificate = $request->file('sertifikat');
         $award = $request->file('foto_penghargaan');
@@ -201,7 +236,7 @@ class NonLombaController extends Controller
         }
 
         $input = $request->all();
-        $this->validator($input)->validate();
+        // $this->validator($input)->validate();
         $nonLomba = (new NonLomba())->getById($id);
         $nonLomba->nama_kegiatan = $request->nama_kegiatan;
         $nonLomba->peran = $request->peran;

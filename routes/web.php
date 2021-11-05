@@ -37,6 +37,11 @@ Route::group(['middleware' => 'languange'], function () {
     Route::resource('ekspor', 'EksporBeasiswaController');
     Route::resource('mahasiswa', 'MahasiswaController');
     Route::resource('skpi', 'SkpiController');
+    Route::resource('kategorikegiatan', 'KategoriKegiatanController');
+    Route::resource('jeniskepesertaan', 'JenisKepesertaanController');
+    Route::resource('capaianprestasi', 'CapaianPrestasiController');
+    Route::resource('agama', 'AgamaController');
+    Route::resource('prodi', 'ProdiController');
 
     Route::get('/export/skpi/excel', 'SkpiController@excel')->name('skpi.excel');
 
