@@ -50,6 +50,22 @@
         </div>
     </div>
 </div>
+
+
+<div style="display:none;">
+    <table id="sample_table">
+        <tr id="">
+            <td class="text-center">
+                <input type="hidden" name="id[]" value="0">
+                <span class="sn">1</span>.
+            </td>
+            <td><input class="form-control" type="text" name="syarat[]" id="syarat"></td>
+            <td class="text-center"><a class="btn btn-xs delete-record" data-id="1"><i class="glyphicon glyphicon-trash"></i></a></td>
+        </tr>
+    </table>
+</div>
+
+
 <div class="modal-footer">
     @if (!empty($page))
         <input type="hidden" name="page" value="{{ $page }}" />

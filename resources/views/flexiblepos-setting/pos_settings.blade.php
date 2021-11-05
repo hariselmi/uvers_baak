@@ -42,7 +42,7 @@
       <div class="form-group row">
         {{ Form::label('company_address', __('Company Address'), ['class'=>'col-sm-3']) }}
             <div class="col-sm-8"> 
-        {{ Form::textarea('company_address', null, array('class' => 'form-control', 'rows'=>3, 'required')) }}
+        {{ Form::textarea('company_address', null, array('class' => 'form-control', 'rows'=>3, 'required', 'style' => 'height:50px')) }}
       </div>
       </div>
       <div class="form-group row">

@@ -29,7 +29,7 @@
                                 <b>Tanggal Selesai</b> <a class="pull-right">{{ $magang->tgl_selesai ? $magang->tgl_selesai : '-' }}</a>
                             </li>
                             <li class="list-group-item hidden-print">
-                                <b>magang/Piala/Medali</b> <a target="_blank" class="pull-right" href="{{ $magang->sertifikat ? asset('/document/certificate').'/'.$magang->sertifikat : 'javascript:void(0)' }}">{{ $magang->sertifikat ? $magang->sertifikat : '-' }}</a>
+                                <b>Sertifikat/Piala/Medali</b> <a target="_blank" class="pull-right" href="{{ $magang->sertifikat ? asset('/document/certificate').'/'.$magang->sertifikat : 'javascript:void(0)' }}">{{ $magang->sertifikat ? $magang->sertifikat : '-' }}</a>
                             </li>
                         </ul>
                     </div>

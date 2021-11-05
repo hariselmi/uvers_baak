@@ -29,7 +29,7 @@
                                 <b>Tanggal Selesai</b> <a class="pull-right">{{ $pelatihan->tgl_selesai ? $pelatihan->tgl_selesai : '-' }}</a>
                             </li>
                             <li class="list-group-item hidden-print">
-                                <b>pelatihan/Piala/Medali</b> <a target="_blank" class="pull-right" href="{{ $pelatihan->sertifikat ? asset('/document/certificate').'/'.$pelatihan->sertifikat : 'javascript:void(0)' }}">{{ $pelatihan->sertifikat ? $pelatihan->sertifikat : '-' }}</a>
+                                <b>Sertifikat/Piala/Medali</b> <a target="_blank" class="pull-right" href="{{ $pelatihan->sertifikat ? asset('/document/certificate').'/'.$pelatihan->sertifikat : 'javascript:void(0)' }}">{{ $pelatihan->sertifikat ? $pelatihan->sertifikat : '-' }}</a>
                             </li>
                         </ul>
                     </div>

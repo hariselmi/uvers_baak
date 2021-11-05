@@ -20,7 +20,7 @@
             <div class="form-group row">
                 {{ Form::label('deskripsi', 'Deskripsi *', ['class' => 'col-sm-3 text-right']) }}
                 <div class="col-sm-9">
-                    {{ Form::textarea('deskripsi', null, ['class' => 'form-control', 'required']) }}
+                    {{ Form::textarea('deskripsi', null, ['class' => 'form-control', 'required', 'style' => 'height:50px']) }}
                 </div>
             </div>
             <div class="form-group row">

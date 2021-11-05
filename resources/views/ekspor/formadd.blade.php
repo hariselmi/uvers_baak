@@ -90,7 +90,7 @@
             <div class="form-group row">
                 {{ Form::label('name', 'Keterangan' . ' *', ['class' => 'col-sm-3 text-right']) }}
                 <div class="col-sm-9">
-                    {{ Form::textarea('content', null, ['class' => 'form-control', 'required']) }}
+                    {{ Form::textarea('content', null, ['class' => 'form-control', 'required', 'style' => 'height:50px']) }}
                 </div>
             </div>
         </div>
