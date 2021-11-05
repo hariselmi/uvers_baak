@@ -42,6 +42,9 @@ class NonLombaController extends Controller
         }
         
         $data['dataNonLomba'] = $this->nonlomba->getAll('paginate');
+        $data['kategoriKegiatan'] = DB::table('kategori_kegiatan')->where('dlt', 0)->pluck('name', 'id');
+        $data['capaianPrestasi'] = DB::table('capaian_prestasi')->where('dlt', 0)->pluck('name', 'id');
+        $data['jenisKepesertaan'] = DB::table('jenis_kepesertaan')->where('dlt', 0)->pluck('name', 'id');
         return view('nonlomba.index', $data);
     }
 
@@ -143,7 +146,10 @@ class NonLombaController extends Controller
         $nonLomba->created_at = date('Y-m-d H:i:s');
         $nonLomba->save();
 
-        return $this->sendCommonResponse($data=[], 'Berhasil menyimpan data', 'add');
+        $data['kategoriKegiatan'] = DB::table('kategori_kegiatan')->where('dlt', 0)->pluck('name', 'id');
+        $data['capaianPrestasi'] = DB::table('capaian_prestasi')->where('dlt', 0)->pluck('name', 'id');
+        $data['jenisKepesertaan'] = DB::table('jenis_kepesertaan')->where('dlt', 0)->pluck('name', 'id');
+        return $this->sendCommonResponse($data, 'Berhasil menyimpan data', 'add');
     }
 
     /**
@@ -169,6 +175,9 @@ class NonLombaController extends Controller
     {
         //
         $data['nonlomba'] = NonLomba::find($id);
+        $data['kategoriKegiatan'] = DB::table('kategori_kegiatan')->where('dlt', 0)->pluck('name', 'id');
+        $data['capaianPrestasi'] = DB::table('capaian_prestasi')->where('dlt', 0)->pluck('name', 'id');
+        $data['jenisKepesertaan'] = DB::table('jenis_kepesertaan')->where('dlt', 0)->pluck('name', 'id');
         return $this->sendCommonResponse($data, null, 'edit');
     }
 
@@ -266,6 +275,9 @@ class NonLombaController extends Controller
         $nonLomba->save();
         
         $data['nonlomba'] = $nonLomba;
+        $data['kategoriKegiatan'] = DB::table('kategori_kegiatan')->where('dlt', 0)->pluck('name', 'id');
+        $data['capaianPrestasi'] = DB::table('capaian_prestasi')->where('dlt', 0)->pluck('name', 'id');
+        $data['jenisKepesertaan'] = DB::table('jenis_kepesertaan')->where('dlt', 0)->pluck('name', 'id');
         return $this->sendCommonResponse($data, 'Berhasil memperbarui data', 'update');
     }
 

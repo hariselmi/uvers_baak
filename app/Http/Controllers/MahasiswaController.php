@@ -43,6 +43,8 @@ class MahasiswaController extends Controller
         }
         
         $data['dataMahasiswa'] = $this->mahasiswa->getAll('paginate');
+        $data['agama'] = DB::table('agama')->where('dlt', 0)->pluck('name', 'id');
+        $data['prodi'] = DB::table('prodi')->where('dlt', 0)->pluck('name', 'id');
         return view('mahasiswa.index', $data);
     }
 
@@ -92,8 +94,9 @@ class MahasiswaController extends Controller
         $user->save();
         $this->assignRoles($user, 'mahasiswa');
 
-        
-        return $this->sendCommonResponse($data=[], 'Berhasil menyimpan data', 'add');
+        $data['agama'] = DB::table('agama')->where('dlt', 0)->pluck('name', 'id');
+        $data['prodi'] = DB::table('prodi')->where('dlt', 0)->pluck('name', 'id');
+        return $this->sendCommonResponse($data, 'Berhasil menyimpan data', 'add');
     }
 
     /**
@@ -119,6 +122,8 @@ class MahasiswaController extends Controller
     {
         //
         $data['mahasiswa'] = Mahasiswa::find($id);
+        $data['agama'] = DB::table('agama')->where('dlt', 0)->pluck('name', 'id');
+        $data['prodi'] = DB::table('prodi')->where('dlt', 0)->pluck('name', 'id');
         return $this->sendCommonResponse($data, null, 'edit');
     }
 
@@ -150,6 +155,8 @@ class MahasiswaController extends Controller
         $mahasiswa->save();
         
         $data['mahasiswa'] = $mahasiswa;
+        $data['agama'] = DB::table('agama')->where('dlt', 0)->pluck('name', 'id');
+        $data['prodi'] = DB::table('prodi')->where('dlt', 0)->pluck('name', 'id');
         return $this->sendCommonResponse($data, 'Berhasil memperbarui data', 'update');
     }
 

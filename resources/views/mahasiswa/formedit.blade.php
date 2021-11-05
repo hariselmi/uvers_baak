@@ -50,7 +50,7 @@
                 <div class="form-group row">
                     {{ Form::label('agama', 'Agama *', ['class' => 'col-sm-3 text-right']) }}
                     <div class="col-sm-9">
-                        {!! Form::select('agama', ['1' => 'Islam', '2' => 'Kristen', '3' => 'Katolik', '4' => 'Hindu', '5' => 'Budha', '6' => 'Konghucu'], null, ['placeholder' => 'Pilih Agama', 'class' => 'form-control']) !!}
+                        {!! Form::select('agama', $agama, null, ['placeholder' => 'Pilih Agama', 'class' => 'form-control']) !!}
                     </div>
                 </div>
                 <div class="form-group row">
@@ -62,7 +62,7 @@
                 <div class="form-group row">
                     {{ Form::label('prodi', 'Prodi *', ['class' => 'col-sm-3 text-right']) }}
                     <div class="col-sm-9">
-                        {!! Form::select('prodi', ['1' => 'Akuntansi', '2' => 'Manajemen', '3' => 'Sistem Informasi', '4' => 'Teknik Informatika', '5' => 'Teknik Perangkat Lunak', '6' => 'Pendidikan Bahasa Mandarin', '7' => 'Seni Musik', '8' => 'Seni Tari', '9' => 'Teknik Industri', '10' => 'Teknik Lingkungan'], null, ['placeholder' => 'Pilih Prodi', 'class' => 'form-control']) !!}
+                        {!! Form::select('prodi', $prodi, null, ['placeholder' => 'Pilih Prodi', 'class' => 'form-control']) !!}
                     </div>
                 </div>
                 <div class="form-group row">

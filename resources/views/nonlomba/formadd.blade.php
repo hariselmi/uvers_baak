@@ -42,13 +42,13 @@
             <div class="form-group row">
                 {{ Form::label('kategori', 'Kategori Kegiatan', ['class' => 'col-sm-3 text-right']) }}
                 <div class="col-sm-9">
-                    {!! Form::select('kategori', ['1' => 'Sekolah', '2' => 'Kecamatan', '3' => 'Kab/Kota','4' => 'Provinsi','5' => 'Wilayah','6' => 'Nasional','7' => 'Internasional'], null, ['placeholder' => 'Pilih Kategori Kegiatan', 'class' => 'form-control']) !!}
+                    {!! Form::select('kategori', $kategoriKegiatan, null, ['placeholder' => 'Pilih Kategori Kegiatan', 'class' => 'form-control']) !!}
                 </div>
             </div>
             <div class="form-group row">
                 {{ Form::label('jenis', 'Jenis Kepesertaan', ['class' => 'col-sm-3 text-right']) }}
                 <div class="col-sm-9">
-                    {!! Form::select('jenis', ['1' => 'Individu', '2' => 'Kelompok'], null, ['placeholder' => 'Pilih Jenis Kepersertaan', 'class' => 'form-control']) !!}
+                    {!! Form::select('jenis', $jenisKepesertaan, null, ['placeholder' => 'Pilih Jenis Kepersertaan', 'class' => 'form-control']) !!}
                 </div>
             </div>
             <div class="form-group row">
@@ -60,7 +60,7 @@
             <div class="form-group row">
                 {{ Form::label('capaian', 'Capaian Prestasi', ['class' => 'col-sm-3 text-right']) }}
                 <div class="col-sm-9">
-                    {!! Form::select('capaian', ['1' => 'Juara Umum', '2' => 'Juara I', '3' => 'Juara II','4' => 'Juara III','5' => 'Juara Harapan','6' => 'Partisipasi/delgasi/peserta kejuruan','7' => 'Penyelenggara Kegiatan Kejuaraan'], null, ['placeholder' => 'Pilih Capaian Prestasi', 'class' => 'form-control']) !!}
+                    {!! Form::select('capaian', $capaianPrestasi, null, ['placeholder' => 'Pilih Capaian Prestasi', 'class' => 'form-control']) !!}
                 </div>
             </div>
             <div class="form-group row">
