@@ -1,11 +1,11 @@
 <div class="modal-content" id="addPendaftaranBeasiswa">
     {{ Form::open(['url' => 'pendaftaran', 'files' => true]) }}
-<div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h4 class="modal-title">
-        {{ __('Tambah Pendaftaran Beasiswa') }}
-    </h4>
-</div>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">
+            {{ __('Tambah Pendaftaran Beasiswa') }}
+        </h4>
+    </div>
 <div class="modal-body">
     <div class="row">
         <div class="col-sm-10">
@@ -42,7 +42,7 @@
         </div>
     </div>
 
-    <div class="row">
+    {{-- <div class="row">
 
         <div style="width: 90%; margin:auto">
 
@@ -72,6 +72,35 @@
             </div>
 
         </div>
+    </div> --}}
+
+
+    <div class="row">
+
+        <div style="width: 90%; margin:auto">
+                    <a class="btn btn-primary pull-right rounded-0" id="insertRow" href="#">Add new row</a>
+
+            <div class="tableFixHead">
+                 <!--  Bootstrap table-->
+                 <div class="table-responsive">
+                    <table id="tableSyaratAdd" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col" style="width:5px">#</th>
+                                <th scope="col">Syarat</th>
+                                <th scope="col" style="width:5px"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Add rows button-->
+                
+            </div>
+
+        </div>
     </div>
 </div>
 <div class="modal-footer">
@@ -90,10 +119,39 @@
         width:'100%'
     });
 
+    $(function () {
+
+        // Start counting from the third row
+        var counter = 1;
+
+        $("#insertRow").on("click", function (event) {
+            event.preventDefault();
+
+            var newRow = $("<tr>");
+            var cols = '';
+
+            // Table columns
+            cols += '<th scrope="row">' + counter + '</th>';
+            cols += '<td><input class="form-control" rounded-0" type="text" name="syarat[]" id="syarat"></td>';
+            cols += '<td><button class="btn btn-danger rounded-0" id ="deleteRow"><i class="fa fa-trash"></i></button></td>';
+
+            // Insert the columns inside a row
+            newRow.append(cols);
+
+            // Insert the row inside a table
+            $("#tableSyaratAdd").append(newRow);
+
+            // Increase counter after each row insertion
+            counter++;
+        });
+
+        // Remove row when delete btn is clicked
+        $("#tableSyaratAdd").on("click", "#deleteRow", function (event) {
+            $(this).closest("tr").remove();
+            counter -= 1
+        });
+    });
+
 
 
 </script>
-
-
-<script type="text/javascript" src="{{ asset('js/angular.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/finding.js') }}"></script>

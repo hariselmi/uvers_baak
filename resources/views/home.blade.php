@@ -8,10 +8,39 @@
             <div class="col-md-12">
                 <div class="panel-heading">
                     @include('partials.flash')
-                    <h1>{{ __('Dashboard Sistem Layanan Kemahasiswaan') }}</h1>
+                    @if (Auth::user()->role == 'mahasiswa')
+                        <h3>{{ __('Selamat datang di Sistem Layanan Kemahasiswaan Universitas Universal (SILMA).') }}</h3>
+                    @else
+                        <h1>{{ __('Dashboard Sistem Layanan Kemahasiswaan') }}</h1>
+                    @endif
                 </div>
                 <div class="panel-body">
+                    @if (Auth::user()->role == 'mahasiswa')
+                        <div class="row">
+                            <div class="col-md-2">
+                                <h4>NIM</h4>
+                            </div>
+                            <div class="col-md-10">
+                                <h4>{{ Get_field::get_data(Auth::user()->mahasiswa_id, 'mahasiswa', 'nim') }}</h4>
+                            </div>
 
+
+                            <div class="col-md-2">
+                                <h4>NAMA</h4>
+                            </div>
+                            <div class="col-md-10">
+                                <h4>{{ Get_field::get_data(Auth::user()->mahasiswa_id, 'mahasiswa', 'nama') }}</h4>
+                            </div>
+
+
+                            <div class="col-md-2">
+                                <h4>Program Studi</h4>
+                            </div>
+                            <div class="col-md-10">
+                                <h4>test</h4>
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

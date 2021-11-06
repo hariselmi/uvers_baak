@@ -256,6 +256,16 @@
                                 href="{{ route('flexiblepossetting.create') }}"><i class="fa fa-gear"></i>
                                 <span>{{ __('Settings') }}</span></a></li>
                     @endif
+
+
+                    <li class="">
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i>Logout</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+
+                        {{-- <a href="{{ url('/home') }}"><i class="fa fa-sign-out"></i><span>Logout</span></a> --}}
+                    </li>
                 </ul>
 
                 <!-- admin menu tutup -->

@@ -92,6 +92,8 @@ Route::group(['middleware' => 'languange'], function () {
 
 
     Route::resource('employees', 'EmployeeController');
+    Route::get('/useredit/{userid?}', 'EmployeeController@userEdit')->name('user.edit');
+    Route::put('/useredit/{userid?}', 'EmployeeController@userUpdate')->name('user.update');
     Route::post('/employees/assignroles', 'EmployeeController@assignRoles')->name('assign.roles');
     Route::post('/employeerole/create', 'EmployeeController@roleCreate')->name('employeerole.create');
     Route::get('/allpermissions/{role_id?}', 'EmployeeController@permissionList')->name('permissions.list');

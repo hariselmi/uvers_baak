@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Magang;
 use App\User;
 use Auth;
+use Get_field;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
@@ -77,12 +78,24 @@ class MagangController extends Controller
         ]);
         $certificate = $request->file('sertifikat');
 
+        $role = Auth::user()->role;
+        $tahun = date('Y');
+        $judulKegiatan = 'aktivitas_lainnya';
+
+        if ($role == 'mahasiswa') {
+            # code...
+            $nim = Get_field::get_data(Auth::user()->mahasiswa_id, 'mahasiswa', 'nim');
+            // $file = 
+        }else{
+            $nim = 'admin';
+        }
+
         //insert certificate
 
         if($certificate){
             $nameGenerate = hexdec(uniqid());
             $imgExtension = strtolower($certificate->getClientOriginalExtension());
-            $certificateImgName = $nameGenerate.'.'.$imgExtension;
+            $certificateImgName = $tahun.'_'.$nim.'_sertifikat_'.$judulKegiatan.'_'.$nameGenerate.'.'.$imgExtension;
             $uploadLocation = public_path().'/document/certificate';
             $lastImage = $uploadLocation.$certificateImgName;
             $certificate->move($uploadLocation,$certificateImgName);
@@ -157,11 +170,23 @@ class MagangController extends Controller
 
         $certificate = $request->file('sertifikat');
 
+        $role = Auth::user()->role;
+        $tahun = date('Y');
+        $judulKegiatan = 'aktivitas_lainnya';
+
+        if ($role == 'mahasiswa') {
+            # code...
+            $nim = Get_field::get_data(Auth::user()->mahasiswa_id, 'mahasiswa', 'nim');
+            // $file = 
+        }else{
+            $nim = 'admin';
+        }
+
         if ($certificate) {
             //insert certificate
             $nameGenerate = hexdec(uniqid());
             $imgExtension = strtolower($certificate->getClientOriginalExtension());
-            $certificateImgName = $nameGenerate.'.'.$imgExtension;
+            $certificateImgName = $tahun.'_'.$nim.'_sertifikat_'.$judulKegiatan.'_'.$nameGenerate.'.'.$imgExtension;
             $uploadLocation = public_path().'/document/certificate';
             $lastImage = $uploadLocation.$certificateImgName;
             $certificate->move($uploadLocation,$certificateImgName);

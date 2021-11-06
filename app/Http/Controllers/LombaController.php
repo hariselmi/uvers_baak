@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Lomba;
 use App\User;
 use Auth;
+use Get_field;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
@@ -89,12 +90,24 @@ class LombaController extends Controller
         $award = $request->file('foto_penghargaan');
         $letter = $request->file('surat_lomba');
 
+        $role = Auth::user()->role;
+        $tahun = date('Y');
+        $judulKegiatan = 'kegiatan_lomba';
+
+
+        if ($role == 'mahasiswa') {
+            # code...
+            $nim = Get_field::get_data(Auth::user()->mahasiswa_id, 'mahasiswa', 'nim');
+            // $file = 
+        }else{
+            $nim = 'admin';
+        }
         //insert certificate
 
         if($certificate){
             $nameGenerate = hexdec(uniqid());
             $imgExtension = strtolower($certificate->getClientOriginalExtension());
-            $certificateImgName = $nameGenerate.'.'.$imgExtension;
+            $certificateImgName = $tahun.'_'.$nim.'_sertifikat_'.$judulKegiatan.'_'.$nameGenerate.'.'.$imgExtension;
             $uploadLocation = public_path().'/document/certificate';
             $lastImage = $uploadLocation.$certificateImgName;
             $certificate->move($uploadLocation,$certificateImgName);
@@ -105,7 +118,7 @@ class LombaController extends Controller
         if($award){
             $nameGenerate = hexdec(uniqid());
             $imgExtension = strtolower($award->getClientOriginalExtension());
-            $awardImgName = $nameGenerate.'.'.$imgExtension;
+            $awardImgName = $tahun.'_'.$nim.'_foto_penghargaan_'.$judulKegiatan.'_'.$nameGenerate.'.'.$imgExtension;
             $uploadLocation = public_path().'/document/award';
             $lastImage = $uploadLocation.$awardImgName;
             $award->move($uploadLocation,$awardImgName);
@@ -116,7 +129,7 @@ class LombaController extends Controller
         if($letter){
             $nameGenerate = hexdec(uniqid());
             $imgExtension = strtolower($letter->getClientOriginalExtension());
-            $letterImgName = $nameGenerate.'.'.$imgExtension;
+            $letterImgName = $tahun.'_'.$nim.'_surat_tugas_'.$judulKegiatan.'_'.$nameGenerate.'.'.$imgExtension;
             $uploadLocation = public_path().'/document/letter';
             $lastImage = $uploadLocation.$letterImgName;
             $letter->move($uploadLocation,$letterImgName);
@@ -213,12 +226,24 @@ class LombaController extends Controller
         $award = $request->file('foto_penghargaan');
         $letter = $request->file('surat_lomba');
 
+        $role = Auth::user()->role;
+        $tahun = date('Y');
+        $judulKegiatan = 'kegiatan_lomba';
+
+
+        if ($role == 'mahasiswa') {
+            # code...
+            $nim = Get_field::get_data(Auth::user()->mahasiswa_id, 'mahasiswa', 'nim');
+            // $file = 
+        }else{
+            $nim = 'admin';
+        }
 
         if ($certificate) {
             //insert certificate
             $nameGenerate = hexdec(uniqid());
             $imgExtension = strtolower($certificate->getClientOriginalExtension());
-            $certificateImgName = $nameGenerate.'.'.$imgExtension;
+            $certificateImgName = $tahun.'_'.$nim.'_sertifikat_'.$judulKegiatan.'_'.$nameGenerate.'.'.$imgExtension;
             $uploadLocation = public_path().'/document/certificate';
             $lastImage = $uploadLocation.$certificateImgName;
             $certificate->move($uploadLocation,$certificateImgName);
@@ -228,7 +253,7 @@ class LombaController extends Controller
             //insert award
             $nameGenerate = hexdec(uniqid());
             $imgExtension = strtolower($award->getClientOriginalExtension());
-            $awardImgName = $nameGenerate.'.'.$imgExtension;
+            $awardImgName = $tahun.'_'.$nim.'_foto_penghargaan_'.$judulKegiatan.'_'.$nameGenerate.'.'.$imgExtension;
             $uploadLocation = public_path().'/document/award';
             $lastImage = $uploadLocation.$awardImgName;
             $award->move($uploadLocation,$awardImgName);
@@ -238,7 +263,7 @@ class LombaController extends Controller
             //insert letter
             $nameGenerate = hexdec(uniqid());
             $imgExtension = strtolower($letter->getClientOriginalExtension());
-            $letterImgName = $nameGenerate.'.'.$imgExtension;
+            $letterImgName = $tahun.'_'.$nim.'_surat_tugas_'.$judulKegiatan.'_'.$nameGenerate.'.'.$imgExtension;
             $uploadLocation = public_path().'/document/letter';
             $lastImage = $uploadLocation.$letterImgName;
             $letter->move($uploadLocation,$letterImgName);

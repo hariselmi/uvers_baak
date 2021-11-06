@@ -40,30 +40,46 @@
         @endif
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="{{asset('dist/img/avatar.png')}}" class="user-image" alt="User Image">
+              {{-- <img src="{{asset('dist/img/avatar.png')}}" class="user-image" alt="User Image"> --}}
               <span class="hidden-xs">{{ Auth::user()->name }}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="{{asset('dist/img/avatar.png')}}" class="img-circle" alt="User Image">
+                {{-- <img src="{{asset('dist/img/avatar.png')}}" class="img-circle" alt="User Image"> --}}
                 <p>
                   {{ Auth::user()->name }}
                 </p>
               </li>
 
-              <!-- Menu Footer-->
-              <li class="user-footer">
-                <div class="pull-left">
-                <a data-replace='#editEmployee' href="#editEmployeeModal" data-ajax-url="{{route('employees.edit', Auth::user()->id)}}" data-toggle="modal" class="btn btn-info">{{__('Profile')}}</a>
-                </div>
-                <div class="pull-right">
-                  <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="btn btn-warning">{{trans('menu.logout')}}</a>
-                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                      {{ csrf_field() }}
-                  </form>
-                </div>
-              </li>
+              @if (Auth::user()->role == 'mahasiswa')
+                <!-- Menu Footer-->
+                <li class="user-footer">
+                  <div class="pull-left">
+                  <a data-replace='#editUser' href="#editUserModal" data-ajax-url="{{route('user.edit', Auth::user()->id)}}" data-toggle="modal" class="btn btn-info">{{__('Profile')}}</a>
+                  </div>
+                  <div class="pull-right">
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="btn btn-warning">{{trans('menu.logout')}}</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                  </div>
+                </li>
+              @else
+                <!-- Menu Footer-->
+                <li class="user-footer">
+                  <div class="pull-left">
+                  <a data-replace='#editEmployee' href="#editEmployeeModal" data-ajax-url="{{route('employees.edit', Auth::user()->id)}}" data-toggle="modal" class="btn btn-info">{{__('Profile')}}</a>
+                  </div>
+                  <div class="pull-right">
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="btn btn-warning">{{trans('menu.logout')}}</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                  </div>
+                </li>
+              @endif
+
             </ul>
           </li>
           @endif
@@ -71,8 +87,17 @@
       </div>
     </nav>
   </header>
-  <div class="modal fade sub-modal" id="editEmployeeModal">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content" id="editEmployee"></div>
+
+  @if (Auth::user()->role == 'mahasiswa')
+    <div class="modal fade sub-modal" id="editUserModal">
+      <div class="modal-dialog modal-lg">
+          <div class="modal-content" id="editUser"></div>
+      </div>
     </div>
-  </div>
+  @else
+    <div class="modal fade sub-modal" id="editEmployeeModal">
+      <div class="modal-dialog modal-lg">
+          <div class="modal-content" id="editEmployee"></div>
+      </div>
+    </div>
+  @endif

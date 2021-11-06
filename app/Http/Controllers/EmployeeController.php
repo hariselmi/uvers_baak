@@ -102,6 +102,19 @@ class EmployeeController extends Controller
     }
 
     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function userEdit($id)
+    {
+        $data['employee'] = User::find($id);
+        $data['roles'] = Role::all();
+        return $this->sendCommonResponse($data, null, 'userEdit');
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  int  $id
@@ -146,6 +159,40 @@ class EmployeeController extends Controller
                 $data['roles'] = Role::all();
                 $data['employee'] = $user;
                 return $this->sendCommonResponse($data, __('Berhasil memperbarui data'), 'update');
+            }
+        }
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function userUpdate(Request $request, $id)
+    {
+        if ($id == 1) {
+            // Session::flash('message', 'You cannot edit admin on Lembaga Penjamin Mutu | Universitas Universal');
+            // Session::flash('alert-class', 'alert-danger');
+            //     return Redirect::to('employees');
+            return $this->sendCommonResponse([], ['danger'=>__('You cannot edit super admin')]);    
+        } else {
+            $rules = array(
+            'password' => 'nullable|min:6|max:30|confirmed',
+            );
+            $validator = Validator::make($request->all(), $rules);
+            if ($validator->fails()) {
+                 return Redirect::to('userEdit/' . $id)
+                ->withErrors($validator);
+            } else {
+                $user = User::find($id);
+                if (!empty($request->password)) {
+                    $user->password = Hash::make($request->password);
+                }
+                $user->save();
+                $data['roles'] = Role::all();
+                $data['employee'] = $user;
+                return $this->sendCommonResponse($data, __('Berhasil memperbarui data'), 'userUpdate');
             }
         }
     }
@@ -271,6 +318,8 @@ class EmployeeController extends Controller
         
         } else if ($option == 'edit' || $option == 'update') {
             $response['replaceWith']['#editEmployee'] = view('employee.form', $data)->render();
+        } else if ($option == 'userEdit' || $option == 'userUpdate') {
+            $response['replaceWith']['#editUser'] = view('employee.form_user', $data)->render();
         } else if ($option == 'show') {
             $response['replaceWith']['#showCustomer'] = view('customer.profile', $data)->render();
         }  else if ($option == 'permission-list') {

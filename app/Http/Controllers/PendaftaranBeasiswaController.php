@@ -76,6 +76,19 @@ class PendaftaranBeasiswaController extends Controller
         $lomba->dlt = 0;
         $lomba->save();
 
+        if (count($request->syarat) > 0) {
+            # code...
+            for ($i=0; $i < count($request->syarat); $i++) { 
+                # code...
+                $syarat = DB::table('syarat_beasiswa')->insert([
+                    'syarat' => $request->syarat[$i],
+                    'dlt' => 0,
+                    'created_at' => date('Y-m-d H:i'),
+                    'beasiswa_id' => $lomba->id
+                ]);
+            }
+        }
+
         return $this->sendCommonResponse($data=[], 'Berhasil menyimpan data', 'add');
     }
 
@@ -102,6 +115,8 @@ class PendaftaranBeasiswaController extends Controller
     {
         //
         $data['pendaftaranBeasiswa'] = PendaftaranBeasiswa::find($id);
+        $data['syaratBeasiswa'] = DB::table('syarat_beasiswa')->where(['beasiswa_id'=> $id, 'dlt'=> 0])->get();
+        $data['syaratBeasiswaCount'] = DB::table('syarat_beasiswa')->where(['beasiswa_id'=> $id, 'dlt'=> 0])->count();
         return $this->sendCommonResponse($data, null, 'edit');
     }
 
@@ -116,6 +131,39 @@ class PendaftaranBeasiswaController extends Controller
     {
         //
 
+        DB::table('syarat_beasiswa')->where('beasiswa_id', $id)->delete();
+
+        if (count($request->syarat) > 0) {
+            # code...
+            for ($i=0; $i < count($request->syarat); $i++) { 
+                # code...
+                $syarat = DB::table('syarat_beasiswa')->insert([
+                    'id' => $request->id[$i],
+                    'syarat' => $request->syarat[$i],
+                    'dlt' => 0,
+                    'created_at' => date('Y-m-d H:i'),
+                    'updated_at' => date('Y-m-d H:i'),
+                    'beasiswa_id' => $id
+                ]);
+            }
+        }
+
+        if($request->syaratBaru){
+            if (count($request->syaratBaru) > 0) {
+                # code...
+                for ($i=0; $i < count($request->syaratBaru); $i++) { 
+                    # code...
+                    $syaratBaru = DB::table('syarat_beasiswa')->insert([
+                        'syarat' => $request->syaratBaru[$i],
+                        'dlt' => 0,
+                        'created_at' => date('Y-m-d H:i'),
+                        'updated_at' => date('Y-m-d H:i'),
+                        'beasiswa_id' => $id
+                    ]);
+                }
+            }
+        }
+
         $input = $request->all();
         $this->validator($input)->validate();
         $lomba = (new PendaftaranBeasiswa())->getById($id);
@@ -129,6 +177,8 @@ class PendaftaranBeasiswaController extends Controller
         $lomba->save();
         
         $data['pendaftaranBeasiswa'] = $lomba;
+        $data['syaratBeasiswa'] = DB::table('syarat_beasiswa')->where(['beasiswa_id'=> $id, 'dlt'=> 0])->get();
+        $data['syaratBeasiswaCount'] = DB::table('syarat_beasiswa')->where(['beasiswa_id'=> $id, 'dlt'=> 0])->count();
         return $this->sendCommonResponse($data, 'Berhasil memperbarui data', 'update');
     }
 
@@ -158,11 +208,14 @@ class PendaftaranBeasiswaController extends Controller
         //
         $data['pendaftaranBeasiswa'] = PendaftaranBeasiswa::find($id);
         $data['mahasiswa'] = DB::table('mahasiswa')->where('dlt', 0)->pluck('nama', 'id');
+        $data['syaratBeasiswa'] = DB::table('syarat_beasiswa')->where(['beasiswa_id'=> $id, 'dlt'=> 0])->get();
+        $data['syaratBeasiswaCount'] = DB::table('syarat_beasiswa')->where(['beasiswa_id'=> $id, 'dlt'=> 0])->count();
         return $this->sendCommonResponse($data, null, 'daftar');
     }
     public function storedaftar(Request $request, $id)
     {
         //
+        dd($request->all());
 
         $input = $request->all();
         $this->validatorDaftar($input)->validate();
@@ -184,6 +237,16 @@ class PendaftaranBeasiswaController extends Controller
         $data['pemilik_rekening'] = $request->pemilik_rekening;
         $data['dlt'] = 0;
         $beasiswa = DB::table('pendaftaran_beasiswa')->insert($data);
+
+
+        $nameGenerate = hexdec(uniqid());
+        $imgExtension = strtolower($letter->getClientOriginalExtension());
+        $letterImgName = $tahun.'_'.$nim.'_surat_tugas_'.$judulKegiatan.'_'.$nameGenerate.'.'.$imgExtension;
+        $uploadLocation = public_path().'/document/letter';
+        $lastImage = $uploadLocation.$letterImgName;
+        $letter->move($uploadLocation,$letterImgName);
+
+        
         
         $data['pendaftaranBeasiswa'] = PendaftaranBeasiswa::find($id);
         $data['mahasiswa'] = DB::table('mahasiswa')->where('dlt', 0)->pluck('nama', 'id');

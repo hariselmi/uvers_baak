@@ -66,7 +66,7 @@
 							<li><a href="/kegiatan_kemahasiswaan"><b>Kegiatan</b> <br> Kemahasiswaan</a></li>
 							<li><a href="/informasi_beasiswa"><b>Informasi</b> <br> Beasiswa</a></li>
 							<li>
-								<a href="\login"><b>Login</b></a>
+								<a href="\login"><b>SILMA</b></a>
 							</li>
 
 

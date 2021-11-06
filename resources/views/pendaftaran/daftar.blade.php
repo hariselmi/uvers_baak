@@ -35,36 +35,52 @@
                     {{ Form::text('pemilik_rekening', null, ['class' => 'form-control']) }}
                 </div>
             </div>
-            <div class="form-group row">
-                {{ Form::label('ktm', 'KTM', ['class' => 'col-sm-3 text-right']) }}
-                <div class="col-sm-9">
-                    {{ Form::file('ktm', null, ['class' => 'form-control']) }}
+        </div>
+    </div>
+
+
+
+    <div class="row">
+
+        <div style="width: 90%; margin:auto">
+            <div class="tableFixHead">
+                 <!--  Bootstrap table-->
+                 <div class="table-responsive">
+                    <table id="tableSyarat" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col" style="width:5px">#</th>
+                                <th scope="col">Syarat</th>
+                                <th scope="col" style="width:30%">Upload File</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        @if (!empty($pendaftaranBeasiswa))
+                            @foreach ($syaratBeasiswa as $key=>$data)
+                                <tr>
+                                    <th scope="row">{{$key+1}}</th>
+                                    <td>
+                                        {{$data->syarat}}
+                                        <input class="form-control" type="hidden" name="syaratId[]" id="syaratId" value="{{$data->id}}">
+                                    </td>
+                                    <td>
+                                        <input class="form-control" type="file" name="fileSyarat[]" id="fileSyarat" value="">
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endif
+                        </tbody>
+                    </table>
                 </div>
+
+                <!-- Add rows button-->
+                
             </div>
-            <div class="form-group row">
-                {{ Form::label('transkip_nilai', 'Transkip Nilai', ['class' => 'col-sm-3 text-right']) }}
-                <div class="col-sm-9">
-                    {{ Form::file('transkip_nilai', null, ['class' => 'form-control']) }}
-                </div>
-            </div>
+
         </div>
     </div>
 </div>
-
-
-<div style="display:none;">
-    <table id="sample_table">
-        <tr id="">
-            <td class="text-center">
-                <input type="hidden" name="id[]" value="0">
-                <span class="sn">1</span>.
-            </td>
-            <td><input class="form-control" type="text" name="syarat[]" id="syarat"></td>
-            <td class="text-center"><a class="btn btn-xs delete-record" data-id="1"><i class="glyphicon glyphicon-trash"></i></a></td>
-        </tr>
-    </table>
-</div>
-
 
 <div class="modal-footer">
     @if (!empty($page))
