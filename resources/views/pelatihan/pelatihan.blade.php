@@ -1,7 +1,7 @@
 <div class="" id="pelatihanDetails">
     <!-- Content Header (Page header) -->
 
-    @if (auth()->user()->checkSpPermission('pelatihan.create'))
+    @if (auth()->user()->checkSpPermission('pelatihan.create')  && Auth::user()->role == 'mahasiswa'))
     <section class="content-header m-3">
         <h1>{{ __('Keikutsertaan Pelatihan/ Seminar/ Workshop') }}
             <a class="btn btn-small btn-success pull-right" href="#addPelatihanModal" data-toggle='modal'>

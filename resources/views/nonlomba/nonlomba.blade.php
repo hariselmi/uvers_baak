@@ -1,7 +1,7 @@
 <div class="" id="nonNonLombaDetails">
     <!-- Content Header (Page header) -->
 
-    @if (auth()->user()->checkSpPermission('nonlomba.create'))
+    @if (auth()->user()->checkSpPermission('nonlomba.create') && Auth::user()->role == 'mahasiswa'))
     <section class="content-header m-3">
         <h1>{{ __('Kegiatan Non Lomba') }}
             <a class="btn btn-small btn-success pull-right" href="#addNonLombaModal" data-toggle='modal'>

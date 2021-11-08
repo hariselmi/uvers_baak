@@ -19,13 +19,22 @@
                     <td>{{ $value->tgl_mulai }}</td>
                     <td>{{ $value->tgl_selesai }}</td>
                     <td class="item_btn_group">
-                        @php
-                            $actions = [
-                                ['data-replace' => '#showMagang', 'url' => '#showMagangModal', 'ajax-url' => url('magang/' . $value->id . '/'), 'name' => ' Lihat', 'icon' => 'eye'], 
-                                ['data-replace' => '#editMagang', 'url' => '#editMagangModal', 'ajax-url' => url('magang/' . $value->id . '/edit'), 'name' => ' Ubah', 'icon' => 'pencil'],
-                                ['url' => 'magang/' . $value->id, 'name' => 'delete']
-                            ];
-                        @endphp
+                        @if (Auth::user()->role == 'mahasiswa')
+                            @php
+                                $actions = [
+                                    ['data-replace' => '#showMagang', 'url' => '#showMagangModal', 'ajax-url' => url('magang/' . $value->id . '/'), 'name' => ' Lihat', 'icon' => 'eye'], 
+                                    ['url' => 'magang/' . $value->id, 'name' => 'delete']
+                                ];
+                            @endphp
+                        @else
+                            @php
+                                $actions = [
+                                    ['data-replace' => '#showMagang', 'url' => '#showMagangModal', 'ajax-url' => url('magang/' . $value->id . '/'), 'name' => ' Lihat', 'icon' => 'eye'], 
+                                    ['data-replace' => '#editMagang', 'url' => '#editMagangModal', 'ajax-url' => url('magang/' . $value->id . '/edit'), 'name' => ' Ubah', 'icon' => 'pencil'],
+                                    ['url' => 'magang/' . $value->id, 'name' => 'delete']
+                                ];
+                            @endphp
+                        @endif
                         @include('partials.actions', ['actions'=>$actions])
                     </td>
                 </tr>

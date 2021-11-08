@@ -19,13 +19,22 @@
                     <td>{{ $value->tgl_mulai }}</td>
                     <td>{{ $value->tgl_selesai }}</td>
                     <td class="item_btn_group">
-                        @php
-                            $actions = [
-                                ['data-replace' => '#showLomba', 'url' => '#showLombaModal', 'ajax-url' => url('lomba/' . $value->id . '/'), 'name' => ' Lihat', 'icon' => 'eye'], 
-                                ['data-replace' => '#editLomba', 'url' => '#editLombaModal', 'ajax-url' => url('lomba/' . $value->id . '/edit'), 'name' => ' Ubah', 'icon' => 'pencil'],
-                                ['url' => 'lomba/' . $value->id, 'name' => 'delete']
-                            ];
-                        @endphp
+                        @if (Auth::user()->role == 'mahasiswa')
+                            @php
+                                $actions = [
+                                    ['data-replace' => '#showLomba', 'url' => '#showLombaModal', 'ajax-url' => url('lomba/' . $value->id . '/'), 'name' => ' Lihat', 'icon' => 'eye'], 
+                                    ['url' => 'lomba/' . $value->id, 'name' => 'delete']
+                                ];
+                            @endphp
+                        @else
+                            @php
+                                $actions = [
+                                    ['data-replace' => '#showLomba', 'url' => '#showLombaModal', 'ajax-url' => url('lomba/' . $value->id . '/'), 'name' => ' Lihat', 'icon' => 'eye'], 
+                                    ['data-replace' => '#editLomba', 'url' => '#editLombaModal', 'ajax-url' => url('lomba/' . $value->id . '/edit'), 'name' => ' Ubah', 'icon' => 'pencil'],
+                                    ['url' => 'lomba/' . $value->id, 'name' => 'delete']
+                                ];
+                            @endphp
+                        @endif
                         @include('partials.actions', ['actions'=>$actions])
                     </td>
                 </tr>

@@ -107,8 +107,11 @@
 <script src="{{asset('assets/ckeditor/styles.js')}}"></script>
 
 <!-- jQuery UI -->
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
+
+<script src="{{asset('assets/js/jquery-ui.min.js')}}"></script>
+<script src="{{asset('assets/js/bootstrap3-typeahead.min.js')}}"></script>
+{{-- <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script> --}}
 
 
 <script type="text/javascript" src="{{asset('dist/clockpicker/bootstrap-clockpicker.min.js')}}"></script>

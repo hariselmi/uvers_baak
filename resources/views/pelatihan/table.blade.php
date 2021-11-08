@@ -19,13 +19,22 @@
                     <td>{{ $value->tgl_mulai }}</td>
                     <td>{{ $value->tgl_selesai }}</td>
                     <td class="item_btn_group">
-                        @php
-                            $actions = [
-                                ['data-replace' => '#showPelatihan', 'url' => '#showPelatihanModal', 'ajax-url' => url('pelatihan/' . $value->id . '/'), 'name' => ' Lihat', 'icon' => 'eye'], 
-                                ['data-replace' => '#editPelatihan', 'url' => '#editPelatihanModal', 'ajax-url' => url('pelatihan/' . $value->id . '/edit'), 'name' => ' Ubah', 'icon' => 'pencil'],
-                                ['url' => 'pelatihan/' . $value->id, 'name' => 'delete']
-                            ];
-                        @endphp
+                        @if (Auth::user()->role == 'mahasiswa')
+                            @php
+                                $actions = [
+                                    ['data-replace' => '#showPelatihan', 'url' => '#showPelatihanModal', 'ajax-url' => url('pelatihan/' . $value->id . '/'), 'name' => ' Lihat', 'icon' => 'eye'], 
+                                    ['url' => 'pelatihan/' . $value->id, 'name' => 'delete']
+                                ];
+                            @endphp
+                        @else
+                            @php
+                                $actions = [
+                                    ['data-replace' => '#showPelatihan', 'url' => '#showPelatihanModal', 'ajax-url' => url('pelatihan/' . $value->id . '/'), 'name' => ' Lihat', 'icon' => 'eye'], 
+                                    ['data-replace' => '#editPelatihan', 'url' => '#editPelatihanModal', 'ajax-url' => url('pelatihan/' . $value->id . '/edit'), 'name' => ' Ubah', 'icon' => 'pencil'],
+                                    ['url' => 'pelatihan/' . $value->id, 'name' => 'delete']
+                                ];
+                            @endphp
+                        @endif
                         @include('partials.actions', ['actions'=>$actions])
                     </td>
                 </tr>

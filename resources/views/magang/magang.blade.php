@@ -1,7 +1,7 @@
 <div class="" id="magangDetails">
     <!-- Content Header (Page header) -->
 
-    @if (auth()->user()->checkSpPermission('magang.create'))
+    @if (auth()->user()->checkSpPermission('magang.create') && Auth::user()->role == 'mahasiswa'))
     <section class="content-header m-3">
         <h1>{{ __('Magang, Pengalaman Organisasi, Kepanitiaan, Kegiatan Sosial/Volunter') }}
             <a class="btn btn-small btn-success pull-right" href="#addMagangModal" data-toggle='modal'>

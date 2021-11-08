@@ -21,7 +21,7 @@
                                 <h4>NIM</h4>
                             </div>
                             <div class="col-md-10">
-                                <h4>{{ Get_field::get_data(Auth::user()->mahasiswa_id, 'mahasiswa', 'nim') }}</h4>
+                                <h4>: {{ Get_field::get_data(Auth::user()->mahasiswa_id, 'mahasiswa', 'nim') }}</h4>
                             </div>
 
 
@@ -29,7 +29,7 @@
                                 <h4>NAMA</h4>
                             </div>
                             <div class="col-md-10">
-                                <h4>{{ Get_field::get_data(Auth::user()->mahasiswa_id, 'mahasiswa', 'nama') }}</h4>
+                                <h4>: {{ Get_field::get_data(Auth::user()->mahasiswa_id, 'mahasiswa', 'nama') }}</h4>
                             </div>
 
 
@@ -37,7 +37,7 @@
                                 <h4>Program Studi</h4>
                             </div>
                             <div class="col-md-10">
-                                <h4>test</h4>
+                                <h4>: {{ Get_field::get_data(Get_field::get_data(Auth::user()->mahasiswa_id, 'mahasiswa', 'prodi'), 'prodi', 'name') }}</h4>
                             </div>
                         </div>
                     @endif

@@ -19,13 +19,22 @@
                     <td>{{ $value->tgl_mulai }}</td>
                     <td>{{ $value->tgl_selesai }}</td>
                     <td class="item_btn_group">
-                        @php
-                            $actions = [
-                                ['data-replace' => '#showNonLomba', 'url' => '#showNonLombaModal', 'ajax-url' => url('nonlomba/' . $value->id . '/'), 'name' => ' Lihat', 'icon' => 'eye'], 
-                                ['data-replace' => '#editNonLomba', 'url' => '#editNonLombaModal', 'ajax-url' => url('nonlomba/' . $value->id . '/edit'), 'name' => ' Ubah', 'icon' => 'pencil'],
-                                ['url' => 'nonlomba/' . $value->id, 'name' => 'delete']
-                            ];
-                        @endphp
+                        @if (Auth::user()->role == 'mahasiswa')
+                            @php
+                                $actions = [
+                                    ['data-replace' => '#showNonLomba', 'url' => '#showNonLombaModal', 'ajax-url' => url('nonlomba/' . $value->id . '/'), 'name' => ' Lihat', 'icon' => 'eye'], 
+                                    ['url' => 'nonlomba/' . $value->id, 'name' => 'delete']
+                                ];
+                            @endphp
+                        @else
+                            @php
+                                $actions = [
+                                    ['data-replace' => '#showNonLomba', 'url' => '#showNonLombaModal', 'ajax-url' => url('nonlomba/' . $value->id . '/'), 'name' => ' Lihat', 'icon' => 'eye'], 
+                                    ['data-replace' => '#editNonLomba', 'url' => '#editNonLombaModal', 'ajax-url' => url('nonlomba/' . $value->id . '/edit'), 'name' => ' Ubah', 'icon' => 'pencil'],
+                                    ['url' => 'nonlomba/' . $value->id, 'name' => 'delete']
+                                ];
+                            @endphp
+                        @endif
                         @include('partials.actions', ['actions'=>$actions])
                     </td>
                 </tr>

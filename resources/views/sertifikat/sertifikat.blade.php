@@ -1,7 +1,7 @@
 <div class="" id="sertifikatDetails">
     <!-- Content Header (Page header) -->
 
-    @if (auth()->user()->checkSpPermission('sertifikat.create'))
+    @if (auth()->user()->checkSpPermission('sertifikat.create') && Auth::user()->role == 'mahasiswa'))
     <section class="content-header m-3">
         <h1>{{ __('Sertifikat Kompetensi') }}
             <a class="btn btn-small btn-success pull-right" href="#addSertifikatModal" data-toggle='modal'>

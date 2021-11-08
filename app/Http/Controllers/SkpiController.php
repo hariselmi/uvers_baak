@@ -44,6 +44,7 @@ class SkpiController extends Controller
         }
         
         $data['golonganSkpi'] = DB::table('golongan_skpi')->pluck('name', 'id');
+        $data['statusAktivitas'] = DB::table('status_aktivitas')->pluck('name', 'id');
         $data['dataSkpi'] = $this->skpi->getAll('paginate');
 
         return view('skpi.index', $data);
@@ -74,6 +75,7 @@ class SkpiController extends Controller
         //
         $data['skpi'] = Skpi::find($id);
         $data['golonganSkpi'] = DB::table('golongan_skpi')->pluck('name', 'id');
+        $data['statusAktivitas'] = DB::table('status_aktivitas')->pluck('name', 'id');
         return $this->sendCommonResponse($data, null, 'edit');
     }
 
@@ -156,6 +158,7 @@ class SkpiController extends Controller
         
         $data['skpi'] = $skpi;
         $data['golonganSkpi'] = DB::table('golongan_skpi')->pluck('name', 'id');
+        $data['statusAktivitas'] = DB::table('status_aktivitas')->pluck('name', 'id');
         return $this->sendCommonResponse($data, 'Berhasil memperbarui data', 'update');
     }
 
