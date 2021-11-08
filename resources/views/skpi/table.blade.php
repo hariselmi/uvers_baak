@@ -1,5 +1,5 @@
 <div class="" id="skpiTable">
-    <table class="table table-bordered table-striped">
+    <table class="table table-bordered table-striped" id="tableSkpi">
         <thead>
             <tr>
                 <th>{{ __('NIM') }}</th>
@@ -27,7 +27,24 @@
                     <td>{{ $value->penyelenggara }}</td>
                     <td>{{ $value->tgl_mulai }}</td>
                     <td>{{ $value->tgl_selesai }}</td>
-                    <td>{{ Get_field::get_data($value->status, 'status', 'name') }}</td>
+                    <td>
+                        @switch($value->status)
+                            @case(1)
+                                <span>{{ Get_field::get_data($value->status, 'status_aktivitas', 'name') }}</span>
+                            {{-- <a href="#" class="btn btn-primary btn-sm disabled" role="button" aria-disabled="true" style="background-color:#dd4b39">{{ Get_field::get_data($value->status, 'status_aktivitas', 'name') }}</a> --}}
+                                @break
+                            @case(2)
+                                <span style="color:#00a65a">{{ Get_field::get_data($value->status, 'status_aktivitas', 'name') }}</span>
+                            {{-- <a href="#" class="btn btn-primary btn-sm disabled" role="button" aria-disabled="true" style="background-color:#00a65a">{{ Get_field::get_data($value->status, 'status_aktivitas', 'name') }}</a> --}}
+                                @break
+                            @case(3)
+                                <span style="color:#dd4b39">{{ Get_field::get_data($value->status, 'status_aktivitas', 'name') }}</span>
+                            {{-- <a href="#" class="btn btn-primary btn-sm disabled" role="button" aria-disabled="true" style="background-color:#dd4b39">{{ Get_field::get_data($value->status, 'status_aktivitas', 'name') }}</a> --}}
+                                @break
+                            @default
+                                
+                        @endswitch
+                    </td>
                     <td class="item_btn_group">
                         @php
                             $actions = [
@@ -44,3 +61,13 @@
     </table>
     @include('partials.pagination', ['items'=>$dataSkpi, 'index_route'=>route('skpi.index')])
 </div>
+@section('script')
+<script>
+     $('#tableSkpi').DataTable({
+         searching: false, 
+         paging: false, 
+         info: false,
+        });
+ 
+</script>
+@endsection

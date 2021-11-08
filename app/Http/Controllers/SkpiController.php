@@ -34,9 +34,9 @@ class SkpiController extends Controller
             $search = [];
             if(!empty($request->filter)) {
                 $search = $request->filter;
-                Session::put('skpi_filter', $search);
-            } else if( Session::get('skpi_filter')) {
-                $search = Session::get('skpi_filter');
+                Session::put('skpiFilter', $search);
+            } else if( Session::get('skpiFilter')) {
+                $search = Session::get('skpiFilter');
             }
             $data['dataSkpi'] = $this->skpi->getAll('paginate', $search);
 

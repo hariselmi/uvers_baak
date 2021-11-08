@@ -33,9 +33,9 @@ class PelatihanController extends Controller
             $search = [];
             if(!empty($request->filter)) {
                 $search = $request->filter;
-                Session::put('pelatihan_filter', $search);
-            } else if( Session::get('pelatihan_filter')) {
-                $search = Session::get('pelatihan_filter');
+                Session::put('pelatihanFilter', $search);
+            } else if( Session::get('pelatihanFilter')) {
+                $search = Session::get('pelatihanFilter');
             }
             $data['dataPelatihan'] = $this->pelatihan->getAll('paginate', $search);
 

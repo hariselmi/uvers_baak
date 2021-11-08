@@ -40,12 +40,12 @@
                 </div>
             </div>
             <div class="form-group row">
-                {{ Form::label('kategori', 'Kategori Kegiatan', ['class' => 'col-sm-3 text-right']) }}
+                {{ Form::label('kategori', 'Pilih Kategori / klasisfikasi Kegiatan', ['class' => 'col-sm-3 text-right']) }}
                 <div class="col-sm-9">
                     {!! Form::select('kategori', $kategoriKegiatan, null, ['placeholder' => 'Pilih Kategori Kegiatan', 'class' => 'form-control']) !!}
                 </div>
             </div>
-            <div class="form-group row">
+            {{-- <div class="form-group row">
                 {{ Form::label('jenis', 'Jenis Kepesertaan', ['class' => 'col-sm-3 text-right']) }}
                 <div class="col-sm-9">
                     {!! Form::select('jenis', $jenisKepesertaan, null, ['placeholder' => 'Pilih Jenis Kepersertaan', 'class' => 'form-control']) !!}
@@ -56,7 +56,7 @@
                 <div class="col-sm-9">
                     {{ Form::number('jml_peserta', null, ['class' => 'form-control']) }}
                 </div>
-            </div>
+            </div> --}}
             <div class="form-group row">
                 {{ Form::label('capaian', 'Capaian Prestasi', ['class' => 'col-sm-3 text-right']) }}
                 <div class="col-sm-9">

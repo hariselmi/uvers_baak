@@ -61,7 +61,7 @@
                     <div class="form-group row">
                         {{ Form::label('status', 'Status', ['class' => 'col-sm-3 text-right']) }}
                         <div class="col-sm-9">
-                            {!! Form::select('status', ['1' => 'Pending', '2' => 'Disetujui'], null, ['placeholder' => 'Pilih Capaian Prestasi', 'class' => 'form-control']) !!}
+                            {!! Form::select('status', $statusAktivitas, null, ['placeholder' => 'Pilih Capaian Prestasi', 'class' => 'form-control']) !!}
                         </div>
                     </div>
 
@@ -70,7 +70,7 @@
                 <div class="form-group row" style="display: none">
                     {{ Form::label('status', 'Status', ['class' => 'col-sm-3 text-right']) }}
                     <div class="col-sm-9">
-                        {!! Form::select('status', ['1' => 'Pending', '2' => 'Disetujui'], null, ['placeholder' => 'Pilih Capaian Prestasi', 'class' => 'form-control']) !!}
+                        {!! Form::select('status', $statusAktivitas, null, ['placeholder' => 'Pilih Capaian Prestasi', 'class' => 'form-control']) !!}
                     </div>
                 </div>
 

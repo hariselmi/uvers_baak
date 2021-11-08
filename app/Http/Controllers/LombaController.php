@@ -33,9 +33,9 @@ class LombaController extends Controller
             $search = [];
             if(!empty($request->filter)) {
                 $search = $request->filter;
-                Session::put('lomba_filter', $search);
-            } else if( Session::get('lomba_filter')) {
-                $search = Session::get('lomba_filter');
+                Session::put('lombaFilter', $search);
+            } else if( Session::get('lombaFilter')) {
+                $search = Session::get('lombaFilter');
             }
             $data['dataLomba'] = $this->lomba->getAll('paginate', $search);
 

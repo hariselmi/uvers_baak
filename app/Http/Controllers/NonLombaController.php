@@ -33,9 +33,9 @@ class NonLombaController extends Controller
             $search = [];
             if(!empty($request->filter)) {
                 $search = $request->filter;
-                Session::put('nonlomba_filter', $search);
-            } else if( Session::get('nonlomba_filter')) {
-                $search = Session::get('nonlomba_filter');
+                Session::put('nonlombaFilter', $search);
+            } else if( Session::get('nonlombaFilter')) {
+                $search = Session::get('nonlombaFilter');
             }
             $data['dataNonLomba'] = $this->nonlomba->getAll('paginate', $search);
 
@@ -146,8 +146,8 @@ class NonLombaController extends Controller
         $nonLomba->tgl_mulai = $request->tgl_mulai;
         $nonLomba->tgl_selesai = $request->tgl_selesai;
         $nonLomba->kategori = $request->kategori;
-        $nonLomba->jenis = $request->jenis;
-        $nonLomba->jml_peserta = $request->jml_peserta;
+        // $nonLomba->jenis = $request->jenis;
+        // $nonLomba->jml_peserta = $request->jml_peserta;
         $nonLomba->capaian = $request->capaian;
         $nonLomba->sertifikat = $certificate ? $certificateImgName : null;
         $nonLomba->laman_penyelenggara = $request->laman_penyelenggara;
@@ -290,8 +290,8 @@ class NonLombaController extends Controller
             $nonLomba->surat_lomba = $letterImgName;
         }
         $nonLomba->kategori = $request->kategori;
-        $nonLomba->jenis = $request->jenis;
-        $nonLomba->jml_peserta = $request->jml_peserta;
+        // $nonLomba->jenis = $request->jenis;
+        // $nonLomba->jml_peserta = $request->jml_peserta;
         $nonLomba->capaian = $request->capaian;
         $nonLomba->laman_penyelenggara = $request->laman_penyelenggara;
         $nonLomba->keterangan = $request->keterangan;

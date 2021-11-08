@@ -33,9 +33,9 @@ class MagangController extends Controller
             $search = [];
             if(!empty($request->filter)) {
                 $search = $request->filter;
-                Session::put('magang_filter', $search);
-            } else if( Session::get('magang_filter')) {
-                $search = Session::get('magang_filter');
+                Session::put('magangFilter', $search);
+            } else if( Session::get('magangFilter')) {
+                $search = Session::get('magangFilter');
             }
             $data['dataMagang'] = $this->magang->getAll('paginate', $search);
 

@@ -25,7 +25,7 @@
                                 @if (auth()->user()->checkSpPermission('nonlomba.index'))
                                     <li class="{{ Request::is('nonlomba') ? 'active' : '' }} ">
                                         <a href="{{ url('/nonlomba') }}"><i class="fa fa-circle-o"></i>
-                                            <span>{{ __('Kegiatan Non Lomba') }}</span></a>
+                                            <span>{{ __('Rekognisi Nonlomba') }}</span></a>
                                     </li>
                                 @endif
 

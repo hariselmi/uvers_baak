@@ -33,9 +33,9 @@ class SertifikatController extends Controller
             $search = [];
             if(!empty($request->filter)) {
                 $search = $request->filter;
-                Session::put('sertifikat_filter', $search);
-            } else if( Session::get('sertifikat_filter')) {
-                $search = Session::get('sertifikat_filter');
+                Session::put('sertifikatFilter', $search);
+            } else if( Session::get('sertifikatFilter')) {
+                $search = Session::get('sertifikatFilter');
             }
             $data['dataSertifikat'] = $this->sertifikat->getAll('paginate', $search);
 

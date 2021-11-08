@@ -22,7 +22,7 @@
             @else
             <div class="form-group pull-right">
                 <label class="pr-1" for="search">{{__('Search')}} </label>
-                <input autocomplete="off" type="text" name="filter[search]" id="search" class="form-control" onkeyup="submitOnEnter('#{{$filter_id}}')" />
+                <input autocomplete="off" type="text" name="filter[search]" id="search" class="form-control" onkeyup="$('#{{$filter_id}}').submit()" />
             </div>
             @endif
             @if($filter_id == 'saleFilter')

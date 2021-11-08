@@ -6,7 +6,7 @@ $(function () {
     });
 
     //initializing datatable
-    // $('#myTable').DataTable({});
+    // $('#skpiTable').DataTable({});
 });
 
 // change role change related permissions
