@@ -37,6 +37,13 @@ class Skpi extends Model
                 ->orWhere([['mahasiswa.nama', 'LIKE', '%'.$search['search'].'%'], ['aktivitas.dlt','0']]);
             }
         }
+
+
+
+        if (!empty($search['start_date']) && !empty($search['end_date'])) { 
+                $results = $results->where([['aktivitas.tgl_mulai', '>=', $search['start_date'].' 00:00:00'], ['aktivitas.tgl_selesai', '<=', $search['end_date'].' 23:59:59'], ['aktivitas.dlt', '0']]);
+        }
+
         if($option=='paginate') {
             return $results->paginate($per_page);
         } else if ($option == 'select') {

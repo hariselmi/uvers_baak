@@ -16,29 +16,39 @@
                 </div>
                 <div class="panel-body">
                     @if (Auth::user()->role == 'mahasiswa')
+
                         <div class="row">
-                            <div class="col-md-2">
-                                <h4>NIM</h4>
+                            <div class="col-xs-12">
+                                <div class="box box-success">
+                                    <div class="box-body">
+                                        <div class="col-md-2">
+                                            <h4>NIM</h4>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <h4>: {{ Get_field::get_data(Auth::user()->mahasiswa_id, 'mahasiswa', 'nim') }}</h4>
+                                        </div>
+            
+            
+                                        <div class="col-md-2">
+                                            <h4>NAMA</h4>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <h4>: {{ Get_field::get_data(Auth::user()->mahasiswa_id, 'mahasiswa', 'nama') }}</h4>
+                                        </div>
+            
+            
+                                        <div class="col-md-2">
+                                            <h4>Program Studi</h4>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <h4>: {{ Get_field::get_data(Get_field::get_data(Auth::user()->mahasiswa_id, 'mahasiswa', 'prodi'), 'prodi', 'name') }}</h4>
+                                        </div>
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                                <!-- /.box -->
                             </div>
-                            <div class="col-md-10">
-                                <h4>: {{ Get_field::get_data(Auth::user()->mahasiswa_id, 'mahasiswa', 'nim') }}</h4>
-                            </div>
-
-
-                            <div class="col-md-2">
-                                <h4>NAMA</h4>
-                            </div>
-                            <div class="col-md-10">
-                                <h4>: {{ Get_field::get_data(Auth::user()->mahasiswa_id, 'mahasiswa', 'nama') }}</h4>
-                            </div>
-
-
-                            <div class="col-md-2">
-                                <h4>Program Studi</h4>
-                            </div>
-                            <div class="col-md-10">
-                                <h4>: {{ Get_field::get_data(Get_field::get_data(Auth::user()->mahasiswa_id, 'mahasiswa', 'prodi'), 'prodi', 'name') }}</h4>
-                            </div>
+                            <!-- /.col -->
                         </div>
                     @endif
                 </div>

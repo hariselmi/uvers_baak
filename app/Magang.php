@@ -66,6 +66,15 @@ class Magang extends Model
                 }
             }
         }
+
+        if (!empty($search['start_date']) && !empty($search['end_date'])) { 
+            if ($userRole != 'admin') {
+                $results = $results->where([['aktivitas.tgl_mulai', '>=', $search['start_date'].' 00:00:00'], ['aktivitas.tgl_selesai', '<=', $search['end_date'].' 23:59:59'], ['aktivitas.dlt', '0'],[ 'jenis_aktivitas', '5'], ['user_id',$userId]]);
+            }else{
+                $results = $results->where([['aktivitas.tgl_mulai', '>=', $search['start_date'].' 00:00:00'], ['aktivitas.tgl_selesai', '<=', $search['end_date'].' 23:59:59'], ['aktivitas.dlt', '0'],[ 'jenis_aktivitas', '5']]);
+            }
+        }
+
         if($option=='paginate') {
             return $results->paginate($per_page);
         } else if ($option == 'select') {
