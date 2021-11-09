@@ -71,10 +71,10 @@ class SertifikatController extends Controller
             'penyelenggara'=>'required',
             'tgl_mulai'=>'required',
             'tgl_selesai'=>'required',
-            'sertifikat' => 'file|mimes:png,jpg,jpeg,pdf|between:0,2048',
+            'sertifikat' => 'file|mimes:pdf|between:0,5000',
         ],[
             'sertifikat.mimes' => 'Extensi file sertifikat tidak didukung',
-            'sertifikat.between' => 'Ukuran file sertifikat max 2MB',
+            'sertifikat.between' => 'Ukuran file sertifikat max 5MB',
         ]);
 
         $certificate = $request->file('sertifikat');
@@ -116,6 +116,7 @@ class SertifikatController extends Controller
         $sertifikat->jenis_aktivitas = 3;
         $sertifikat->user_id = Auth::user()->id;
         $sertifikat->dlt = 0;
+        $sertifikat->site = url('/');
         $sertifikat->created_at = date('Y-m-d H:i:s');
         $sertifikat->save();
 
@@ -164,10 +165,10 @@ class SertifikatController extends Controller
             'penyelenggara'=>'required',
             'tgl_mulai'=>'required',
             'tgl_selesai'=>'required',
-            'sertifikat' => 'file|mimes:png,jpg,jpeg,pdf|between:0,2048',
+            'sertifikat' => 'file|mimes:pdf|between:0,5000',
         ],[
             'sertifikat.mimes' => 'Extensi file sertifikat tidak didukung',
-            'sertifikat.between' => 'Ukuran file sertifikat max 2MB',
+            'sertifikat.between' => 'Ukuran file sertifikat max 5MB',
         ]);
 
         $certificate = $request->file('sertifikat');
@@ -208,6 +209,7 @@ class SertifikatController extends Controller
         }
         $sertifikat->jenis_aktivitas = 3;
         $sertifikat->dlt = 0;
+        $sertifikat->site = url('/');
         $sertifikat->created_at = date('Y-m-d H:i:s');
         $sertifikat->save();
         

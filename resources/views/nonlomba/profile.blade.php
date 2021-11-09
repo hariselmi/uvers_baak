@@ -31,7 +31,7 @@
                             <li class="list-group-item hidden-print">
                                 <b>Kategori Kegiatan</b> <a class="pull-right">{{ $nonlomba->kategori ? Get_field::get_data($nonlomba->kategori, 'kategori_kegiatan', 'name') : '-'}}</a>
                             </li>
-                            <li class="list-group-item hidden-print">
+                            {{-- <li class="list-group-item hidden-print">
                                 <b>Jenis Kepesertaan</b> <a class="pull-right">{{ $nonlomba->jenis ? Get_field::get_data($nonlomba->jenis, 'jenis_kepesertaan', 'name') : '-'}}</a>
                             </li>
                             <li class="list-group-item hidden-print">
@@ -39,7 +39,7 @@
                             </li>
                             <li class="list-group-item hidden-print">
                                 <b>Capaian Prestasi</b> <a class="pull-right">{{ $nonlomba->capaian ? Get_field::get_data($nonlomba->capaian, 'capaian_prestasi', 'name') : '-'}}</a>
-                            </li>
+                            </li> --}}
                             <li class="list-group-item hidden-print">
                                 <b>Sertifikat/Piala/Medali</b> <a target="_blank" class="pull-right" href="{{ $nonlomba->sertifikat ? asset('/document/certificate').'/'.$nonlomba->sertifikat : 'javascript:void(0)' }}">{{ $nonlomba->sertifikat ? $nonlomba->sertifikat : '-' }}</a>
                             </li>
@@ -52,9 +52,9 @@
                             <li class="list-group-item hidden-print">
                                 <b>Surat Tugas atau Surat Izin</b> <a class="pull-right"<a target="_blank" class="pull-right" href="{{ $nonlomba->surat_lomba ? asset('/document/letter').'/'.$nonlomba->surat_lomba : 'javascript:void(0)' }}">{{ $nonlomba->surat_lomba ? $nonlomba->surat_lomba : '-' }}</a>
                             </li>
-                            <li class="list-group-item hidden-print">
+                            {{-- <li class="list-group-item hidden-print">
                                 <b>Keterangan</b> <a class="pull-right">{{ $nonlomba->keterangan ? $nonlomba->keterangan : '-' }}</a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </div>
                     <!-- /.box-body -->

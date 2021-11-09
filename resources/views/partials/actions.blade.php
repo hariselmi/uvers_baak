@@ -4,7 +4,8 @@
     <ul class="dropdown-menu" role="menu">
         @foreach($actions as $action)
             @if($action['name'] == 'delete')
-                <li><a href="#" class="delete-form" onclick="return confirm('are you sure?')"><i class="fa fa-trash-o"></i>{{ Form::open(array('url' => $action['url'], 'class' => 'form-inline')) }}
+                <li><a href="#" class="delete-form" onclick="return confirm('are you sure?')"><i class="fa fa-trash-o"></i>
+                {{ Form::open(array('url' => $action['url'], 'class' => 'form-inline')) }}
                 {{ Form::hidden('_method', 'DELETE') }}
                 {{ Form::submit('Hapus', array('class' => 'delete-btn')) }}
                 {{ Form::close() }}</a></li>

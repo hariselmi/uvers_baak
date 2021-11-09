@@ -74,16 +74,16 @@ class LombaController extends Controller
             'penyelenggara'=>'required',
             'tgl_mulai'=>'required',
             'tgl_selesai'=>'required',
-            'sertifikat' => 'file|mimes:png,jpg,jpeg,pdf|between:0,2048',
-            'foto_penghargaan' => 'file|mimes:png,jpg,jpeg,pdf|between:0,2048',
-            'surat_lomba' => 'file|mimes:png,jpg,jpeg,pdf|between:0,2048',
+            'sertifikat' => 'file|mimes:pdf|between:0,5000',
+            'foto_penghargaan' => 'file|mimes:png,jpg,jpeg,pdf|between:0,5000',
+            'surat_lomba' => 'file|mimes:png,jpg,jpeg,pdf|between:0,5000',
         ],[
             'sertifikat.mimes' => 'Extensi file sertifikat tidak didukung',
-            'sertifikat.between' => 'Ukuran file sertifikat max 2MB',
+            'sertifikat.between' => 'Ukuran file sertifikat max 5MB',
             'foto_penghargaan.mimes' => 'Extensi file foto upacara penyerahan penghargaan tidak didukung',
-            'foto_penghargaan.between' => 'Ukuran file foto upacara penyerahan penghargaan max 2MB',
+            'foto_penghargaan.between' => 'Ukuran file foto upacara penyerahan penghargaan max 5MB',
             'surat_lomba.mimes' => 'Extensi file surat tugas atau surat izin tidak didukung',
-            'surat_lomba.between' => 'Ukuran file surat tugas atau surat izin max 2MB',
+            'surat_lomba.between' => 'Ukuran file surat tugas atau surat izin max 5MB',
         ]);
 
         $certificate = $request->file('sertifikat');
@@ -156,6 +156,7 @@ class LombaController extends Controller
         $lomba->jenis_aktivitas = 1;
         $lomba->user_id = Auth::user()->id;
         $lomba->dlt = 0;
+        $lomba->site = url('/');
         $lomba->created_at = date('Y-m-d H:i:s');
         $lomba->save();
 
@@ -210,16 +211,16 @@ class LombaController extends Controller
             'penyelenggara'=>'required',
             'tgl_mulai'=>'required',
             'tgl_selesai'=>'required',
-            'sertifikat' => 'file|mimes:png,jpg,jpeg,pdf|between:0,2048',
-            'foto_penghargaan' => 'file|mimes:png,jpg,jpeg,pdf|between:0,2048',
-            'surat_lomba' => 'file|mimes:png,jpg,jpeg,pdf|between:0,2048',
+            'sertifikat' => 'file|mimes:pdf|between:0,5000',
+            'foto_penghargaan' => 'file|mimes:png,jpg,jpeg,pdf|between:0,5000',
+            'surat_lomba' => 'file|mimes:png,jpg,jpeg,pdf|between:0,5000',
         ],[
             'sertifikat.mimes' => 'Extensi file sertifikat tidak didukung',
-            'sertifikat.between' => 'Ukuran file sertifikat max 2MB',
+            'sertifikat.between' => 'Ukuran file sertifikat max 5MB',
             'foto_penghargaan.mimes' => 'Extensi file foto upacara penyerahan penghargaan tidak didukung',
-            'foto_penghargaan.between' => 'Ukuran file foto upacara penyerahan penghargaan max 2MB',
+            'foto_penghargaan.between' => 'Ukuran file foto upacara penyerahan penghargaan max 5MB',
             'surat_lomba.mimes' => 'Extensi file surat tugas atau surat izin tidak didukung',
-            'surat_lomba.between' => 'Ukuran file surat tugas atau surat izin max 2MB',
+            'surat_lomba.between' => 'Ukuran file surat tugas atau surat izin max 5MB',
         ]);
 
         $certificate = $request->file('sertifikat');
@@ -296,6 +297,7 @@ class LombaController extends Controller
         $lomba->keterangan = $request->keterangan;
         $lomba->jenis_aktivitas = 1;
         $lomba->dlt = 0;
+        $lomba->site = url('/');
         $lomba->created_at = date('Y-m-d H:i:s');
         $lomba->save();
         

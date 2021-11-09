@@ -74,16 +74,16 @@ class NonLombaController extends Controller
             'penyelenggara'=>'required',
             'tgl_mulai'=>'required',
             'tgl_selesai'=>'required',
-            'sertifikat' => 'file|mimes:png,jpg,jpeg,pdf|between:0,2048',
-            'foto_penghargaan' => 'file|mimes:png,jpg,jpeg,pdf|between:0,2048',
-            'surat_nonlomba' => 'file|mimes:png,jpg,jpeg,pdf|between:0,2048',
+            'sertifikat' => 'file|mimes:pdf|between:0,5000',
+            'foto_penghargaan' => 'file|mimes:png,jpg,jpeg,pdf|between:0,5000',
+            'surat_nonlomba' => 'file|mimes:png,jpg,jpeg,pdf|between:0,5000',
         ],[
             'sertifikat.mimes' => 'Extensi file sertifikat tidak didukung',
-            'sertifikat.between' => 'Ukuran file sertifikat max 2MB',
+            'sertifikat.between' => 'Ukuran file sertifikat max 5MB',
             'foto_penghargaan.mimes' => 'Extensi file foto upacara penyerahan penghargaan tidak didukung',
-            'foto_penghargaan.between' => 'Ukuran file foto upacara penyerahan penghargaan max 2MB',
+            'foto_penghargaan.between' => 'Ukuran file foto upacara penyerahan penghargaan max 5MB',
             'surat_nonlomba.mimes' => 'Extensi file surat tugas atau surat izin tidak didukung',
-            'surat_nonlomba.between' => 'Ukuran file surat tugas atau surat izin max 2MB',
+            'surat_nonlomba.between' => 'Ukuran file surat tugas atau surat izin max 5MB',
         ]);
 
         $certificate = $request->file('sertifikat');
@@ -138,7 +138,7 @@ class NonLombaController extends Controller
 
         // insert data into nonLomba table
         $input = $request->all();
-        // $this->validator($input)->validate();
+        $this->validator($input)->validate();
         $nonLomba = new NonLomba;
         $nonLomba->nama_kegiatan = $request->nama_kegiatan;
         $nonLomba->peran = $request->peran;
@@ -148,7 +148,7 @@ class NonLombaController extends Controller
         $nonLomba->kategori = $request->kategori;
         // $nonLomba->jenis = $request->jenis;
         // $nonLomba->jml_peserta = $request->jml_peserta;
-        $nonLomba->capaian = $request->capaian;
+        // $nonLomba->capaian = $request->capaian;
         $nonLomba->sertifikat = $certificate ? $certificateImgName : null;
         $nonLomba->laman_penyelenggara = $request->laman_penyelenggara;
         $nonLomba->foto_penghargaan = $award ? $awardImgName : null;
@@ -157,6 +157,7 @@ class NonLombaController extends Controller
         $nonLomba->jenis_aktivitas = 2;
         $nonLomba->user_id = Auth::user()->id;
         $nonLomba->dlt = 0;
+        $nonLomba->site = url('/');
         $nonLomba->created_at = date('Y-m-d H:i:s');
         $nonLomba->save();
 
@@ -211,16 +212,16 @@ class NonLombaController extends Controller
             'penyelenggara'=>'required',
             'tgl_mulai'=>'required',
             'tgl_selesai'=>'required',
-            'sertifikat' => 'file|mimes:png,jpg,jpeg,pdf|between:0,2048',
-            'foto_penghargaan' => 'file|mimes:png,jpg,jpeg,pdf|between:0,2048',
-            'surat_nonlomba' => 'file|mimes:png,jpg,jpeg,pdf|between:0,2048',
+            'sertifikat' => 'file|mimes:pdf|between:0,5000',
+            'foto_penghargaan' => 'file|mimes:png,jpg,jpeg,pdf|between:0,5000',
+            'surat_nonlomba' => 'file|mimes:png,jpg,jpeg,pdf|between:0,5000',
         ],[
             'sertifikat.mimes' => 'Extensi file sertifikat tidak didukung',
-            'sertifikat.between' => 'Ukuran file sertifikat max 2MB',
+            'sertifikat.between' => 'Ukuran file sertifikat max 5MB',
             'foto_penghargaan.mimes' => 'Extensi file foto upacara penyerahan penghargaan tidak didukung',
-            'foto_penghargaan.between' => 'Ukuran file foto upacara penyerahan penghargaan max 2MB',
+            'foto_penghargaan.between' => 'Ukuran file foto upacara penyerahan penghargaan max 5MB',
             'surat_nonlomba.mimes' => 'Extensi file surat tugas atau surat izin tidak didukung',
-            'surat_nonlomba.between' => 'Ukuran file surat tugas atau surat izin max 2MB',
+            'surat_nonlomba.between' => 'Ukuran file surat tugas atau surat izin max 5MB',
         ]);
 
         $certificate = $request->file('sertifikat');
@@ -271,7 +272,7 @@ class NonLombaController extends Controller
         }
 
         $input = $request->all();
-        // $this->validator($input)->validate();
+        $this->validator($input)->validate();
         $nonLomba = (new NonLomba())->getById($id);
         $nonLomba->nama_kegiatan = $request->nama_kegiatan;
         $nonLomba->peran = $request->peran;
@@ -292,11 +293,12 @@ class NonLombaController extends Controller
         $nonLomba->kategori = $request->kategori;
         // $nonLomba->jenis = $request->jenis;
         // $nonLomba->jml_peserta = $request->jml_peserta;
-        $nonLomba->capaian = $request->capaian;
+        // $nonLomba->capaian = $request->capaian;
         $nonLomba->laman_penyelenggara = $request->laman_penyelenggara;
         $nonLomba->keterangan = $request->keterangan;
         $nonLomba->jenis_aktivitas = 2;
         $nonLomba->dlt = 0;
+        $nonLomba->site = url('/');
         $nonLomba->created_at = date('Y-m-d H:i:s');
         $nonLomba->save();
         

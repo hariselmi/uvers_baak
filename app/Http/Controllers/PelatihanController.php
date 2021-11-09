@@ -71,10 +71,10 @@ class PelatihanController extends Controller
             'penyelenggara'=>'required',
             'tgl_mulai'=>'required',
             'tgl_selesai'=>'required',
-            'sertifikat' => 'file|mimes:png,jpg,jpeg,pdf|between:0,2048',
+            'sertifikat' => 'file|mimes:pdf|between:0,5000',
         ],[
             'sertifikat.mimes' => 'Extensi file sertifikat tidak didukung',
-            'sertifikat.between' => 'Ukuran file sertifikat max 2MB',
+            'sertifikat.between' => 'Ukuran file sertifikat max 5MB',
         ]);
         $certificate = $request->file('sertifikat');
 
@@ -113,6 +113,7 @@ class PelatihanController extends Controller
         $pelatihan->jenis_aktivitas = 4;
         $pelatihan->user_id = Auth::user()->id;
         $pelatihan->dlt = 0;
+        $pelatihan->site = url('/');
         $pelatihan->created_at = date('Y-m-d H:i:s');
         $pelatihan->save();
 
@@ -161,10 +162,10 @@ class PelatihanController extends Controller
             'penyelenggara'=>'required',
             'tgl_mulai'=>'required',
             'tgl_selesai'=>'required',
-            'sertifikat' => 'file|mimes:png,jpg,jpeg,pdf|between:0,2048',
+            'sertifikat' => 'file|mimes:pdf|between:0,5000',
         ],[
             'sertifikat.mimes' => 'Extensi file sertifikat tidak didukung',
-            'sertifikat.between' => 'Ukuran file sertifikat max 2MB',
+            'sertifikat.between' => 'Ukuran file sertifikat max 5MB',
         ]);
 
         $certificate = $request->file('sertifikat');
@@ -204,6 +205,7 @@ class PelatihanController extends Controller
         }
         $pelatihan->jenis_aktivitas = 4;
         $pelatihan->dlt = 0;
+        $pelatihan->site = url('/');
         $pelatihan->created_at = date('Y-m-d H:i:s');
         $pelatihan->save();
         

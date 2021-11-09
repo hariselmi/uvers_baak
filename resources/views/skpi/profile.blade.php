@@ -50,7 +50,7 @@
                                 <b>Foto Upacara Penyerahan Penghargaan</b> <a target="_blank" class="pull-right" href="{{ $skpi->foto_penghargaan ? asset('/document/award').'/'.$skpi->foto_penghargaan : 'javascript:void(0)' }}">{{ $skpi->foto_penghargaan ? $skpi->foto_penghargaan : '-' }}</a>
                             </li>
                             <li class="list-group-item hidden-print">
-                                <b>Surat Kegiatan Skpi</b> <a class="pull-right"<a target="_blank" class="pull-right" href="{{ $skpi->surat_lomba ? asset('/document/letter').'/'.$skpi->surat_lomba : 'javascript:void(0)' }}">{{ $skpi->surat_lomba ? $skpi->surat_lomba : '-' }}</a>
+                                <b>Surat Tugas atau Surat Izin</b> <a class="pull-right"<a target="_blank" class="pull-right" href="{{ $skpi->surat_lomba ? asset('/document/letter').'/'.$skpi->surat_lomba : 'javascript:void(0)' }}">{{ $skpi->surat_lomba ? $skpi->surat_lomba : '-' }}</a>
                             </li>
                             <li class="list-group-item hidden-print">
                                 <b>Keterangan</b> <a class="pull-right">{{ $skpi->keterangan ? $skpi->keterangan : '-' }}</a>

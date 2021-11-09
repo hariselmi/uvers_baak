@@ -188,12 +188,15 @@ class SkpiController extends Controller
         } else if ($option == 'edit' || $option == 'update') {
             // dd($data['skpi']->jenis_aktivitas);
 
-            if($data['skpi']->jenis_aktivitas == 1 && $data['skpi']->jenis_aktivitas == 1){
+            if($data['skpi']->jenis_aktivitas == 1){
 
                 $response['replaceWith']['#editSkpi'] = view('skpi.formedit', $data)->render();
+            }else if($data['skpi']->jenis_aktivitas == 2){
+                $response['replaceWith']['#editSkpi'] = view('skpi.formedit2', $data)->render();
             }else{
                 $response['replaceWith']['#editSkpi'] = view('skpi.formedit1', $data)->render();
             }
+
 
         } else if ($option == 'show') {
             $response['replaceWith']['#showSkpi'] = view('skpi.profile', $data)->render();

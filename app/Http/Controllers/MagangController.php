@@ -71,10 +71,10 @@ class MagangController extends Controller
             'penyelenggara'=>'required',
             'tgl_mulai'=>'required',
             'tgl_selesai'=>'required',
-            'sertifikat' => 'file|mimes:png,jpg,jpeg,pdf|between:0,2048',
+            'sertifikat' => 'file|mimes:pdf|between:0,5000',
         ],[
             'sertifikat.mimes' => 'Extensi file sertifikat tidak didukung',
-            'sertifikat.between' => 'Ukuran file sertifikat max 2MB',
+            'sertifikat.between' => 'Ukuran file sertifikat max 5MB',
         ]);
         $certificate = $request->file('sertifikat');
 
@@ -114,6 +114,7 @@ class MagangController extends Controller
         $magang->jenis_aktivitas = 5;
         $magang->user_id = Auth::user()->id;
         $magang->dlt = 0;
+        $magang->site = url('/');
         $magang->created_at = date('Y-m-d H:i:s');
         $magang->save();
 
@@ -162,10 +163,10 @@ class MagangController extends Controller
             'penyelenggara'=>'required',
             'tgl_mulai'=>'required',
             'tgl_selesai'=>'required',
-            'sertifikat' => 'file|mimes:png,jpg,jpeg,pdf|between:0,2048',
+            'sertifikat' => 'file|mimes:pdf|between:0,5000',
         ],[
             'sertifikat.mimes' => 'Extensi file sertifikat tidak didukung',
-            'sertifikat.between' => 'Ukuran file sertifikat max 2MB',
+            'sertifikat.between' => 'Ukuran file sertifikat max 5MB',
         ]);
 
         $certificate = $request->file('sertifikat');
@@ -205,6 +206,7 @@ class MagangController extends Controller
         }
         $magang->jenis_aktivitas = 5;
         $magang->dlt = 0;
+        $magang->site = url('/');
         $magang->created_at = date('Y-m-d H:i:s');
         $magang->save();
         

@@ -56,43 +56,48 @@
                 <div class="col-sm-9">
                     {{ Form::number('jml_peserta', null, ['class' => 'form-control']) }}
                 </div>
-            </div> --}}
+            </div>
             <div class="form-group row">
                 {{ Form::label('capaian', 'Capaian Prestasi', ['class' => 'col-sm-3 text-right']) }}
                 <div class="col-sm-9">
                     {!! Form::select('capaian', $capaianPrestasi, null, ['placeholder' => 'Pilih Capaian Prestasi', 'class' => 'form-control']) !!}
                 </div>
-            </div>
+            </div> --}}
             <div class="form-group row">
                 {{ Form::label('sertifikat', 'Sertifikat/Piala/Medali', ['class' => 'col-sm-3 text-right']) }}
                 <div class="col-sm-9">
                     {{ Form::file('sertifikat', null, ['class' => 'form-control']) }}
+                    <label style="color: #dc3545; font-size:.875em">*Pastikan file dalam format PDF file max 5 MB</label>
                 </div>
             </div>
             <div class="form-group row">
                 {{ Form::label('laman_penyelenggara', 'URL Laman Penyelenggara', ['class' => 'col-sm-3 text-right']) }}
                 <div class="col-sm-9">
                     {{ Form::text('laman_penyelenggara', null, ['class' => 'form-control']) }}
+                    <label style="color: #dc3545; font-size:.875em">*contoh: http//kejuaraan.com</label>
                 </div>
             </div>
             <div class="form-group row">
                 {{ Form::label('foto_penghargaan', 'Foto Upacara Penyerahan Penghargaan', ['class' => 'col-sm-3 text-right']) }}
                 <div class="col-sm-9">
                     {{ Form::file('foto_penghargaan', null, ['class' => 'form-control']) }}
+                    <label style="color: #dc3545; font-size:.875em">*Pastikan file dalam format PDF/JPG/PNG file max 5 MB</label>
                 </div>
             </div>
             <div class="form-group row">
                 {{ Form::label('surat_nonlomba', 'Surat Tugas atau Surat Izin', ['class' => 'col-sm-3 text-right']) }}
                 <div class="col-sm-9">
                     {{ Form::file('surat_nonlomba', null, ['class' => 'form-control']) }}
+                    <label style="color: #dc3545; font-size:.875em">*Pastikan file dalam format PDF/JPG/PNG file max 5 MB</label>
                 </div>
             </div>
-            <div class="form-group row">
+            {{-- <div class="form-group row">
                 {{ Form::label('keterangan', 'Keterangan', ['class' => 'col-sm-3 text-right']) }}
                 <div class="col-sm-9">
                     {{ Form::textarea('keterangan', null, ['class' => 'form-control', 'style' => 'height:50px']) }}
+                    <label style="color: #dc3545; font-size:.875em">*Dapat diisi dengan Nama Mahasiswa Pemenang dan atau Keterangan Lainnya</label>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>

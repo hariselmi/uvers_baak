@@ -67,30 +67,35 @@
                 {{ Form::label('sertifikat', 'Sertifikat/Piala/Medali' . ' *', ['class' => 'col-sm-3 text-right']) }}
                 <div class="col-sm-9">
                     {{ Form::file('sertifikat', null, ['class' => 'form-control']) }}
+                    <label style="color: #dc3545; font-size:.875em">*Pastikan file dalam format PDF file max 5 MB</label>
                 </div>
             </div>
             <div class="form-group row">
                 {{ Form::label('name', 'URL Laman Penyelenggara' . ' *', ['class' => 'col-sm-3 text-right']) }}
                 <div class="col-sm-9">
                     {{ Form::text('name', null, ['class' => 'form-control']) }}
+                    <label style="color: #dc3545; font-size:.875em">*contoh: http//kejuaraan.com</label>
                 </div>
             </div>
             <div class="form-group row">
                 {{ Form::label('sertifikat', 'Foto Upacara Penyerahan Penghargaan' . ' *', ['class' => 'col-sm-3 text-right']) }}
                 <div class="col-sm-9">
                     {{ Form::file('sertifikat', null, ['class' => 'form-control']) }}
+                    <label style="color: #dc3545; font-size:.875em">*Pastikan file dalam format PDF/JPG/PNG file max 5 MB</label>
                 </div>
             </div>
             <div class="form-group row">
                 {{ Form::label('sertifikat', 'Surat Tugas atau Surat Izin' . ' *', ['class' => 'col-sm-3 text-right']) }}
                 <div class="col-sm-9">
                     {{ Form::file('sertifikat', null, ['class' => 'form-control']) }}
+                    <label style="color: #dc3545; font-size:.875em">*Pastikan file dalam format PDF/JPG/PNG file max 5 MB</label>
                 </div>
             </div>
             <div class="form-group row">
                 {{ Form::label('name', 'Keterangan' . ' *', ['class' => 'col-sm-3 text-right']) }}
                 <div class="col-sm-9">
                     {{ Form::textarea('content', null, ['class' => 'form-control', 'required', 'style' => 'height:50px']) }}
+                    <label style="color: #dc3545; font-size:.875em">*Dapat diisi dengan Nama Mahasiswa Pemenang dan atau Keterangan Lainnya</label>
                 </div>
             </div>
         </div>

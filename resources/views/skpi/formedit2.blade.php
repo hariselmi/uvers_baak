@@ -49,24 +49,6 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    {{ Form::label('jenis', 'Jenis Kepesertaan', ['class' => 'col-sm-3 text-right']) }}
-                    <div class="col-sm-9">
-                        {!! Form::select('jenis', ['1' => 'Individu', '2' => 'Kelompok'], null, ['placeholder' => 'Pilih Jenis Kepersertaan', 'class' => 'form-control']) !!}
-                    </div>
-                </div>
-                <div class="form-group row">
-                    {{ Form::label('jml_peserta', 'Jumlah Peserta', ['class' => 'col-sm-3 text-right']) }}
-                    <div class="col-sm-9">
-                        {{ Form::number('jml_peserta', null, ['class' => 'form-control']) }}
-                    </div>
-                </div>
-                <div class="form-group row">
-                    {{ Form::label('capaian', 'Capaian Prestasi', ['class' => 'col-sm-3 text-right']) }}
-                    <div class="col-sm-9">
-                        {!! Form::select('capaian', ['1' => 'Juara Umum', '2' => 'Juara I', '3' => 'Juara II','4' => 'Juara III','5' => 'Juara Harapan','6' => 'Partisipasi/delgasi/peserta kejuruan','7' => 'Penyelenggara Kegiatan Kejuaraan'], null, ['placeholder' => 'Pilih Capaian Prestasi', 'class' => 'form-control']) !!}
-                    </div>
-                </div>
-                <div class="form-group row">
                     {{ Form::label('sertifikat', 'Sertifikat/Piala/Medali', ['class' => 'col-sm-3 text-right']) }}
                     <div class="col-sm-9">
                         {{ Form::file('sertifikat', null, ['class' => 'form-control']) }}
@@ -92,13 +74,6 @@
                     <div class="col-sm-9">
                         {{ Form::file('surat_skpi', null, ['class' => 'form-control']) }}
                         <label style="color: #dc3545; font-size:.875em">*Pastikan file dalam format PDF/JPG/PNG file max 5 MB</label>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    {{ Form::label('keterangan', 'Keterangan', ['class' => 'col-sm-3 text-right']) }}
-                    <div class="col-sm-9">
-                        {{ Form::textarea('keterangan', null, ['class' => 'form-control', 'style' => 'height:50px']) }}
-                        <label style="color: #dc3545; font-size:.875em">*Dapat diisi dengan Nama Mahasiswa Pemenang dan atau Keterangan Lainnya</label>
                     </div>
                 </div>
                 <div class="form-group row">
