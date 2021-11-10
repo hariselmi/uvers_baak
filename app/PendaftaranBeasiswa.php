@@ -18,13 +18,14 @@ class PendaftaranBeasiswa extends Model
         $per_page = !empty($search['per_page']) ? $search['per_page'] : 10;
         if(!empty($search)) {
             if(!empty($search['search'])) {
-                $results = $results->where([['name', 'LIKE', '%'.$search['search'].'%'], ['dlt','0']]);
+                $results = $results->where([['nama_paket', 'LIKE', '%'.$search['search'].'%'], ['dlt','0']])
+                ->orWhere([['deskripsi', 'LIKE', '%'.$search['search'].'%'], ['dlt','0']]);
             }
         }
         if($option=='paginate') {
             return $results->paginate($per_page);
         } else if ($option == 'select') {
-            return $results->pluck('name', 'id');
+            return $results->pluck('nama_paket', 'id');
         } else {
             return $results->get();
         }

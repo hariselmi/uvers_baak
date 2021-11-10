@@ -1,5 +1,5 @@
 <div class="" id="statusPemrosesanTable">
-    <table class="table table-bordered table-striped">
+    <table class="table table-bordered table-striped" id="tablePemrosesan">
         <thead>
             <tr>
                 <th>{{ __('Beasiswa') }}</th>
@@ -17,7 +17,7 @@
                     <td>{{ Get_field::get_data($value->mahasiswa_id, 'mahasiswa', 'nama') }}</td>
                     <td>{{ Get_field::get_data($value->mahasiswa_id, 'mahasiswa', 'nim') }}</td>
                     <td>{{ Get_field::get_data($value->prodi, 'prodi', 'name') }}</td>
-                    <td>{{ Get_field::get_data($value->status, 'status', 'name') }}</td>
+                    <td>{{ Get_field::get_data($value->status, 'status_pemrosesan', 'name') }}</td>
                     <td class="item_btn_group">
                         @php
                         if (Auth::user()->role == 'admin') {
@@ -28,9 +28,17 @@
                                 ['url' => 'statuspemrosesan/' . $value->id, 'name' => 'delete']
                             ];
                         }else{
-                            $actions = [
-                                ['data-replace' => '#showStatusPemrosesan', 'url' => '#showStatusPemrosesanModal', 'ajax-url' => url('statuspemrosesan/' . $value->id . '/'), 'name' => ' Lihat', 'icon' => 'eye'], 
-                            ];
+                            if ($value->status == 1){
+                                $actions = [
+                                    ['data-replace' => '#showStatusPemrosesan', 'url' => '#showStatusPemrosesanModal', 'ajax-url' => url('statuspemrosesan/' . $value->id . '/'), 'name' => ' Lihat', 'icon' => 'eye'],
+                                    ['url' => 'statuspemrosesan/' . $value->id, 'name' => 'delete']
+                                ];
+                            }else{
+                                $actions = [
+                                    ['data-replace' => '#showStatusPemrosesan', 'url' => '#showStatusPemrosesanModal', 'ajax-url' => url('statuspemrosesan/' . $value->id . '/'), 'name' => ' Lihat', 'icon' => 'eye'],
+                                ];
+                            }
+
 
                         }
                         @endphp
@@ -42,3 +50,14 @@
     </table>
     @include('partials.pagination', ['items'=>$dataStatusPemrosesan, 'index_route'=>route('statuspemrosesan.index')])
 </div>
+
+@section('script')
+<script>
+     $('#tablePemrosesan').DataTable({
+         searching: false, 
+         paging: false, 
+         info: false,
+        });
+ 
+</script>
+@endsection

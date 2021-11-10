@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\PendaftaranBeasiswa;
+use App\StatusPemrosesan;
 use App\User;
 use Auth;
+use Get_field;
+use \Redirect;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
@@ -32,9 +35,9 @@ class PendaftaranBeasiswaController extends Controller
             $search = [];
             if(!empty($request->filter)) {
                 $search = $request->filter;
-                Session::put('lomba_filter', $search);
-            } else if( Session::get('lomba_filter')) {
-                $search = Session::get('lomba_filter');
+                Session::put('pendaftaranFilter', $search);
+            } else if( Session::get('pendaftaranFilter')) {
+                $search = Session::get('pendaftaranFilter');
             }
             $data['dataPendaftaranBeasiswa'] = $this->lomba->getAll('paginate', $search);
 
@@ -215,38 +218,76 @@ class PendaftaranBeasiswaController extends Controller
     public function storedaftar(Request $request, $id)
     {
         //
-        dd($request->all());
+
+        $checkIsExist = DB::table('pendaftaran_beasiswa')
+        ->where([['dlt', 0], ['mahasiswa_id', Auth::user()->mahasiswa_id], ['status', 1]])->count();
+
+        if ($checkIsExist>0) {
+            # code...
+            return $this->sendCommonResponse([], ['danger'=>__('Anda sudah pernah mendaftar dan pendaftaran sedang diproses')]); 
+        }
+
+        $role = Auth::user()->role;
+        $tahun = date('Y');
+
+
+        if ($role == 'mahasiswa') {
+            # code...
+            $nim = Get_field::get_data(Auth::user()->mahasiswa_id, 'mahasiswa', 'nim');
+            // $file = 
+        }else{
+            $nim = 'admin';
+        }
+
+
 
         $input = $request->all();
-        $this->validatorDaftar($input)->validate();
-        // $lomba = (new PendaftaranBeasiswa())->getById($id);
-        // $lomba->nama_paket = $request->nama_paket;
-        // $lomba->deskripsi = $request->deskripsi;
-        // $lomba->status_pendaftaran = $request->status_pendaftaran;
-        // $lomba->tgl_mulai_periode = $request->tgl_mulai_periode;
-        // $lomba->tgl_sampai_periode = $request->tgl_sampai_periode;
-        // $lomba->dlt = 0;
-        // $lomba->created_at = date('Y-m-d H:i:s');
-        // $lomba->save();
+        // $this->validatorDaftar($input)->validate();
 
-        $data = array();
-        $data['beasiswa_id'] = $id;
-        $data['mahasiswa_id'] = $request->mahasiswa_id;
-        $data['no_identitas'] = $request->no_identitas;
-        $data['no_rekening'] = $request->no_rekening;
-        $data['pemilik_rekening'] = $request->pemilik_rekening;
-        $data['dlt'] = 0;
-        $beasiswa = DB::table('pendaftaran_beasiswa')->insert($data);
+        $pendaftaran = new StatusPemrosesan();
+
+        $pendaftaran->beasiswa_id = $id;
+        $pendaftaran->mahasiswa_id = Auth::user()->mahasiswa_id;
+        $pendaftaran->no_identitas = $request->no_identitas;
+        $pendaftaran->no_rekening = $request->no_rekening;
+        $pendaftaran->pemilik_rekening = $request->pemilik_rekening;
+        $pendaftaran->dlt = 0;
+        $pendaftaran->save();
+
+        // $data = array();
+        // $data['beasiswa_id'] = $id;
+        // $data['mahasiswa_id'] = $request->mahasiswa_id;
+        // $data['no_identitas'] = $request->no_identitas;
+        // $data['no_rekening'] = $request->no_rekening;
+        // $data['pemilik_rekening'] = $request->pemilik_rekening;
+        // $data['dlt'] = 0;
+        // $beasiswa = DB::table('pendaftaran_beasiswa')->insert($data);
+        DB::table('file_syarat_beasiswa')->where('pendaftaran_id', $pendaftaran->id)->delete();
+
+        for ($i=0; $i < count($request->syaratId); $i++) { 
+            # code...
+            if ($request->file('fileSyarat'.$request->syaratId[$i])) {
+                # code...
+                $fileSyarat = $request->file('fileSyarat'.$request->syaratId[$i]);
+                $nameGenerate = hexdec(uniqid());
+                $imgExtension = strtolower($fileSyarat->getClientOriginalExtension());
+                $imgOriName = strtolower($fileSyarat->getClientOriginalName());
+                $fileSyaratImgName = $tahun.'_'.$nim.'_syarat_beasiswa_'.$nameGenerate.'.'.$imgExtension;
+                $uploadLocation = public_path().'/document/syarat_beasiswa';
+                $lastImage = $uploadLocation.$fileSyaratImgName;
+                $fileSyarat->move($uploadLocation,$fileSyaratImgName);
+
+                $fileInsert = array();
+                $fileInsert['file_syarat'] = $fileSyaratImgName;
+                $fileInsert['pendaftaran_id'] = $pendaftaran->id;
+                $fileInsert['syarat_id'] = $request->syaratId[$i];
+                $fileInsert['dlt'] = 0;
+                $beasiswa = DB::table('file_syarat_beasiswa')->insert($fileInsert);
+            }
 
 
-        $nameGenerate = hexdec(uniqid());
-        $imgExtension = strtolower($letter->getClientOriginalExtension());
-        $letterImgName = $tahun.'_'.$nim.'_surat_tugas_'.$judulKegiatan.'_'.$nameGenerate.'.'.$imgExtension;
-        $uploadLocation = public_path().'/document/letter';
-        $lastImage = $uploadLocation.$letterImgName;
-        $letter->move($uploadLocation,$letterImgName);
+        }
 
-        
         
         $data['pendaftaranBeasiswa'] = PendaftaranBeasiswa::find($id);
         $data['mahasiswa'] = DB::table('mahasiswa')->where('dlt', 0)->pluck('nama', 'id');

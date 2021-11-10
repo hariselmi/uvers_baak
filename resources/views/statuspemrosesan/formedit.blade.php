@@ -14,43 +14,31 @@
             <div class="form-group row">
                 {{ Form::label('mahasiswa_id', 'Nama *', ['class' => 'col-sm-3 text-right']) }}
                 <div class="col-sm-9">
-                    {!! Form::select('mahasiswa_id', $mahasiswa, null, ['placeholder' => 'Pilih Nama Mahasiswa', 'class' => 'form-control']) !!}
+                    {!! Form::select('mahasiswa_id', $mahasiswa, null, ['placeholder' => 'Pilih Nama Mahasiswa', 'class' => 'form-control', 'disabled' => true]) !!}
                 </div>
             </div>
             <div class="form-group row">
                 {{ Form::label('no_identitas', 'No. Identitas/KTP *', ['class' => 'col-sm-3 text-right']) }}
                 <div class="col-sm-9">
-                    {{ Form::text('no_identitas', null, ['class' => 'form-control']) }}
+                    {{ Form::text('no_identitas', null, ['class' => 'form-control', 'disabled' => true]) }}
                 </div>
             </div>
             <div class="form-group row">
                 {{ Form::label('no_rekening', 'No. Rekening *', ['class' => 'col-sm-3 text-right']) }}
                 <div class="col-sm-9">
-                    {{ Form::text('no_rekening', null, ['class' => 'form-control']) }}
+                    {{ Form::text('no_rekening', null, ['class' => 'form-control', 'disabled' => true]) }}
                 </div>
             </div>
             <div class="form-group row">
                 {{ Form::label('pemilik_rekening', 'Nama Pemilik Rekening *', ['class' => 'col-sm-3 text-right']) }}
                 <div class="col-sm-9">
-                    {{ Form::text('pemilik_rekening', null, ['class' => 'form-control']) }}
+                    {{ Form::text('pemilik_rekening', null, ['class' => 'form-control', 'disabled' => true]) }}
                 </div>
             </div>
             <div class="form-group row">
-                {{ Form::label('ktm', 'KTM', ['class' => 'col-sm-3 text-right']) }}
+                {{ Form::label('status', 'Status Pendaftaran *', ['class' => 'col-sm-3 text-right']) }}
                 <div class="col-sm-9">
-                    {{ Form::file('ktm', null, ['class' => 'form-control']) }}
-                </div>
-            </div>
-            <div class="form-group row">
-                {{ Form::label('transkip_nilai', 'Transkip Nilai', ['class' => 'col-sm-3 text-right']) }}
-                <div class="col-sm-9">
-                    {{ Form::file('transkip_nilai', null, ['class' => 'form-control']) }}
-                </div>
-            </div>
-            <div class="form-group row">
-                {{ Form::label('status_pendaftaran', 'Status Pendaftaran *', ['class' => 'col-sm-3 text-right']) }}
-                <div class="col-sm-9">
-                    {!! Form::select('status_pendaftaran', ['3' => 'Diproses', '4' => 'Disetujui', '5' => 'Ditolak'], null, ['placeholder' => 'Pilih Status Pendaftaran', 'class' => 'form-control']) !!}
+                    {!! Form::select('status', $status_pemrosesan, null, ['placeholder' => 'Pilih Status Pendaftaran', 'class' => 'form-control']) !!}
                 </div>
             </div>
         </div>

@@ -28,7 +28,7 @@ class StatusPemrosesan extends Model
         $per_page = !empty($search['per_page']) ? $search['per_page'] : 10;
         if(!empty($search)) {
             if(!empty($search['search'])) {
-                $results = $results->where([['name', 'LIKE', '%'.$search['search'].'%'], ['dlt','0']]);
+                // $results = $results->where([['name', 'LIKE', '%'.$search['search'].'%'], ['dlt','0']]);
             }
         }
         if($option=='paginate') {

@@ -1,5 +1,5 @@
 <div class="" id="pendaftaranTable">
-    <table class="table table-bordered table-striped">
+    <table class="table table-bordered table-striped" id='tablePendaftaran'>
         <thead>
             <tr>
                 <th>{{ __('No') }}</th>
@@ -45,3 +45,15 @@
     </table>
     @include('partials.pagination', ['items'=>$dataPendaftaranBeasiswa, 'index_route'=>route('pendaftaran.index')])
 </div>
+
+
+@section('script')
+<script>
+     $('#tablePendaftaran').DataTable({
+         searching: false, 
+         paging: false, 
+         info: false,
+        });
+ 
+</script>
+@endsection

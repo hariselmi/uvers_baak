@@ -1,7 +1,7 @@
 <div class="modal-content" id="showPendaftaran">
     <section class="content-header">
         <h1><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            {{ __('Profil Anggota') }}</h1>
+            {{ __('Detail Pendaftaran') }}</h1>
     </section>
     <!-- Main content -->
     <section class="content">

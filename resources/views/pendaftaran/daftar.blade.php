@@ -65,7 +65,7 @@
                                         <input class="form-control" type="hidden" name="syaratId[]" id="syaratId" value="{{$data->id}}">
                                     </td>
                                     <td>
-                                        <input class="form-control" type="file" name="fileSyarat[]" id="fileSyarat" value="">
+                                        <input class="form-control" type="file" name="fileSyarat{{$data->id}}" id="fileSyarat" value="">
                                     </td>
                                 </tr>
                             @endforeach

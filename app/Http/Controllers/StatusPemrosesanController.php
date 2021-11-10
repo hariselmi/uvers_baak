@@ -14,10 +14,10 @@ use Illuminate\Support\Facades\DB;
 class StatusPemrosesanController extends Controller
 {
 
-    public function __construct(StatusPemrosesan $lomba)
+    public function __construct(StatusPemrosesan $pemrosesan)
     {
         $this->middleware('auth');
-        $this->lomba = $lomba;
+        $this->pemrosesan = $pemrosesan;
     }
 
     /**
@@ -32,17 +32,18 @@ class StatusPemrosesanController extends Controller
             $search = [];
             if(!empty($request->filter)) {
                 $search = $request->filter;
-                Session::put('lomba_filter', $search);
-            } else if( Session::get('lomba_filter')) {
-                $search = Session::get('lomba_filter');
+                Session::put('statusFilter', $search);
+            } else if( Session::get('statusFilter')) {
+                $search = Session::get('statusFilter');
             }
-            $data['dataStatusPemrosesan'] = $this->lomba->getAll('paginate', $search);
+            $data['dataStatusPemrosesan'] = $this->pemrosesan->getAll('paginate', $search);
 
             return $this->sendCommonResponse($data, null, 'index');
         }
         
-        $data['dataStatusPemrosesan'] = $this->lomba->getAll('paginate');
+        $data['dataStatusPemrosesan'] = $this->pemrosesan->getAll('paginate');
         $data['mahasiswa'] = DB::table('mahasiswa')->where('dlt', 0)->pluck('nama', 'id');
+        $data['status_pemrosesan'] = DB::table('status_pemrosesan')->pluck('name', 'id');
         return view('statuspemrosesan.index', $data);
     }
 
@@ -64,17 +65,17 @@ class StatusPemrosesanController extends Controller
      */
     public function store(Request $request)
     {
-        // insert data into lomba table
+        // insert data into pemrosesan table
         $input = $request->all();
         // $this->validator($input)->validate();
-        $lomba = new StatusPemrosesan;
-        $lomba->nama_paket = $request->nama_paket;
-        $lomba->deskripsi = $request->deskripsi;
-        $lomba->status_pendaftaran = $request->status_pendaftaran;
-        $lomba->tgl_mulai_periode = $request->tgl_mulai_periode;
-        $lomba->tgl_sampai_periode = $request->tgl_sampai_periode;
-        $lomba->dlt = 0;
-        $lomba->save();
+        $pemrosesan = new StatusPemrosesan;
+        $pemrosesan->nama_paket = $request->nama_paket;
+        $pemrosesan->deskripsi = $request->deskripsi;
+        $pemrosesan->status_pendaftaran = $request->status_pendaftaran;
+        $pemrosesan->tgl_mulai_periode = $request->tgl_mulai_periode;
+        $pemrosesan->tgl_sampai_periode = $request->tgl_sampai_periode;
+        $pemrosesan->dlt = 0;
+        $pemrosesan->save();
 
         return $this->sendCommonResponse($data=[], 'Berhasil menyimpan data', 'add');
     }
@@ -82,20 +83,33 @@ class StatusPemrosesanController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\StatusPemrosesan  $lomba
+     * @param  \App\StatusPemrosesan  $pemrosesan
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, $id)
     {
         //
         $data['statusPemrosesan'] = StatusPemrosesan::find($id);
+        $data['syarat'] = DB::table('pendaftaran_beasiswa')
+        ->select('syarat_beasiswa.*')
+        ->leftJoin('beasiswa', 'pendaftaran_beasiswa.beasiswa_id', 'beasiswa.id')
+        ->leftJoin('syarat_beasiswa', 'beasiswa.id', 'syarat_beasiswa.beasiswa_id')
+        ->where([['pendaftaran_beasiswa.id',$id], ['pendaftaran_beasiswa.dlt',0], ['syarat_beasiswa.dlt',0]])
+        ->get();
+
+        $data['file_syarat'] = DB::table('pendaftaran_beasiswa')
+        ->select('file_syarat_beasiswa.*')
+        ->leftJoin('file_syarat_beasiswa', 'pendaftaran_beasiswa.id', 'file_syarat_beasiswa.pendaftaran_id')
+        ->where([['pendaftaran_beasiswa.id',$id], ['pendaftaran_beasiswa.dlt',0]])
+        ->get();
+        // dd($data['file_syarat']);
         return $this->sendCommonResponse($data, null, 'show');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\StatusPemrosesan  $lomba
+     * @param  \App\StatusPemrosesan  $pemrosesan
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -103,6 +117,19 @@ class StatusPemrosesanController extends Controller
         //
         $data['statusPemrosesan'] = DB::table('pendaftaran_beasiswa')->where('id', $id)->first();
         $data['mahasiswa'] = DB::table('mahasiswa')->where('dlt', 0)->pluck('nama', 'id');
+        $data['status_pemrosesan'] = DB::table('status_pemrosesan')->pluck('name', 'id');
+        $data['syarat'] = DB::table('pendaftaran_beasiswa')
+        ->select('syarat_beasiswa.*')
+        ->leftJoin('beasiswa', 'pendaftaran_beasiswa.beasiswa_id', 'beasiswa.id')
+        ->leftJoin('syarat_beasiswa', 'beasiswa.id', 'syarat_beasiswa.beasiswa_id')
+        ->where([['pendaftaran_beasiswa.id',$id], ['pendaftaran_beasiswa.dlt',0], ['syarat_beasiswa.dlt',0]])
+        ->get();
+
+        $data['file_syarat'] = DB::table('pendaftaran_beasiswa')
+        ->select('file_syarat_beasiswa.*')
+        ->leftJoin('file_syarat_beasiswa', 'pendaftaran_beasiswa.id', 'file_syarat_beasiswa.pendaftaran_id')
+        ->where([['pendaftaran_beasiswa.id',$id], ['pendaftaran_beasiswa.dlt',0]])
+        ->get();
         return $this->sendCommonResponse($data, null, 'edit');
     }
 
@@ -110,7 +137,7 @@ class StatusPemrosesanController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\StatusPemrosesan  $lomba
+     * @param  \App\StatusPemrosesan  $pemrosesan
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -118,34 +145,43 @@ class StatusPemrosesanController extends Controller
         //
 
         $input = $request->all();
-        $this->validator($input)->validate();
-        $lomba = (new StatusPemrosesan())->getById($id);
-        $lomba->nama_paket = $request->nama_paket;
-        $lomba->deskripsi = $request->deskripsi;
-        $lomba->status_pendaftaran = $request->status_pendaftaran;
-        $lomba->tgl_mulai_periode = $request->tgl_mulai_periode;
-        $lomba->tgl_sampai_periode = $request->tgl_sampai_periode;
-        $lomba->dlt = 0;
-        $lomba->created_at = date('Y-m-d H:i:s');
-        $lomba->save();
+        // $this->validator($input)->validate();
+        $pemrosesan = (new StatusPemrosesan())->getById($id);
+        $pemrosesan->status = $request->status;
+        $pemrosesan->updated_at = date('Y-m-d H:i:s');
+        $pemrosesan->save();
         
-        $data['statusPemrosesan'] = $lomba;
+        $data['statusPemrosesan'] = $pemrosesan;
+        $data['mahasiswa'] = DB::table('mahasiswa')->where('dlt', 0)->pluck('nama', 'id');
+        $data['status_pemrosesan'] = DB::table('status_pemrosesan')->pluck('name', 'id');
+        $data['syarat'] = DB::table('pendaftaran_beasiswa')
+        ->select('syarat_beasiswa.*')
+        ->leftJoin('beasiswa', 'pendaftaran_beasiswa.beasiswa_id', 'beasiswa.id')
+        ->leftJoin('syarat_beasiswa', 'beasiswa.id', 'syarat_beasiswa.beasiswa_id')
+        ->where([['pendaftaran_beasiswa.id',$id], ['pendaftaran_beasiswa.dlt',0], ['syarat_beasiswa.dlt',0]])
+        ->get();
+
+        $data['file_syarat'] = DB::table('pendaftaran_beasiswa')
+        ->select('file_syarat_beasiswa.*')
+        ->leftJoin('file_syarat_beasiswa', 'pendaftaran_beasiswa.id', 'file_syarat_beasiswa.pendaftaran_id')
+        ->where([['pendaftaran_beasiswa.id',$id], ['pendaftaran_beasiswa.dlt',0]])
+        ->get();
         return $this->sendCommonResponse($data, 'Berhasil memperbarui data', 'update');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\StatusPemrosesan  $lomba
+     * @param  \App\StatusPemrosesan  $pemrosesan
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         //
         try {
-            $lomba = StatusPemrosesan::find($id);
-            $lomba->dlt = '1';
-            $lomba->save();
+            $pemrosesan = StatusPemrosesan::find($id);
+            $pemrosesan->dlt = '1';
+            $pemrosesan->save();
 
             return $this->sendCommonResponse([], 'Berhasil menghapus data', 'delete');
         } catch (\Illuminate\Database\QueryException $e) {
@@ -166,7 +202,7 @@ class StatusPemrosesanController extends Controller
 
     private function sendCommonResponse($data=[], $notify = '', $option = null) 
     {
-        $lombaObj = new StatusPemrosesan();
+        $pemrosesanObj = new StatusPemrosesan();
         $response = $this->processNotification($notify);
         
         if ($option == 'add') {
@@ -178,9 +214,9 @@ class StatusPemrosesanController extends Controller
         }
         if ( in_array($option, ['index', 'add', 'update', 'delete', 'import'])) {
             if (empty($data['dataStatusPemrosesan'])) {
-                $data['dataStatusPemrosesan'] = $lombaObj->getAll('paginate');
+                $data['dataStatusPemrosesan'] = $pemrosesanObj->getAll('paginate');
             }
-            $response['replaceWith']['#pendaftaranTable'] = view('statuspemrosesan.table', $data)->render();
+            $response['replaceWith']['#statusPemrosesanTable'] = view('statuspemrosesan.table', $data)->render();
         }
         return $this->sendResponse($response);
     }
