@@ -26,6 +26,7 @@ Route::group(['middleware' => 'languange'], function () {
 
     Route::get('kegiatan', 'HomeController@kegiatan')->name('kegiatan');
 
+    Route::post('skpi/validasi', 'SkpiController@validasi')->name('skpi.validasi');
 
     Route::resource('lomba', 'LombaController');
     Route::resource('nonlomba', 'NonLombaController');

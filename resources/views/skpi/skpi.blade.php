@@ -3,8 +3,10 @@
 
     <section class="content-header m-3">
         <h1>{{ __('SKPI') }}
-            <a class="btn btn-small btn-success pull-right" href="{{route('skpi.excel')}}" data-toggle='modal' target="_blank">{{ __('Excel') }}</a>
-            {{-- <a class="btn btn-small btn-success pull-right" href="{{route('skpi.excel')}}" data-toggle='modal' target="_blank">{{ __('Validasi') }}</a> --}}
+            &nbsp;<a class="btn btn-small btn-success pull-right" href="{{route('skpi.excel')}}" data-toggle='modal' target="_blank">{{ __('Excel') }}</a>&nbsp;
+            @if (Auth::user()->role == 'admin-skpi' || Auth::user()->role == 'admin')
+                &nbsp;<a class="btn btn-small btn-success pull-right" href="#validasiSkpiModal" data-toggle='modal'>{{ __('Validasi') }}</a>&nbsp;
+            @endif
         </h1>
     </section>
 
@@ -26,9 +28,9 @@
             <!-- /.col -->
         </div>
         <!-- /.row -->
-        <div class="modal fade sub-modal" id="addSkpiModal">
+        <div class="modal fade sub-modal" id="validasiSkpiModal">
             <div class="modal-dialog modal-lg">
-                @include('skpi.formadd', ['skpi'=>''])
+                @include('skpi.validasi', ['skpi'=>''])
             </div>
         </div>
         <div class="modal fade sub-modal" id="editSkpiModal">

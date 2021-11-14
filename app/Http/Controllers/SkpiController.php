@@ -46,6 +46,11 @@ class SkpiController extends Controller
         $data['golonganSkpi'] = DB::table('golongan_skpi')->pluck('name', 'id');
         $data['statusAktivitas'] = DB::table('status_aktivitas')->pluck('name', 'id');
         $data['dataSkpi'] = $this->skpi->getAll('paginate');
+        $data['namaKegiatan'] = DB::table('aktivitas')
+        ->select(DB::raw('nama_kegiatan as nama'), DB::raw("CONCAT(nama_kegiatan, ' (Penyelenggara : ',penyelenggara,' | Tgl : ',tgl_mulai,' s.d ',tgl_selesai ,')') as nama_kegiatan"), 'dlt')
+        ->where('dlt',0)
+        ->distinct()
+        ->pluck('nama_kegiatan', 'nama');
 
         return view('skpi.index', $data);
     }
@@ -159,7 +164,62 @@ class SkpiController extends Controller
         $data['skpi'] = $skpi;
         $data['golonganSkpi'] = DB::table('golongan_skpi')->pluck('name', 'id');
         $data['statusAktivitas'] = DB::table('status_aktivitas')->pluck('name', 'id');
+        $data['namaKegiatan'] = DB::table('aktivitas')
+        ->select(DB::raw('nama_kegiatan as nama'), DB::raw("CONCAT(nama_kegiatan, ' (Penyelenggara : ',penyelenggara,' | Tgl : ',tgl_mulai,' s.d ',tgl_selesai ,')') as nama_kegiatan"), 'dlt')
+        ->where('dlt',0)
+        ->distinct()
+        ->pluck('nama_kegiatan', 'nama');
         return $this->sendCommonResponse($data, 'Berhasil memperbarui data', 'update');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function validasi(Request $request)
+    {
+        //
+        // dd($request->all());
+        $input = $request->all();
+        $this->validatorSkpi($input)->validate();
+        // $skpi = (new Skpi())->getById($request->nama_kegiatan);
+        $namaKegiatan = $request->nama_kegiatan;
+        $penyelenggara = $request->penyelenggara;
+        $tgl_mulai = $request->tgl_mulai;
+        $tgl_selesai = $request->tgl_selesai;
+        $statusAwal = $request->status_awal;
+        $statusAkhir = $request->status_akhir;
+
+        $dataSkpi = DB::table('aktivitas')
+        ->where([['dlt',0], ['nama_kegiatan',$namaKegiatan], ['penyelenggara',$penyelenggara], ['tgl_mulai',$tgl_mulai], ['tgl_selesai',$tgl_selesai], ['status',$statusAwal]])
+        ->update([
+            'status'=>$statusAkhir
+        ]);
+
+        
+        $data['skpi'] = $dataSkpi;
+        $data['golonganSkpi'] = DB::table('golongan_skpi')->pluck('name', 'id');
+        $data['statusAktivitas'] = DB::table('status_aktivitas')->pluck('name', 'id');
+        $data['namaKegiatan'] = DB::table('aktivitas')
+        ->select(DB::raw('nama_kegiatan as nama'), DB::raw("CONCAT(nama_kegiatan, ' (Penyelenggara : ',penyelenggara,' | Tgl : ',tgl_mulai,' s.d ',tgl_selesai ,')') as nama_kegiatan"), 'dlt')
+        ->where('dlt',0)
+        ->distinct()
+        ->pluck('nama_kegiatan', 'nama');
+        return $this->sendCommonResponse($data, 'Berhasil memvalidasi data', 'validasi');
+    }
+
+    protected function validatorSkpi(Array $data)
+    {
+        return Validator::make($data, [
+            'nama_kegiatan'=>'required',
+            'penyelenggara'=>'required',
+            'tgl_mulai'=>'required',
+            'tgl_selesai'=>'required',
+            'status_awal'=>'required',
+            'status_akhir'=>'required'
+        ]);
     }
 
     protected function validator(Array $data)
@@ -200,8 +260,10 @@ class SkpiController extends Controller
 
         } else if ($option == 'show') {
             $response['replaceWith']['#showSkpi'] = view('skpi.profile', $data)->render();
+        } else if ($option == 'validasi') {
+            $response['replaceWith']['#validasiSkpi'] = view('skpi.validasi', $data)->render();
         }
-        if ( in_array($option, ['index', 'add', 'update', 'delete', 'import'])) {
+        if ( in_array($option, ['index', 'add', 'update', 'validasi', 'delete', 'import'])) {
             if (empty($data['dataSkpi'])) {
                 $data['dataSkpi'] = $skpiObj->getAll('paginate');
             }
