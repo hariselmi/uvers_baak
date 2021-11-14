@@ -81,7 +81,8 @@ class HomeController extends Controller
     public function kegiatan(Request $request){
         $query = $request->get('query');
         $filterResult = DB::table('aktivitas')
-        ->where([['dlt',0], ['status',2], ['nama_kegiatan', 'LIKE', '%'. $query. '%']])
+        ->select(DB::raw("CONCAT(nama_kegiatan, ' (Penyelenggara : ',penyelenggara,' | Tgl : ',tgl_mulai,' s.d ',tgl_selesai ,')') as nama_kegiatan"), 'dlt')
+        ->where([['dlt',0], ['nama_kegiatan', 'LIKE', '%'. $query. '%']])
         ->distinct()
         ->pluck('nama_kegiatan');
         return response()->json($filterResult);

@@ -115,3 +115,37 @@
     </div>
     {{ Form::close() }}
 </div>
+
+
+<script>
+
+    $('#kategori, #jenis, #capaian').select2({
+        width:'100%'
+    });
+
+    var path = "{{ route('kegiatan') }}";
+    setTimeout(() => {
+        $('#nama_kegiatan').typeahead({
+            source:  function (query, process) {
+            return $.get(path, { term: query }, function (data) {
+                    return process(data);
+                });
+            },
+            updater:function (item) {
+
+                // console.log(item, 'item')
+                // item.split('(')[0]
+                // item.slice('', -1)
+
+                return item.split('(')[0].slice('', -1);
+            }
+        });
+
+
+    $( document ).ready(function() {
+        $('input').attr('autocomplete','off');
+    });
+        
+    }, 1000);
+
+</script>

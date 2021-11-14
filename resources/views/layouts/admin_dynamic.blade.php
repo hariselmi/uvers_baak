@@ -127,6 +127,14 @@
               return process(data);
           });
       },
+      updater:function (item) {
+
+        // console.log(item, 'item')
+        // item.split('(')[0]
+        // item.slice('', -1)
+
+          return item.split('(')[0].slice('', -1);
+      }
   });
 
   $( document ).ready(function() {

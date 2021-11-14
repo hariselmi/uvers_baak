@@ -51,13 +51,11 @@
 </div>
 
 @section('script')
-<script>
+<script defer>
      $('#tableNonLomba').DataTable({
          searching: false, 
          paging: false, 
          info: false,
         });
-
- 
 </script>
 @endsection

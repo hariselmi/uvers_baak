@@ -15,7 +15,7 @@
                 <div class="form-group row">
                     {{ Form::label('nama_kegiatan', 'Nama Kegiatan *', ['class' => 'col-sm-3 text-right']) }}
                     <div class="col-sm-9">
-                        {{ Form::text('nama_kegiatan', null, ['class' => 'form-control']) }}
+                        {{ Form::text('nama_kegiatan', null, ['class' => 'form-control', 'id'=>'nama_kegiatan_edit']) }}
                     </div>
                 </div>
                 <div class="form-group row">
@@ -140,3 +140,39 @@
     </div>
     {{ Form::close() }}
 </div>
+
+
+
+<script>
+
+    $('#kategori, #jenis, #capaian').select2({
+        width:'100%'
+    });
+
+    var path = "{{ route('kegiatan') }}";
+    setTimeout(() => {
+        $('#nama_kegiatan_edit').typeahead({
+            source:  function (query, process) {
+            return $.get(path, { term: query }, function (data) {
+                    return process(data);
+                });
+            },
+            updater:function (item) {
+
+                // console.log(item, 'item')
+                // item.split('(')[0]
+                // item.slice('', -1)
+
+                return item.split('(')[0].slice('', -1);
+            }
+        });
+
+
+    $( document ).ready(function() {
+        $('input').attr('autocomplete','off');
+    });
+        
+    }, 1000);
+
+</script>
+
