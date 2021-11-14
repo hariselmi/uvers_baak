@@ -18,7 +18,7 @@ $(document).ready(function(){
     var didConfirm = confirm("Are you sure You want to delete");
     if (didConfirm == true) {
     var id = jQuery(this).attr('data-id');
-    console.log(id, id)
+    // console.log(id, id)
     var targetDiv = jQuery(this).attr('targetDiv');
     jQuery('#rec-' + id).remove();
     

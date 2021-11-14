@@ -1,6 +1,6 @@
 $(document).ready(function () {
     jQuery(document).delegate("a.add-record", "click", function (e) {
-        console.log('tesst')
+        // console.log('tesst')
         e.preventDefault();
         var content = jQuery("#sample_table tr"),
         size = jQuery("#tbl_posts >tbody >tr").length + 1,
@@ -16,7 +16,7 @@ $(document).ready(function () {
         var didConfirm = confirm("Are you sure You want to delete");
         if (didConfirm == true) {
         var id = jQuery(this).attr("data-id");
-        console.log(id, id);
+        // console.log(id, id);
         var targetDiv = jQuery(this).attr("targetDiv");
         jQuery("#rec-" + id).remove();
 

@@ -69,10 +69,14 @@
                 });
             },
             updater:function (item) {
+                // console.log(item.split('Penyelenggara : ')[1].split(' |'), 'Penyelenggara')
+                let penyelenggara = item.split('Penyelenggara : ')[1].split(' |')[0]
+                let tglMulai = item.split('Penyelenggara : ')[1].split(' |')[1].split('Tgl : ')[1].split(' s.d')[0]
+                let tglSelesai = item.split('Penyelenggara : ')[1].split(' |')[1].split('s.d ')[1].split(')')[0]
 
-                // console.log(item, 'item')
-                // item.split('(')[0]
-                // item.slice('', -1)
+                $('#penyelenggara').val(penyelenggara);
+                $('#tgl_mulai').val(tglMulai);
+                $('#tgl_selesai').val(tglSelesai);
 
                 return item.split('(')[0].slice('', -1);
             }

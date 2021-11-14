@@ -119,7 +119,7 @@
 @yield('script')
 @include('partials.analytics')
 
-<script type="text/javascript">
+{{-- <script type="text/javascript">
   var path = "{{ route('kegiatan') }}";
   $('#nama_kegiatan').typeahead({
       source:  function (query, process) {
@@ -140,7 +140,7 @@
   $( document ).ready(function() {
       $('input').attr('autocomplete','off');
   });
-</script>
+</script> --}}
 
 </script>
 </body>

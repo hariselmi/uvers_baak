@@ -26,19 +26,19 @@
                 <div class="form-group row">
                     {{ Form::label('penyelenggara', 'Penyelenggara *', ['class' => 'col-sm-3 text-right']) }}
                     <div class="col-sm-9">
-                        {{ Form::text('penyelenggara', null, ['class' => 'form-control', 'required']) }}
+                        {{ Form::text('penyelenggara', null, ['class' => 'form-control', 'id' => 'penyelenggara_edit', 'required']) }}
                     </div>
                 </div>
                 <div class="form-group row">
                     {{ Form::label('tgl_mulai', 'Tanggal Mulai *', ['class' => 'col-sm-3 text-right']) }}
                     <div class="col-sm-9">
-                        {{ Form::date('tgl_mulai', null, ['class' => 'form-control', 'required']) }}
+                        {{ Form::date('tgl_mulai', null, ['class' => 'form-control', 'id' => 'tgl_mulai_edit', 'required']) }}
                     </div>
                 </div>
                 <div class="form-group row">
                     {{ Form::label('tgl_selesai', 'Tanggal Akhir *', ['class' => 'col-sm-3 text-right']) }}
                     <div class="col-sm-9">
-                        {{ Form::date('tgl_selesai', null, ['class' => 'form-control', 'required']) }}
+                        {{ Form::date('tgl_selesai', null, ['class' => 'form-control', 'id' => 'tgl_selesai_edit', 'required']) }}
                     </div>
                 </div>
                 <div class="form-group row">
@@ -130,10 +130,14 @@
                 });
             },
             updater:function (item) {
+                // console.log(item.split('Penyelenggara : ')[1].split(' |'), 'Penyelenggara')
+                let penyelenggara = item.split('Penyelenggara : ')[1].split(' |')[0]
+                let tglMulai = item.split('Penyelenggara : ')[1].split(' |')[1].split('Tgl : ')[1].split(' s.d')[0]
+                let tglSelesai = item.split('Penyelenggara : ')[1].split(' |')[1].split('s.d ')[1].split(')')[0]
 
-                // console.log(item, 'item')
-                // item.split('(')[0]
-                // item.slice('', -1)
+                $('#penyelenggara_edit').val(penyelenggara);
+                $('#tgl_mulai_edit').val(tglMulai);
+                $('#tgl_selesai_edit').val(tglSelesai);
 
                 return item.split('(')[0].slice('', -1);
             }

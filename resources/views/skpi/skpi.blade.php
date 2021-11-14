@@ -4,6 +4,7 @@
     <section class="content-header m-3">
         <h1>{{ __('SKPI') }}
             <a class="btn btn-small btn-success pull-right" href="{{route('skpi.excel')}}" data-toggle='modal' target="_blank">{{ __('Excel') }}</a>
+            {{-- <a class="btn btn-small btn-success pull-right" href="{{route('skpi.excel')}}" data-toggle='modal' target="_blank">{{ __('Validasi') }}</a> --}}
         </h1>
     </section>
 
