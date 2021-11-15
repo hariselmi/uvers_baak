@@ -61,3 +61,8 @@
  
 </script>
 @endsection
+
+<script>
+    $('#addSertifikatModal').modal('hide');
+    $('#editSertifikatModal').modal('hide');
+</script>

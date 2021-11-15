@@ -71,3 +71,8 @@
  
 </script>
 @endsection
+
+<script>
+    $('#validasiSkpiModal').modal('hide');
+    $('#editSkpiModal').modal('hide');
+</script>

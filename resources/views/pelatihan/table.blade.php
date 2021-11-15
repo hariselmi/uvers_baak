@@ -62,3 +62,8 @@
  
 </script>
 @endsection
+
+<script>
+    $('#addPelatihanModal').modal('hide');
+    $('#editPelatihanModal').modal('hide');
+</script>

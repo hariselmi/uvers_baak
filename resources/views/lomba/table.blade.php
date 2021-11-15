@@ -60,3 +60,8 @@
  
 </script>
 @endsection
+
+<script>
+    $('#addLombaModal').modal('hide');
+    $('#editLombaModal').modal('hide');
+</script>

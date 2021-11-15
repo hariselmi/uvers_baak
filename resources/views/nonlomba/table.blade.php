@@ -59,3 +59,8 @@
         });
 </script>
 @endsection
+
+<script>
+    $('#addNonLombaModal').modal('hide');
+    $('#editNonLombaModal').modal('hide');
+</script>

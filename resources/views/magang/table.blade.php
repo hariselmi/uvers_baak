@@ -62,3 +62,8 @@
  
 </script>
 @endsection
+
+<script>
+    $('#addMagangModal').modal('hide');
+    $('#editMagangModal').modal('hide');
+</script>

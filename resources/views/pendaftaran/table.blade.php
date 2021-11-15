@@ -57,3 +57,9 @@
  
 </script>
 @endsection
+
+<script>
+    $('#addPendaftaranBeasiswaModal').modal('hide');
+    $('#editPendaftaranBeasiswaModal').modal('hide');
+    $('#daftarPendaftaranBeasiswaModal').modal('hide');
+</script>
