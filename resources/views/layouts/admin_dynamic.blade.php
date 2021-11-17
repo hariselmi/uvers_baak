@@ -141,7 +141,5 @@
       $('input').attr('autocomplete','off');
   });
 </script> --}}
-
-</script>
 </body>
 </html>

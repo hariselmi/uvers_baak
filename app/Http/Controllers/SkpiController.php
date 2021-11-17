@@ -259,7 +259,20 @@ class SkpiController extends Controller
 
 
         } else if ($option == 'show') {
-            $response['replaceWith']['#showSkpi'] = view('skpi.profile', $data)->render();
+
+
+
+            if($data['skpi']->jenis_aktivitas == 1){
+
+                $response['replaceWith']['#showSkpi'] = view('skpi.profile', $data)->render();
+            }else if($data['skpi']->jenis_aktivitas == 2){
+                $response['replaceWith']['#showSkpi'] = view('skpi.profile2', $data)->render();
+            }else{
+                $response['replaceWith']['#showSkpi'] = view('skpi.profile1', $data)->render();
+            }
+
+
+
         } else if ($option == 'validasi') {
             $response['replaceWith']['#validasiSkpi'] = view('skpi.validasi', $data)->render();
         }

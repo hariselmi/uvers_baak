@@ -222,6 +222,14 @@ class PendaftaranBeasiswaController extends Controller
         $checkIsExist = DB::table('pendaftaran_beasiswa')
         ->where([['dlt', 0], ['mahasiswa_id', Auth::user()->mahasiswa_id], ['status', 1]])->count();
 
+        $checkIsExpired = DB::table('beasiswa')
+        ->where([['dlt', 0], ['id', $id], ['status_pendaftaran', 2]])->count();
+        
+        if ($checkIsExpired>0) {
+            # code...
+            return $this->sendCommonResponse([], ['danger'=>__('Pendaftaran beasiswa ini sudah ditutup')]); 
+        }
+
         if ($checkIsExist>0) {
             # code...
             return $this->sendCommonResponse([], ['danger'=>__('Anda sudah pernah mendaftar dan pendaftaran sedang diproses')]); 

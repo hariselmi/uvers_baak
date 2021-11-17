@@ -7,6 +7,7 @@
                 <th>{{ __('NIM') }}</th>
                 <th>{{ __('Prodi') }}</th>
                 <th>{{ __('Status') }}</th>
+                <th>{{ __('Keterangan') }}</th>
                 <th class="text-center">Aksi</th>
             </tr>
         </thead>
@@ -18,14 +19,15 @@
                     <td>{{ Get_field::get_data($value->mahasiswa_id, 'mahasiswa', 'nim') }}</td>
                     <td>{{ Get_field::get_data($value->prodi, 'prodi', 'name') }}</td>
                     <td>{{ Get_field::get_data($value->status, 'status_pemrosesan', 'name') }}</td>
+                    <td>{{ $value->catatan ? $value->catatan : '-' }}</td>
                     <td class="item_btn_group">
                         @php
                         if (Auth::user()->role == 'admin') {
                             # code...
                             $actions = [
-                                // ['data-replace' => '#showStatusPemrosesan', 'url' => '#showStatusPemrosesanModal', 'ajax-url' => url('statuspemrosesan/' . $value->id . '/'), 'name' => ' Lihat', 'icon' => 'eye'], 
-                                ['data-replace' => '#editStatusPemrosesan', 'url' => '#editStatusPemrosesanModal', 'ajax-url' => url('statuspemrosesan/' . $value->id . '/edit'), 'name' => ' Ubah', 'icon' => 'pencil'],
-                                ['url' => 'statuspemrosesan/' . $value->id, 'name' => 'delete']
+                                ['data-replace' => '#showStatusPemrosesan', 'url' => '#showStatusPemrosesanModal', 'ajax-url' => url('statuspemrosesan/' . $value->id . '/'), 'name' => ' Lihat', 'icon' => 'eye'], 
+                                ['data-replace' => '#editStatusPemrosesan', 'url' => '#editStatusPemrosesanModal', 'ajax-url' => url('statuspemrosesan/' . $value->id . '/edit'), 'name' => ' Validasi', 'icon' => 'pencil'],
+                                // ['url' => 'statuspemrosesan/' . $value->id, 'name' => 'delete']
                             ];
                         }else{
                             if ($value->status == 1){
@@ -61,3 +63,8 @@
  
 </script>
 @endsection
+
+<script>
+    $('#addStatusPemrosesanModal').modal('hide');
+    $('#editStatusPemrosesanModal').modal('hide');
+</script>

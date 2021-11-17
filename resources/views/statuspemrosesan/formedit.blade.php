@@ -36,6 +36,12 @@
                 </div>
             </div>
             <div class="form-group row">
+                {{ Form::label('catatan', 'Catatan', ['class' => 'col-sm-3 text-right']) }}
+                <div class="col-sm-9">
+                    {{ Form::textarea('catatan', null, ['class' => 'form-control', 'style' => 'height:50px']) }}
+                </div>
+            </div>
+            <div class="form-group row">
                 {{ Form::label('status', 'Status Pendaftaran *', ['class' => 'col-sm-3 text-right']) }}
                 <div class="col-sm-9">
                     {!! Form::select('status', $status_pemrosesan, null, ['placeholder' => 'Pilih Status Pendaftaran', 'class' => 'form-control']) !!}

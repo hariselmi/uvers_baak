@@ -44,6 +44,7 @@ class StatusPemrosesanController extends Controller
         $data['dataStatusPemrosesan'] = $this->pemrosesan->getAll('paginate');
         $data['mahasiswa'] = DB::table('mahasiswa')->where('dlt', 0)->pluck('nama', 'id');
         $data['status_pemrosesan'] = DB::table('status_pemrosesan')->pluck('name', 'id');
+
         return view('statuspemrosesan.index', $data);
     }
 
@@ -147,6 +148,7 @@ class StatusPemrosesanController extends Controller
         $input = $request->all();
         // $this->validator($input)->validate();
         $pemrosesan = (new StatusPemrosesan())->getById($id);
+        $pemrosesan->catatan = $request->catatan;
         $pemrosesan->status = $request->status;
         $pemrosesan->updated_at = date('Y-m-d H:i:s');
         $pemrosesan->save();

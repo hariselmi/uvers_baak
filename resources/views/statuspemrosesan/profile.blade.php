@@ -28,6 +28,9 @@
                             <li class="list-group-item hidden-print">
                                 <b>Status Pemrosesan </b> <a class="pull-right">{{ Get_field::get_data($statusPemrosesan->status, 'status_pemrosesan', 'name') }}</a>
                             </li>
+                            <li class="list-group-item hidden-print">
+                                <b>Keterangan </b> <a class="pull-right">{{ $statusPemrosesan->catatan ? $statusPemrosesan->catatan : '-' }}</a>
+                            </li>
                         </ul>
                     </div>
                     <!-- /.box-body -->
