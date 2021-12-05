@@ -68,7 +68,8 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'email' => 'required|unique:users',
+            'email' => 'required',
+            'username' => 'required|unique:users,username',
             'name'=>'required',
             'password'=>'required|min:6',
             'password_confirmation'=>'required|same:password',
@@ -78,6 +79,7 @@ class EmployeeController extends Controller
         $user = new User;
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->username = $request->username;
         $user->role = $request->role[0];
         $user->password = Hash::make($request->password);
         $user->save();
@@ -130,8 +132,8 @@ class EmployeeController extends Controller
         } else {
             $rules = array(
             'name' => 'required',
-            'email' => 'required|email|unique:users,email,' . $id .'',
-            'username' => 'required|unique:users,username,' . $id .'',
+            'email' => 'required|email',
+            'username' => 'required|unique:users,username,' . $id,
             'password' => 'nullable|min:6|max:30|confirmed',
             );
             $validator = Validator::make($request->all(), $rules);

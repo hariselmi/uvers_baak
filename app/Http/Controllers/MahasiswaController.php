@@ -138,6 +138,18 @@ class MahasiswaController extends Controller
     public function update(Request $request, $id)
     {
         // 
+        Validator::make($request->all(), [
+            'nim'=>'required|unique:mahasiswa,nim,'.$id,
+            'nama'=>'required',
+            'tempat_lahir'=>'required',
+            'tgl_lahir'=>'required',
+            'telp'=>'required',
+            'agama'=>'required',
+            'jenis_kelamin'=>'required',
+            'prodi'=>'required',
+            'alamat'=>'required',
+        ]);
+
         $input = $request->all();
         $this->validator($input)->validate();
         $mahasiswa = (new Mahasiswa())->getById($id);
@@ -176,9 +188,8 @@ class MahasiswaController extends Controller
     {
         //
         try {
-            $mahasiswa = Mahasiswa::find($id);
-            $mahasiswa->dlt = '1';
-            $mahasiswa->save();
+            Mahasiswa::find($id)->delete();
+            DB::table('users')->where('mahasiswa_id', $id)->delete();
 
             return $this->sendCommonResponse([], 'Berhasil menghapus data', 'delete');
         } catch (\Illuminate\Database\QueryException $e) {
@@ -189,7 +200,7 @@ class MahasiswaController extends Controller
     protected function validator(Array $data)
     {
         return Validator::make($data, [
-            'nim'=>'required',
+            'nim'=>'required|unique:users,username',
             'nama'=>'required',
             'tempat_lahir'=>'required',
             'tgl_lahir'=>'required',
