@@ -151,7 +151,7 @@ class MahasiswaController extends Controller
         ]);
 
         $input = $request->all();
-        $this->validator($input)->validate();
+        // $this->validator($input)->validate();
         $mahasiswa = (new Mahasiswa())->getById($id);
         $mahasiswa->nim = $request->nim;
         $mahasiswa->nama = $request->nama;
