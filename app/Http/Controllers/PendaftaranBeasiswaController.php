@@ -79,7 +79,7 @@ class PendaftaranBeasiswaController extends Controller
         $lomba->dlt = 0;
         $lomba->save();
 
-        if (count($request->syarat) > 0) {
+        if ($request->has('syarat')) {
             # code...
             for ($i=0; $i < count($request->syarat); $i++) { 
                 # code...
@@ -136,7 +136,7 @@ class PendaftaranBeasiswaController extends Controller
 
         DB::table('syarat_beasiswa')->where('beasiswa_id', $id)->delete();
 
-        if (count($request->syarat) > 0) {
+        if ($request->has('syarat')) {
             # code...
             for ($i=0; $i < count($request->syarat); $i++) { 
                 # code...

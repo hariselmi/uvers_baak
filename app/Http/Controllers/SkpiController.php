@@ -50,7 +50,8 @@ class SkpiController extends Controller
         ->select(DB::raw('nama_kegiatan as nama'), DB::raw("CONCAT(nama_kegiatan, ' (Penyelenggara : ',penyelenggara,' | Tgl : ',tgl_mulai,' s.d ',tgl_selesai ,')') as nama_kegiatan"), 'dlt')
         ->where('dlt',0)
         ->distinct()
-        ->pluck('nama_kegiatan', 'nama');
+        ->get();
+        // ->pluck('nama_kegiatan', 'nama');
 
         return view('skpi.index', $data);
     }
@@ -206,7 +207,7 @@ class SkpiController extends Controller
         ->select(DB::raw('nama_kegiatan as nama'), DB::raw("CONCAT(nama_kegiatan, ' (Penyelenggara : ',penyelenggara,' | Tgl : ',tgl_mulai,' s.d ',tgl_selesai ,')') as nama_kegiatan"), 'dlt')
         ->where('dlt',0)
         ->distinct()
-        ->pluck('nama_kegiatan', 'nama');
+        ->get();
         return $this->sendCommonResponse($data, 'Berhasil memvalidasi data', 'validasi');
     }
 

@@ -12,7 +12,13 @@
             <div class="form-group row">
                 {{ Form::label('nama_kegiatan', 'Nama Kegiatan', ['class' => 'col-sm-3 text-right']) }}
                 <div class="col-sm-9">
-                    {!! Form::select('nama_kegiatan', $namaKegiatan, null, ['placeholder' => 'Pilih Nama Kegiatan', 'class' => 'form-control', 'onchange'=>'getData(this.value)']) !!}
+                    <select class="form-control" name="nama_kegiatan" id="nama_kegiatan" onchange="getData(this.value)">
+                        <option>Pilih Nama Kegiatan</option>
+                        @foreach ( $namaKegiatan as $kegiatan)
+                            <option value="{{$kegiatan->nama}}">{{$kegiatan->nama_kegiatan}}</option>
+                        @endforeach
+                    </select>
+                    {{-- {!! Form::select('nama_kegiatan', $namaKegiatan, null, ['placeholder' => 'Pilih Nama Kegiatan', 'class' => 'form-control', 'onchange'=>'getData(this.value)']) !!} --}}
                 </div>
             </div>
             <div class="form-group row">
