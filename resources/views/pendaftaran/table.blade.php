@@ -46,19 +46,13 @@
     @include('partials.pagination', ['items'=>$dataPendaftaranBeasiswa, 'index_route'=>route('pendaftaran.index')])
 </div>
 
-
-@section('script')
 <script>
-     $('#tablePendaftaran').DataTable({
-         searching: false, 
-         paging: false, 
-         info: false,
-        });
- 
-</script>
-@endsection
+    $('#tablePendaftaran').DataTable({
+        searching: false, 
+        paging: false, 
+        info: false,
+    });
 
-<script>
     $('#addPendaftaranBeasiswaModal').modal('hide');
     $('#editPendaftaranBeasiswaModal').modal('hide');
     $('#daftarPendaftaranBeasiswaModal').modal('hide');

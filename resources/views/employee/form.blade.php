@@ -27,6 +27,12 @@
                     {{ Form::text('email', null, ['class' => 'form-control']) }}
                 </div>
             </div>
+            <div class="form-group row">
+                {{ Form::label('username', 'username *', ['class' => 'col-sm-3 text-right']) }}
+                <div class="col-sm-9">
+                    {{ Form::text('username', null, ['class' => 'form-control']) }}
+                </div>
+            </div>
         </div>
         <div class="col-md-6">
             <div class="form-group row">

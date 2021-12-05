@@ -53,18 +53,13 @@
     @include('partials.pagination', ['items'=>$dataStatusPemrosesan, 'index_route'=>route('statuspemrosesan.index')])
 </div>
 
-@section('script')
 <script>
-     $('#tablePemrosesan').DataTable({
-         searching: false, 
-         paging: false, 
-         info: false,
-        });
- 
-</script>
-@endsection
+    $('#tablePemrosesan').DataTable({
+        searching: false, 
+        paging: false, 
+        info: false,
+    });
 
-<script>
     $('#addStatusPemrosesanModal').modal('hide');
     $('#editStatusPemrosesanModal').modal('hide');
 </script>

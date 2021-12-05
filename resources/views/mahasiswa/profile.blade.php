@@ -27,6 +27,9 @@
                                 <b>Telp</b> <a class="pull-right">{{ $mahasiswa->telp }}</a>
                             </li>
                             <li class="list-group-item hidden-print">
+                                <b>Email</b> <a class="pull-right">{{ $mahasiswa->email }}</a>
+                            </li>
+                            <li class="list-group-item hidden-print">
                                 <b>Agama</b> <a class="pull-right">{{ Get_field::get_data($mahasiswa->agama, 'agama', 'name') }}</a>
                             </li>
                             <li class="list-group-item hidden-print">

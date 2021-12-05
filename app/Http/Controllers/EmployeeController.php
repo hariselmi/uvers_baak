@@ -131,6 +131,7 @@ class EmployeeController extends Controller
             $rules = array(
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $id .'',
+            'username' => 'required|unique:users,username,' . $id .'',
             'password' => 'nullable|min:6|max:30|confirmed',
             );
             $validator = Validator::make($request->all(), $rules);
@@ -141,9 +142,17 @@ class EmployeeController extends Controller
                 $user = User::find($id);
                 $user->name = $request->name;
                 $user->email = $request->email;
+                $user->username = $request->username;
                 if (!empty($request->role)) {
                     # code...
                     $user->role = $request->role[0];
+                }
+
+                if ($user->mahasiswa_id) {
+                    # code...
+                    DB::table('mahasiswa')->where('id', $user->mahasiswa_id)->update([
+                        'email'=>$request->email,
+                    ]);
                 }
 
                 if (!empty($request->password)) {

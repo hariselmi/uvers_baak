@@ -88,7 +88,8 @@ class MahasiswaController extends Controller
         $user = new User;
         $user->mahasiswa_id = $mahasiswa->id;
         $user->name = $request->nama;
-        $user->email = $request->nim;
+        $user->email = $request->email;
+        $user->username = $request->nim;
         $user->role = 'mahasiswa';
         $user->password = Hash::make($request->nim);
         $user->save();
@@ -153,6 +154,11 @@ class MahasiswaController extends Controller
         $mahasiswa->dlt = 0;
         $mahasiswa->created_at = date('Y-m-d H:i:s');
         $mahasiswa->save();
+
+        DB::table('users')->where('mahasiswa_id', '=',$id)->update([
+            'username'=> $request->nim,
+            'email'=> $request->email,
+        ]);
         
         $data['mahasiswa'] = $mahasiswa;
         $data['agama'] = DB::table('agama')->where('dlt', 0)->pluck('name', 'id');

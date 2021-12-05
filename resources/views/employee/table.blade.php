@@ -5,6 +5,7 @@
             <tr>
                 <th>{{ trans('employee.name') }}</th>
                 <th>{{ trans('employee.email') }}</th>
+                <th>Username</th>
                 <th class="hidden-xs">Role</th>
                 <th class="text-center">{{ __('Action') }}</th>
             </tr>
@@ -14,6 +15,7 @@
                 <tr>
                     <td>{{ $value->name }}</td>
                     <td>{{ $value->email }}</td>
+                    <td>{{ $value->username }}</td>
                     <td>
                         @php $n=1; @endphp
                         @foreach ($value->getRoleNames() as $role)

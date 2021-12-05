@@ -26,12 +26,20 @@
                     <td>{{ Get_field::get_data($value->status, 'status_aktivitas', 'name') }}</td>
                     <td class="item_btn_group">
                         @if (Auth::user()->role == 'mahasiswa')
-                            @php
-                                $actions = [
-                                    ['data-replace' => '#showLomba', 'url' => '#showLombaModal', 'ajax-url' => url('lomba/' . $value->id . '/'), 'name' => ' Lihat', 'icon' => 'eye'], 
-                                    ['url' => 'lomba/' . $value->id, 'name' => 'delete']
-                                ];
-                            @endphp
+                            @if ($value->status != 1)
+                                @php
+                                    $actions = [
+                                        ['data-replace' => '#showLomba', 'url' => '#showLombaModal', 'ajax-url' => url('lomba/' . $value->id . '/'), 'name' => ' Lihat', 'icon' => 'eye'], 
+                                    ];
+                                @endphp
+                            @else
+                                @php
+                                    $actions = [
+                                        ['data-replace' => '#showLomba', 'url' => '#showLombaModal', 'ajax-url' => url('lomba/' . $value->id . '/'), 'name' => ' Lihat', 'icon' => 'eye'], 
+                                        ['url' => 'lomba/' . $value->id, 'name' => 'delete']
+                                    ];
+                                @endphp
+                            @endif
                         @else
                             @php
                                 $actions = [
@@ -50,18 +58,13 @@
     @include('partials.pagination', ['items'=>$dataLomba, 'index_route'=>route('lomba.index')])
 </div>
 
-@section('script')
 <script>
-     $('#tableLomba').DataTable({
-         searching: false, 
-         paging: false, 
-         info: false,
-        });
- 
-</script>
-@endsection
-
-<script>
+    $('#tableLomba').DataTable({
+        searching: false, 
+        paging: false, 
+        info: false,
+    });
+    
     $('#addLombaModal').modal('hide');
     $('#editLombaModal').modal('hide');
 </script>

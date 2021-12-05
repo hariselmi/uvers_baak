@@ -74,7 +74,7 @@ class LombaController extends Controller
             'penyelenggara'=>'required',
             'tgl_mulai'=>'required',
             'tgl_selesai'=>'required',
-            'sertifikat' => 'file|mimes:pdf|between:0,5000',
+            'sertifikat' => 'file|mimes:png,jpg,jpeg,pdf|between:0,5000',
             'foto_penghargaan' => 'file|mimes:png,jpg,jpeg,pdf|between:0,5000',
             'surat_lomba' => 'file|mimes:png,jpg,jpeg,pdf|between:0,5000',
         ],[
@@ -211,7 +211,7 @@ class LombaController extends Controller
             'penyelenggara'=>'required',
             'tgl_mulai'=>'required',
             'tgl_selesai'=>'required',
-            'sertifikat' => 'file|mimes:pdf|between:0,5000',
+            'sertifikat' => 'file|mimes:png,jpg,jpeg,pdf|between:0,5000',
             'foto_penghargaan' => 'file|mimes:png,jpg,jpeg,pdf|between:0,5000',
             'surat_lomba' => 'file|mimes:png,jpg,jpeg,pdf|between:0,5000',
         ],[

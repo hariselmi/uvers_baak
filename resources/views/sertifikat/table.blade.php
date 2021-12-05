@@ -26,12 +26,20 @@
                     <td>{{ Get_field::get_data($value->status, 'status_aktivitas', 'name') }}</td>
                     <td class="item_btn_group">
                         @if (Auth::user()->role == 'mahasiswa')
-                            @php
-                                $actions = [
-                                    ['data-replace' => '#showSertifikat', 'url' => '#showSertifikatModal', 'ajax-url' => url('sertifikat/' . $value->id . '/'), 'name' => ' Lihat', 'icon' => 'eye'], 
-                                    ['url' => 'sertifikat/' . $value->id, 'name' => 'delete']
-                                ];
-                            @endphp
+                            @if ($value->status != 1)
+                                @php
+                                    $actions = [
+                                        ['data-replace' => '#showSertifikat', 'url' => '#showSertifikatModal', 'ajax-url' => url('sertifikat/' . $value->id . '/'), 'name' => ' Lihat', 'icon' => 'eye'], 
+                                    ];
+                                @endphp
+                            @else
+                                @php
+                                    $actions = [
+                                        ['data-replace' => '#showSertifikat', 'url' => '#showSertifikatModal', 'ajax-url' => url('sertifikat/' . $value->id . '/'), 'name' => ' Lihat', 'icon' => 'eye'], 
+                                        ['url' => 'sertifikat/' . $value->id, 'name' => 'delete']
+                                    ];
+                                @endphp
+                            @endif
                         @else
                             @php
                                 $actions = [
@@ -50,19 +58,13 @@
     @include('partials.pagination', ['items'=>$dataSertifikat, 'index_route'=>route('sertifikat.index')])
 </div>
 
-@section('script')
 <script>
-     $('#tableSertifikat').DataTable({
-         searching: false, 
-         paging: false, 
-         info: false,
-        });
-
- 
-</script>
-@endsection
-
-<script>
+    $('#tableSertifikat').DataTable({
+        searching: false, 
+        paging: false, 
+        info: false,
+    });
+    
     $('#addSertifikatModal').modal('hide');
     $('#editSertifikatModal').modal('hide');
 </script>

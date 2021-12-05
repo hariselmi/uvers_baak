@@ -66,27 +66,9 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
   <script src="{{asset('js/app.js')}}"></script>
-</head>
-<body class="hold-transition skin-blue sidebar-mini">
-  <div id="progressbar-recommendation" class="pt-loading">
-    <div class="loading-progress"></div>
-  </div>
-  <div class="wrapper" id="app">
 
-    @include('partials.navbar')
-    <!-- Left side column. contains the logo and sidebar -->
-    @include('partials.sidebar')
 
-    <!-- Content Wrapper. Contains page content -->
-    @yield('content')
 
-    <!-- /.content-wrapper -->
-    @include('partials.footer')
-
-    <!-- /.control-sidebar -->
-    <!-- Add the sidebar's background. This div must be placed immediately after the control sidebar -->
-    <div class="control-sidebar-bg"></div>
-  </div>
 <!-- ./wrapper -->
 <!-- jQuery 3 & bootstrap -->
 {{-- <script src="{{asset('js/bootstrap.min.js')}}"></script> --}}
@@ -115,6 +97,31 @@
 
 
 <script type="text/javascript" src="{{asset('dist/clockpicker/bootstrap-clockpicker.min.js')}}"></script>
+  
+
+
+  
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+  <div id="progressbar-recommendation" class="pt-loading">
+    <div class="loading-progress"></div>
+  </div>
+  <div class="wrapper" id="app">
+
+    @include('partials.navbar')
+    <!-- Left side column. contains the logo and sidebar -->
+    @include('partials.sidebar')
+
+    <!-- Content Wrapper. Contains page content -->
+    @yield('content')
+
+    <!-- /.content-wrapper -->
+    @include('partials.footer')
+
+    <!-- /.control-sidebar -->
+    <!-- Add the sidebar's background. This div must be placed immediately after the control sidebar -->
+    <div class="control-sidebar-bg"></div>
+  </div>
 
 @yield('script')
 @include('partials.analytics')

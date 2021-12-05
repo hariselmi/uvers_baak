@@ -26,12 +26,20 @@
                     <td>{{ Get_field::get_data($value->status, 'status_aktivitas', 'name') }}</td>
                     <td class="item_btn_group">
                         @if (Auth::user()->role == 'mahasiswa')
-                            @php
-                                $actions = [
-                                    ['data-replace' => '#showPelatihan', 'url' => '#showPelatihanModal', 'ajax-url' => url('pelatihan/' . $value->id . '/'), 'name' => ' Lihat', 'icon' => 'eye'], 
-                                    ['url' => 'pelatihan/' . $value->id, 'name' => 'delete']
-                                ];
-                            @endphp
+                            @if ($value->status != 1)
+                                @php
+                                    $actions = [
+                                        ['data-replace' => '#showPelatihan', 'url' => '#showPelatihanModal', 'ajax-url' => url('pelatihan/' . $value->id . '/'), 'name' => ' Lihat', 'icon' => 'eye'], 
+                                    ];
+                                @endphp
+                            @else
+                                @php
+                                    $actions = [
+                                        ['data-replace' => '#showPelatihan', 'url' => '#showPelatihanModal', 'ajax-url' => url('pelatihan/' . $value->id . '/'), 'name' => ' Lihat', 'icon' => 'eye'], 
+                                        ['url' => 'pelatihan/' . $value->id, 'name' => 'delete']
+                                    ];
+                                @endphp
+                            @endif
                         @else
                             @php
                                 $actions = [
@@ -50,20 +58,13 @@
     @include('partials.pagination', ['items'=>$dataPelatihan, 'index_route'=>route('pelatihan.index')])
 </div>
 
-
-@section('script')
 <script>
-     $('#tablePelatihan').DataTable({
-         searching: false, 
-         paging: false, 
-         info: false,
-        });
+    $('#tablePelatihan').DataTable({
+        searching: false, 
+        paging: false, 
+        info: false,
+    });
 
- 
-</script>
-@endsection
-
-<script>
     $('#addPelatihanModal').modal('hide');
     $('#editPelatihanModal').modal('hide');
 </script>

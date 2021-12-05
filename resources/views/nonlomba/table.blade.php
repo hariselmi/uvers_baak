@@ -26,12 +26,20 @@
                     <td>{{ Get_field::get_data($value->status, 'status_aktivitas', 'name') }}</td>
                     <td class="item_btn_group">
                         @if (Auth::user()->role == 'mahasiswa')
-                            @php
-                                $actions = [
-                                    ['data-replace' => '#showNonLomba', 'url' => '#showNonLombaModal', 'ajax-url' => url('nonlomba/' . $value->id . '/'), 'name' => ' Lihat', 'icon' => 'eye'], 
-                                    ['url' => 'nonlomba/' . $value->id, 'name' => 'delete']
-                                ];
-                            @endphp
+                            @if ($value->status != 1)
+                                @php
+                                    $actions = [
+                                        ['data-replace' => '#showNonLomba', 'url' => '#showNonLombaModal', 'ajax-url' => url('nonlomba/' . $value->id . '/'), 'name' => ' Lihat', 'icon' => 'eye'], 
+                                    ];
+                                @endphp
+                            @else
+                                @php
+                                    $actions = [
+                                        ['data-replace' => '#showNonLomba', 'url' => '#showNonLombaModal', 'ajax-url' => url('nonlomba/' . $value->id . '/'), 'name' => ' Lihat', 'icon' => 'eye'], 
+                                        ['url' => 'nonlomba/' . $value->id, 'name' => 'delete']
+                                    ];
+                                @endphp
+                            @endif
                         @else
                             @php
                                 $actions = [
@@ -50,17 +58,13 @@
     @include('partials.pagination', ['items'=>$dataNonLomba, 'index_route'=>route('nonlomba.index')])
 </div>
 
-@section('script')
-<script defer>
-     $('#tableNonLomba').DataTable({
-         searching: false, 
-         paging: false, 
-         info: false,
-        });
-</script>
-@endsection
-
 <script>
+    $('#tableNonLomba').DataTable({
+        searching: false, 
+        paging: false, 
+        info: false,
+       });
+
     $('#addNonLombaModal').modal('hide');
     $('#editNonLombaModal').modal('hide');
 </script>

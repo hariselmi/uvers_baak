@@ -26,12 +26,20 @@
                     <td>{{ Get_field::get_data($value->status, 'status_aktivitas', 'name') }}</td>
                     <td class="item_btn_group">
                         @if (Auth::user()->role == 'mahasiswa')
-                            @php
-                                $actions = [
-                                    ['data-replace' => '#showMagang', 'url' => '#showMagangModal', 'ajax-url' => url('magang/' . $value->id . '/'), 'name' => ' Lihat', 'icon' => 'eye'], 
-                                    ['url' => 'magang/' . $value->id, 'name' => 'delete']
-                                ];
-                            @endphp
+                            @if ($value->status != 1)
+                                @php
+                                    $actions = [
+                                        ['data-replace' => '#showMagang', 'url' => '#showMagangModal', 'ajax-url' => url('magang/' . $value->id . '/'), 'name' => ' Lihat', 'icon' => 'eye'], 
+                                    ];
+                                @endphp
+                            @else
+                                @php
+                                    $actions = [
+                                        ['data-replace' => '#showMagang', 'url' => '#showMagangModal', 'ajax-url' => url('magang/' . $value->id . '/'), 'name' => ' Lihat', 'icon' => 'eye'], 
+                                        ['url' => 'magang/' . $value->id, 'name' => 'delete']
+                                    ];
+                                @endphp
+                            @endif
                         @else
                             @php
                                 $actions = [
@@ -50,20 +58,13 @@
     @include('partials.pagination', ['items'=>$dataMagang, 'index_route'=>route('magang.index')])
 </div>
 
-
-@section('script')
 <script>
-     $('#tableMagang').DataTable({
-         searching: false, 
-         paging: false, 
-         info: false,
-        });
-
- 
-</script>
-@endsection
-
-<script>
+    $('#tableMagang').DataTable({
+        searching: false, 
+        paging: false, 
+        info: false,
+    });
+    
     $('#addMagangModal').modal('hide');
     $('#editMagangModal').modal('hide');
 </script>

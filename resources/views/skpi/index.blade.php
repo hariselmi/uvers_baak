@@ -5,6 +5,8 @@
     @include('skpi.skpi')
 </div>
 
+
+
 @include('partials.gadds')
 @endsection
 

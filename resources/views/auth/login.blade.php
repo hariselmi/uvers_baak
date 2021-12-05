@@ -29,7 +29,7 @@
     <form data-no-ajax action="{{ route('login') }}" method="post">
     	<input type="hidden" name="_token" value="{{ csrf_token() }}">
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" name="email" value="{{ old('email') }}" placeholder="Username">
+        <input type="text" class="form-control" name="username" value="{{ old('username') }}" placeholder="Username">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">

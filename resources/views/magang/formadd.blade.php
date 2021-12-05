@@ -43,7 +43,7 @@
                 {{ Form::label('sertifikat', 'Sertifikat/Piala/Medali', ['class' => 'col-sm-3 text-right']) }}
                 <div class="col-sm-9">
                     {{ Form::file('sertifikat', null, ['class' => 'form-control', 'required']) }}
-                    <label style="color: #dc3545; font-size:.875em">*Pastikan file dalam format PDF file max 5 MB</label>
+                    <label style="color: #dc3545; font-size:.875em">*Pastikan file dalam format PDF/JPG/PNG file max 5 MB</label>
                 </div>
             </div>
         </div>

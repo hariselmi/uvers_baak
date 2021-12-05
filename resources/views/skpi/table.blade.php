@@ -61,18 +61,14 @@
     </table>
     @include('partials.pagination', ['items'=>$dataSkpi, 'index_route'=>route('skpi.index')])
 </div>
-@section('script')
-<script>
-     $('#tableSkpi').DataTable({
-         searching: false, 
-         paging: false, 
-         info: false,
-        });
- 
-</script>
-@endsection
 
 <script>
+    $('#tableSkpi').DataTable({
+        searching: false, 
+        paging: false, 
+        info: false,
+    });
+    
     $('#validasiSkpiModal').modal('hide');
     $('#editSkpiModal').modal('hide');
 </script>

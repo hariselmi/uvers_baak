@@ -71,7 +71,7 @@ class SertifikatController extends Controller
             'penyelenggara'=>'required',
             'tgl_mulai'=>'required',
             'tgl_selesai'=>'required',
-            'sertifikat' => 'file|mimes:pdf|between:0,5000',
+            'sertifikat' => 'file|mimes:png,jpg,jpeg,pdf|between:0,5000',
         ],[
             'sertifikat.mimes' => 'Extensi file sertifikat tidak didukung',
             'sertifikat.between' => 'Ukuran file sertifikat max 5MB',
@@ -165,7 +165,7 @@ class SertifikatController extends Controller
             'penyelenggara'=>'required',
             'tgl_mulai'=>'required',
             'tgl_selesai'=>'required',
-            'sertifikat' => 'file|mimes:pdf|between:0,5000',
+            'sertifikat' => 'file|mimes:png,jpg,jpeg,pdf|between:0,5000',
         ],[
             'sertifikat.mimes' => 'Extensi file sertifikat tidak didukung',
             'sertifikat.between' => 'Ukuran file sertifikat max 5MB',
