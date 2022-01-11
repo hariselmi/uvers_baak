@@ -14,7 +14,7 @@
                   {{ Form::file('import_file',null, ['class' => 'form-control', 'required']) }}
                   </div>
                   <div class="col-sm-3">
-                    {{ Form::submit(trans('simpan'), ['class' => 'btn btn-success']) }}
+                    {{ Form::submit(trans('Simpan'), ['class' => 'btn btn-success']) }}
                   </div>
                 </div>
             </div>

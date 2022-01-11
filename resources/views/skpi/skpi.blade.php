@@ -1,9 +1,8 @@
 <div class="" id="skpiDetails">
     <!-- Content Header (Page header) -->
-
     <section class="content-header m-3">
         <h1>{{ __('SKPI') }}
-            &nbsp;<a class="btn btn-small btn-success pull-right" href="{{route('skpi.excel')}}" data-toggle='modal' target="_blank">{{ __('Excel') }}</a>&nbsp;
+            &nbsp;<a class="btn btn-small btn-success pull-right  left-margin-10" href="{{route('skpi.excel')}}" data-toggle='modal' target="_blank">{{ __('Excel') }}</a>&nbsp;
             @if (Auth::user()->role == 'admin-skpi' || Auth::user()->role == 'admin')
                 &nbsp;<a class="btn btn-small btn-success pull-right" href="#validasiSkpiModal" data-toggle='modal'>{{ __('Validasi') }}</a>&nbsp;
             @endif
