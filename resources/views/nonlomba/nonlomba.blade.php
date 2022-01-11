@@ -1,14 +1,14 @@
 <div class="" id="nonNonLombaDetails">
     <!-- Content Header (Page header) -->
 
-    @if (auth()->user()->checkSpPermission('nonlomba.create') && Auth::user()->role == 'mahasiswa')
     <section class="content-header m-3">
-        <h1>{{ __('Kegiatan Non Lomba') }}
+        <h4>{{ __('Kegiatan Non Lomba') }}
+            @if (auth()->user()->checkSpPermission('nonlomba.create') && Auth::user()->role == 'mahasiswa')
             <a class="btn btn-small btn-success pull-right" href="#addNonLombaModal" data-toggle='modal'>
                 <i class="fa fa-plus"></i>&nbsp; {{ __('Tambah') }}</a>
-        </h1>
+                @endif
+        </h4>
     </section>
-    @endif
 
     <!-- Main content -->
     <section class="content">

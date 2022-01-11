@@ -1,14 +1,14 @@
 <div class="" id="pendaftaranDetails">
     <!-- Content Header (Page header) -->
 
-    @if (Auth::user()->role == 'admin')
     <section class="content-header m-3">
         <h1>{{ __('Pendaftaran Beasiswa') }}
+            @if (Auth::user()->role == 'admin')
             <a class="btn btn-small btn-success pull-right" href="#addPendaftaranBeasiswaModal" data-toggle='modal'>
                 <i class="fa fa-plus"></i>&nbsp; {{ __('Tambah') }}</a>
+                @endif
         </h1>
     </section>
-    @endif
 
     <!-- Main content -->
     <section class="content">

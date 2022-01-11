@@ -1,14 +1,14 @@
 <div class="" id="lombaDetails">
     <!-- Content Header (Page header) -->
 
-    @if (auth()->user()->checkSpPermission('lomba.create') && Auth::user()->role == 'mahasiswa')
     <section class="content-header m-3">
-        <h1>{{ __('Kegiatan Lomba/Kompetisi') }}
+        <h4>{{ __('Kegiatan Lomba/Kompetisi') }}
+            @if (auth()->user()->checkSpPermission('lomba.create') && Auth::user()->role == 'mahasiswa')
             <a class="btn btn-small btn-success pull-right" href="#addLombaModal" data-toggle='modal'>
                 <i class="fa fa-plus"></i>&nbsp; {{ __('Tambah') }}</a>
-        </h1>
+                @endif
+        </h4>
     </section>
-    @endif
 
     <!-- Main content -->
     <section class="content">

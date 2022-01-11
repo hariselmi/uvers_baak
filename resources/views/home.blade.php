@@ -8,11 +8,11 @@
             <div class="col-md-12">
                 <div class="panel-heading">
                     @include('partials.flash')
-                    @if (Auth::user()->role == 'mahasiswa')
+                    {{-- @if (Auth::user()->role == 'mahasiswa') --}}
                         <h4>{{ __('Selamat datang di Sistem Layanan Kemahasiswaan (SILMA) Universitas Universal.') }}</h4>
-                    @else
+                    {{-- @else
                         <h1>{{ __('Dashboard Sistem Layanan Kemahasiswaan') }}</h1>
-                    @endif
+                    @endif --}}
                 </div>
                 <div class="panel-body">
                     @if (Auth::user()->role == 'mahasiswa')
