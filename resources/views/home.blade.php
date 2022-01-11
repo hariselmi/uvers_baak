@@ -9,7 +9,7 @@
                 <div class="panel-heading">
                     @include('partials.flash')
                     @if (Auth::user()->role == 'mahasiswa')
-                        <h3>{{ __('Selamat datang di Sistem Layanan Kemahasiswaan Universitas Universal (SILMA).') }}</h3>
+                        <h4>{{ __('Selamat datang di Sistem Layanan Kemahasiswaan (SILMA) Universitas Universal.') }}</h4>
                     @else
                         <h1>{{ __('Dashboard Sistem Layanan Kemahasiswaan') }}</h1>
                     @endif
@@ -22,26 +22,26 @@
                                 <div class="box box-success">
                                     <div class="box-body">
                                         <div class="col-md-2">
-                                            <h4>NIM</h4>
+                                            <h5>NIM</h5>
                                         </div>
                                         <div class="col-md-10">
-                                            <h4>: {{ Get_field::get_data(Auth::user()->mahasiswa_id, 'mahasiswa', 'nim') }}</h4>
+                                            <h5>: {{ Get_field::get_data(Auth::user()->mahasiswa_id, 'mahasiswa', 'nim') }}</h5>
                                         </div>
             
             
                                         <div class="col-md-2">
-                                            <h4>NAMA</h4>
+                                            <h5>NAMA</h5>
                                         </div>
                                         <div class="col-md-10">
-                                            <h4>: {{ Get_field::get_data(Auth::user()->mahasiswa_id, 'mahasiswa', 'nama') }}</h4>
+                                            <h5>: {{ Get_field::get_data(Auth::user()->mahasiswa_id, 'mahasiswa', 'nama') }}</h5>
                                         </div>
             
             
                                         <div class="col-md-2">
-                                            <h4>Program Studi</h4>
+                                            <h5>Program Studi</h5>
                                         </div>
                                         <div class="col-md-10">
-                                            <h4>: {{ Get_field::get_data(Get_field::get_data(Auth::user()->mahasiswa_id, 'mahasiswa', 'prodi'), 'prodi', 'name') }}</h4>
+                                            <h5>: {{ Get_field::get_data(Get_field::get_data(Auth::user()->mahasiswa_id, 'mahasiswa', 'prodi'), 'prodi', 'name') }}</h5>
                                         </div>
                                     </div>
                                     <!-- /.box-body -->

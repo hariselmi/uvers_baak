@@ -41,6 +41,25 @@
                     {{ Form::date('tgl_sampai_periode', null, ['class' => 'form-control']) }}
                 </div>
             </div>
+            
+
+            @foreach ($custom as $key=>$item)
+            <div class="form-group row">
+                {{ Form::label('nama_custom_'.($key+1), 'Nama Custom '.($key+1), ['class' => 'col-sm-3 text-right']) }}
+                <div class="col-sm-9">
+                    {{ Form::text('nama_custom_'.($key+1), $item->nama_field, ['class' => 'form-control']) }}
+                </div>
+            </div>
+            @endforeach
+
+            @for ($i=count($custom)+1;$i<=10;$i++)
+                <div class="form-group row">
+                    {{ Form::label('nama_custom_'.($i), 'Nama Custom '.($i), ['class' => 'col-sm-3 text-right']) }}
+                    <div class="col-sm-9">
+                        {{ Form::text('nama_custom_'.($i), null, ['class' => 'form-control']) }}
+                    </div>
+                </div>
+            @endfor
         </div>
     </div>
 
@@ -112,7 +131,7 @@
     @if (!empty($page))
         <input type="hidden" name="page" value="{{ $page }}" />
     @endif
-    {{ Form::submit(trans('submit'), ['class' => 'btn btn-success']) }}
+    {{ Form::submit(trans('simpan'), ['class' => 'btn btn-success']) }}
     <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('Tutup') }}</button>
 </div>
 {{ Form::close() }}

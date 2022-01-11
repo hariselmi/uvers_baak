@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\BeasiswaExport;
 
 class StatusPemrosesanController extends Controller
 {
@@ -222,4 +224,9 @@ class StatusPemrosesanController extends Controller
         }
         return $this->sendResponse($response);
     }
+
+    public function excel(Request $request, $id, $namaPaket)
+	{
+		return Excel::download(new BeasiswaExport($id), 'beasiswa_'.$namaPaket.'_'.date('H:i:s').'.xlsx');
+	}
 }

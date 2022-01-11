@@ -39,6 +39,66 @@
                     {{ Form::date('tgl_sampai_periode', null, ['class' => 'form-control']) }}
                 </div>
             </div>
+            <div class="form-group row">
+                {{ Form::label('nama_custom_1', 'Nama Custom 1', ['class' => 'col-sm-3 text-right']) }}
+                <div class="col-sm-9">
+                    {{ Form::text('nama_custom_1', null, ['class' => 'form-control']) }}
+                </div>
+            </div>
+            <div class="form-group row">
+                {{ Form::label('nama_custom_2', 'Nama Custom 2', ['class' => 'col-sm-3 text-right']) }}
+                <div class="col-sm-9">
+                    {{ Form::text('nama_custom_2', null, ['class' => 'form-control']) }}
+                </div>
+            </div>
+            <div class="form-group row">
+                {{ Form::label('nama_custom_3', 'Nama Custom 3', ['class' => 'col-sm-3 text-right']) }}
+                <div class="col-sm-9">
+                    {{ Form::text('nama_custom_3', null, ['class' => 'form-control']) }}
+                </div>
+            </div>
+            <div class="form-group row">
+                {{ Form::label('nama_custom_4', 'Nama Custom 4', ['class' => 'col-sm-3 text-right']) }}
+                <div class="col-sm-9">
+                    {{ Form::text('nama_custom_4', null, ['class' => 'form-control']) }}
+                </div>
+            </div>
+            <div class="form-group row">
+                {{ Form::label('nama_custom_5', 'Nama Custom 5', ['class' => 'col-sm-3 text-right']) }}
+                <div class="col-sm-9">
+                    {{ Form::text('nama_custom_5', null, ['class' => 'form-control']) }}
+                </div>
+            </div>
+            <div class="form-group row">
+                {{ Form::label('nama_custom_6', 'Nama Custom 6', ['class' => 'col-sm-3 text-right']) }}
+                <div class="col-sm-9">
+                    {{ Form::text('nama_custom_6', null, ['class' => 'form-control']) }}
+                </div>
+            </div>
+            <div class="form-group row">
+                {{ Form::label('nama_custom_7', 'Nama Custom 7', ['class' => 'col-sm-3 text-right']) }}
+                <div class="col-sm-9">
+                    {{ Form::text('nama_custom_7', null, ['class' => 'form-control']) }}
+                </div>
+            </div>
+            <div class="form-group row">
+                {{ Form::label('nama_custom_8', 'Nama Custom 8', ['class' => 'col-sm-3 text-right']) }}
+                <div class="col-sm-9">
+                    {{ Form::text('nama_custom_8', null, ['class' => 'form-control']) }}
+                </div>
+            </div>
+            <div class="form-group row">
+                {{ Form::label('nama_custom_9', 'Nama Custom 9', ['class' => 'col-sm-3 text-right']) }}
+                <div class="col-sm-9">
+                    {{ Form::text('nama_custom_9', null, ['class' => 'form-control']) }}
+                </div>
+            </div>
+            <div class="form-group row">
+                {{ Form::label('nama_custom_10', 'Nama Custom 10', ['class' => 'col-sm-3 text-right']) }}
+                <div class="col-sm-9">
+                    {{ Form::text('nama_custom_10', null, ['class' => 'form-control']) }}
+                </div>
+            </div>
         </div>
     </div>
 
@@ -107,7 +167,7 @@
     @if (!empty($page))
         <input type="hidden" name="page" value="{{ $page }}" />
     @endif
-    {{ Form::submit(trans('submit'), ['class' => 'btn btn-success']) }}
+    {{ Form::submit(trans('simpan'), ['class' => 'btn btn-success']) }}
     <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('Tutup') }}</button>
 </div>
 {{ Form::close() }}

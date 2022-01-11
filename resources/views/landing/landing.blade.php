@@ -21,7 +21,7 @@
 
 
 
-                <p class="alignjustify">{!!$value->content!!}</p>
+                {{-- <p class="alignjustify">{!!$value->content!!}</p> --}}
                 <a class="btn-link link-arrow-sm" href="/articles_details/{{$value->id}}">Read More</a>
             </div>
         </div>

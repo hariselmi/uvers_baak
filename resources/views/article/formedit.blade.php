@@ -62,7 +62,7 @@
     @if (!empty($page))
         <input type="hidden" name="page" value="{{ $page }}" />
     @endif
-    {{ Form::submit(trans('submit'), ['class' => 'btn btn-success']) }}
+    {{ Form::submit(trans('simpan'), ['class' => 'btn btn-success']) }}
     <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('Tutup') }}</button>
 </div>
 {{ Form::close() }}

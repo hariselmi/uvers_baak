@@ -1,4 +1,4 @@
-@include('landing.head')
+@include('landing.head_no_slider')
 <!-- Content -->
 <div class="section section-contents section-pad">
 	<!-- Content -->
@@ -20,7 +20,7 @@
 
 
 
-					<p class="alignjustify">{!!$value->content!!}</p>
+					{{-- <p class="alignjustify">{!!$value->content!!}</p> --}}
 					<a class="btn-link link-arrow-sm" href="/articles_details/{{$value->id}}">Read More</a>
 				</div>
 			</div>

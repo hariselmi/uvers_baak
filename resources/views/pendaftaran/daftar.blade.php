@@ -17,7 +17,16 @@
                     {{ Form::text('nama_paket', null, ['class' => 'form-control', 'readonly' => 'readonly']) }}
                 </div>
             </div>
+            @foreach ($custom as $key=>$item)
+                
             <div class="form-group row">
+                {{ Form::label('custom'.($key+1), $item->nama_field, ['class' => 'col-sm-3 text-right']) }}
+                <div class="col-sm-9">
+                    {{ Form::text('custom'.($key+1), null, ['class' => 'form-control']) }}
+                </div>
+            </div>
+            @endforeach
+            {{-- <div class="form-group row">
                 {{ Form::label('no_identitas', 'No. Identitas/KTP *', ['class' => 'col-sm-3 text-right']) }}
                 <div class="col-sm-9">
                     {{ Form::text('no_identitas', null, ['class' => 'form-control']) }}
@@ -34,7 +43,7 @@
                 <div class="col-sm-9">
                     {{ Form::text('pemilik_rekening', null, ['class' => 'form-control']) }}
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 

@@ -66,9 +66,9 @@
                                     <td>
                                         @foreach ($file_syarat as $file)
                                             @if ($data->id == $file->syarat_id)
-                                                <a target="_blank" class="pull-right" href="{{ $file->file_syarat ? asset('/document/syarat_beasiswa').'/'.$file->file_syarat : 'javascript:void(0)' }}">{{ $file->file_syarat ? $file->file_syarat : '-' }}</a>
+                                                <a target="_blank" class="pull-right" href="{{ $file->file_syarat ? asset('/document/syarat_beasiswa').'/'.$file->file_syarat : 'javascript:void(0)' }}">{{ $file->file_syarat ? $file->file_syarat : '' }}</a>
                                             @else
-                                                <a target="_blank" class="pull-right" href="javascript:void(0)">-</a>
+                                                <a target="_blank" class="pull-right" href="javascript:void(0)"></a>
                                             @endif
                                         @endforeach
                                     </td>

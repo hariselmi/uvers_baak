@@ -13,11 +13,11 @@
             @if($filter_id == 'lombaFilter' || $filter_id == 'nonlombaFilter' || $filter_id == 'sertifikatFilter' || $filter_id == 'pelatihanFilter' || $filter_id == 'magangFilter')
             <div class="form-group pr-2">
                 <label class="pr-1">{{__('From')}} </label>
-                <input autocomplete="off" type="text" name="filter[start_date]" id="start_date" class="form-control" onchange="$('#{{$filter_id}}').submit()" />
+                <input autocomplete="off" type="date" name="filter[start_date]" id="start_date" class="form-control" onchange="$('#{{$filter_id}}').submit()" />
             </div>
             <div class="form-group pr-2">
                 <label class="pr-1" for="EndDate">{{__('To')}} </label>
-                <input autocomplete="off" type="text" name="filter[end_date]" id="end_date" class="form-control" onchange="$('#{{$filter_id}}').submit()" />
+                <input autocomplete="off" type="date" name="filter[end_date]" id="end_date" class="form-control" onchange="$('#{{$filter_id}}').submit()" />
             </div>
             <div class="form-group pull-right">
                 <label class="pr-1" for="search">{{__('Search')}} </label>

@@ -4,6 +4,7 @@
     @if (auth()->user()->checkSpPermission('statuspemrosesan.create'))
     <section class="content-header m-3">
         <h1>{{ __('Status Pemrosesan') }}
+            {{-- <a class="btn btn-small btn-success pull-right" href="{{route('statuspemrosesan.excel')}}" data-toggle='modal' target="_blank">{{ __('Excel') }}</a> --}}
             {{-- <a class="btn btn-small btn-success pull-right" href="{{route('skpi.excel')}}" data-toggle='modal' target="_blank">{{ __('Excel') }}</a> --}}
 
             {{-- <a class="btn btn-small btn-success pull-right" href="#addStatusPemrosesanModal" data-toggle='modal'>

@@ -32,7 +32,8 @@
                             # code...
                             $actions = [
                                 ['data-replace' => '#editPendaftaranBeasiswa', 'url' => '#editPendaftaranBeasiswaModal', 'ajax-url' => url('pendaftaran/' . $value->id . '/edit'), 'name' => ' Ubah', 'icon' => 'pencil'],
-                                ['url' => 'pendaftaran/' . $value->id, 'name' => 'delete']
+                                ['url' => 'pendaftaran/' . $value->id, 'name' => 'delete'],
+                                ['url' => 'pendaftaran/' . $value->id.'/'.$value->nama_paket.'/excel', 'name' => ' Export', 'icon' => 'download']
                             ];
                         }
         

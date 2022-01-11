@@ -25,8 +25,8 @@
                     <td>{{ $value->nama_kegiatan }}</td>
                     <td>{{ $value->peran }}</td>
                     <td>{{ $value->penyelenggara }}</td>
-                    <td>{{ $value->tgl_mulai }}</td>
-                    <td>{{ $value->tgl_selesai }}</td>
+                    <td>{{  Get_field::format_indo($value->tgl_mulai) }}</td>
+                    <td>{{  Get_field::format_indo($value->tgl_selesai) }}</td>
                     <td>
                         @switch($value->status)
                             @case(1)

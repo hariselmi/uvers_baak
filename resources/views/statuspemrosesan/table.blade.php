@@ -7,6 +7,7 @@
                 <th>{{ __('NIM') }}</th>
                 <th>{{ __('Prodi') }}</th>
                 <th>{{ __('Status') }}</th>
+                <th>{{ __('Tanggal Daftar') }}</th>
                 <th>{{ __('Keterangan') }}</th>
                 <th class="text-center">Aksi</th>
             </tr>
@@ -19,6 +20,7 @@
                     <td>{{ Get_field::get_data($value->mahasiswa_id, 'mahasiswa', 'nim') }}</td>
                     <td>{{ Get_field::get_data($value->prodi, 'prodi', 'name') }}</td>
                     <td>{{ Get_field::get_data($value->status, 'status_pemrosesan', 'name') }}</td>
+                    <td>{{ Get_field::format_indo($value->created_at) }}</td>
                     <td>{{ $value->catatan ? $value->catatan : '-' }}</td>
                     <td class="item_btn_group">
                         @php

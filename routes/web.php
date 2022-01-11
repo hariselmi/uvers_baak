@@ -45,6 +45,7 @@ Route::group(['middleware' => 'languange'], function () {
     Route::resource('prodi', 'ProdiController');
 
     Route::get('/export/skpi/excel', 'SkpiController@excel')->name('skpi.excel');
+    Route::get('/pendaftaran/{id}/{namapaket}/excel', 'StatusPemrosesanController@excel')->name('statuspemrosesan.excel');
 
 
     Route::get('pendaftaran/{id}/daftar', 'PendaftaranBeasiswaController@daftar')->name('pendaftaran.daftar');
