@@ -347,7 +347,8 @@ class PendaftaranBeasiswaController extends Controller
                     $fileSyarat->move($uploadLocation, $fileSyaratImgName);
 
                     $fileInsert = array();
-                    $fileInsert['file_syarat'] = url('/').'/document/syarat_beasiswa/'.$fileSyaratImgName;
+                    $fileInsert['file_syarat'] = $fileSyaratImgName;
+                    // $fileInsert['file_syarat'] = url('/').'/document/syarat_beasiswa/'.$fileSyaratImgName;
                     $fileInsert['pendaftaran_id'] = $pendaftaran->id;
                     $fileInsert['syarat_id'] = $request->syaratId[$i];
                     $fileInsert['dlt'] = 0;

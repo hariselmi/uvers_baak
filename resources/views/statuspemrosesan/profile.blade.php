@@ -14,7 +14,7 @@
                         {{-- <img class="profile-user-img img-responsive img-circle" src="{{$avatar}}" alt="User profile picture"> --}}
                         <ul class="list-group list-group-unbordered">
                             <li class="list-group-item">
-                                <b>Beasiswa </b> <a class="pull-right">{{ Get_field::get_data($statusPemrosesan->beasiswa_id, 'beasiswa', 'nama_paket') }}</a>
+                                <b>Beasiswaaaa </b> <a class="pull-right">{{ Get_field::get_data($statusPemrosesan->beasiswa_id, 'beasiswa', 'nama_paket') }}</a>
                             </li>
                             <li class="list-group-item hidden-print">
                                 <b>Nama </b> <a class="pull-right">{{ Get_field::get_data($statusPemrosesan->mahasiswa_id, 'mahasiswa', 'nama') }}</a>
